@@ -27,10 +27,10 @@ $velar2IPA$ = {ka}:{ക}<velarconsonant>:<><unaspirated>:<><voiceless>:<>|\
               {ŋa}:{ങ}<velarconsonant>:<><nasal>:<><voiced>:<>
 $g2p$ = ($vowels2IPA$|$velar2IPA$ )*
 %uncomment to test
-% $tests$ = അ|\
-%          ക|\
-%          അക|\
-%          ങഖ|\
-%          ഗ
-$g2p$ %\
-%|| $tests$
+$tests$ = അ|\
+         ക|\
+         അക|\
+         ങഖ|\
+         ഗ
+$g2p$ \
+|| $tests$
