@@ -14,6 +14,7 @@
 #IPAdental# = t̪a t̪ʰa d̪a d̪ʱa na
 #IPAlabial# = pa pʰa ba bʱa ma
 #IPAother# = ja ɾa la ʋa ʃa ʂa sa ɦa ɭa ɽa ra
+#viramatag# = <virama>
 #purevoweltag#  = <purevowel>
 #vowelsigntag# = <vowelsign>
 #velarconsonanttag# = <velarconsonant>
@@ -27,7 +28,13 @@
 #phonetags# = #purevoweltag# #vowelsigntag# #consonantstag# #phonecharacteristic#
 ALPHABET = [#mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother# \
             #purevoweltag##vowelsigntag##consonantstag##IPAvovels##IPAvelar##IPApalatal##IPAretroflex##IPAdental##IPAlabial##IPAother# ]
-$space$ = <>:\ <space>:<>
+$space$ = \ <space>:<>
+$MISC$ = [!]<exclamation>:<>|\
+         [,]<comma>:<>|\
+         [.]<period>:<>|\
+         [?]<questionmark>:<>|\
+         [:]<colon>:<>|\
+         [;]<semocolon>:<>
 $virama$ = <>:്<virama>:<>
 $vowel$ = {a}:{അ}<purevowel>:<>|\
           {aː}:{ആ}<purevowel>:<>|\
@@ -101,15 +108,13 @@ $otherconsonants$ = {ja}:{യ}<otherconsonant>:<>|\
                     {ɭa}:{ള}<otherconsonant>:<>|\
                     {ɽa}:{ഴ}<otherconsonant>:<>|\
                     {ra}:{റ}<otherconsonant>:<>
-$IPAandTAGS$ = ($space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$labial$|$otherconsonants$|$vowelsign$)*
+$IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$labial$|$otherconsonants$|$vowelsign$)*
 
 %$removetags$ = <>:<velarconsonants> | <>:<vowelsign> | <>:<purevowel>
 
 %uncomment to test
-% $tests$ = അ|\
-%          ക|\
-%          അക|\
-%          ങഖ|\
-%          ഗ
-$IPAandTAGS$ %|| $removetags$   %\
-%|| $tests$
+%$tests$ = അമ്മ
+
+%$remove-implicit-a$ || \
+%$tests$ || \
+$IPAandTAGS$
