@@ -22,10 +22,6 @@
 #mlspace# = {\ }
 #letters# = #mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother##mlchillu##mlspace#
 ALPHABET = [#letters##mlchilluatomic#]
-$replace-chillu$ = {ൺ}:{ണ്}^-> ([#letters#]__[#letters#])
-                  %  {ന്}:{ൻ}  |\
-                  %  {ര്}:{ർ} |\
-                  %  {ല്}:{ൽ} |\
-                  %  {ള്} :{ൾ} |\
-                  %  {ക്}:{ൿ}
-$replace-chillu$
+$replace-chillu$ = ([#letters#] | {ൺ}:{ണ്} | {ൻ}:{ന്} |{ർ}:{ര്} |{ൽ}:{ല്} | {ൾ}:{ള്}| {ൿ}:{ക്} )*
+$tests$ = കൺമണി | ൺ | വൻമണി | കണ്മണി | വന്മണി | കൽക്കണ്ടം|ണ്
+$tests$ || $replace-chillu$

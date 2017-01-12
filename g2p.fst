@@ -7,6 +7,7 @@
 #mldental# = ത ഥ ദ ധ ന
 #mllabial# = പ ഫ ബ ഭ മ
 #mlother# = യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
+#ml# = #mlvowels##mlvirama##mlvowelsign##mlvelar# #mlpalatal##mlretroflex##mldental##mllabial##mlother#
 #IPAvovels# = a aː i iː u uː rɨ rɨː lɨ lɨː e eː ai̯ o oː au̯ am ah
 #IPAvelar# = ka kʰa ɡa ɡʱa ŋa
 #IPApalatal# = t͡ʃa t͡ʃʰa ɟa ɟʱa ɲa
@@ -14,6 +15,7 @@
 #IPAdental# = t̪a t̪ʰa d̪a d̪ʱa na
 #IPAlabial# = pa pʰa ba bʱa ma
 #IPAother# = ja ɾa la ʋa ʃa ʂa sa ɦa ɭa ɽa ra
+#IPA# = #IPAvovels##IPAvelar# #IPApalatal##IPAretroflex# #IPAdental# #IPAlabial##IPAother#
 #viramatag# = <virama>
 #purevoweltag#  = <purevowel>
 #vowelsigntag# = <vowelsign>
@@ -23,11 +25,11 @@
 #dentalconsonanttag# = <dentalconsonant>
 #labiaalconsonanttag# = <labialconsonant>
 #otherconsonanttag# = <otherconsonant>
-#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
+%#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
+
 #consonantstag# = #velarconsonanttag# #palatalconsonanttag# #dentalconsonanttag# #labiaalconsonanttag# #otherconsonanttag#
-#phonetags# = #purevoweltag# #vowelsigntag# #consonantstag# #phonecharacteristic#
-ALPHABET = [#mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother# \
-            #purevoweltag##vowelsigntag##consonantstag##IPAvovels##IPAvelar##IPApalatal##IPAretroflex##IPAdental##IPAlabial##IPAother# ]
+#phonetags# = #purevoweltag# #vowelsigntag# #consonantstag# %#phonecharacteristic#
+ALPHABET = [#ml# #phonetags# #IPA#]
 $space$ = \ <space>:<>
 $MISC$ = [!]<exclamation>:<>|\
          [,]<comma>:<>|\
@@ -109,12 +111,10 @@ $otherconsonants$ = {ja}:{യ}<otherconsonant>:<>|\
                     {ɽa}:{ഴ}<otherconsonant>:<>|\
                     {ra}:{റ}<otherconsonant>:<>
 $IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$labial$|$otherconsonants$|$vowelsign$)*
+$removetag$ = ([#IPA#]|<>:[#phonetags#])*
+$tests$ = അമ്മ | ആന
+$IPAandTAGS$ >> "IPAandTAGS.a"
+$removetag$ >> "removetag.a"
 
-%$removetags$ = <>:<velarconsonants> | <>:<vowelsign> | <>:<purevowel>
-
-%uncomment to test
-%$tests$ = അമ്മ
-
-%$remove-implicit-a$ || \
-%$tests$ || \
-$IPAandTAGS$
+%$tests$ ||
+$IPAandTAGS$ || $removetag$
