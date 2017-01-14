@@ -11,7 +11,7 @@
 #mlchillu# = ണ്‍ന്‍ര്‍ല്‍ള്‍ക്‍
 #mlspace# = {\ }
 #ml# = #mlvowels##mlvirama##mlvowelsign##mlvelar# #mlpalatal##mlretroflex##mldental##mllabial##mlother##mlchillu#
-#IPAvowels# = a aː i iː u uː rɨ rɨː lɨ lɨː e eː ai̯ o oː au̯ am ah
+#IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
 #IPAvelar# = ka kʰa ɡa ɡʱa ŋa
 #IPApalatal# = t͡ʃa t͡ʃʰa ɟa ɟʱa ɲa
 #IPAretroflex# = ʈa ʈʰa ɖa ɖʱa ɳa
@@ -117,16 +117,23 @@ $otherconsonants$ = {യ}:{ja}<>:<otherconsonant>|\
                     {റ}:{ra}<>:<otherconsonant>
 % $replace-chillu$ = ([#letters#] | {ൺ}:{ണ്} | {ൻ}:{ന്} |{ർ}:{ര്} |{ൽ}:{ല്} | {ൾ}:{ള്}| {ൿ}:{ക്} )*
 $IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$labial$|$otherconsonants$|$vowelsign$)*
-$removeimplicitvowel$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
+$removeimplicitvowel1$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                          {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
                          {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
                          {t̪a}:{ʈ}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
                          {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
                          {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
                          {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{ra}) ^-> ( __[#consonantstag#][#viramatag#])
-
+$removeimplicitvowel2$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
+                          {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
+                          {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
+                          {t̪a}:{ʈ}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
+                          {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
+                          {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
+                          {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{ra}) ^-> ( __[#consonantstag#][#IPAvowels#]+[#vowelsigntag#])
+$removeimplicitvowel$ = $removeimplicitvowel2$ || $removeimplicitvowel1$
 $removetag$ = ([#IPA#]|[#phonetags#]:<>)*
-$tests$ = കവി | കി | ജിയ
+% $tests$ = കവി | കി | ജിയ
 
 % $replace-chillu$ >> "replace-chillu.a"
 $IPAandTAGS$ >> "IPAandTAGS.a"
