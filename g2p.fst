@@ -10,7 +10,8 @@
 #mlchilluatomic# =ൺൻർൽൾൿ
 #mlchillu# = ണ്‍ന്‍ര്‍ല്‍ള്‍ക്‍
 #mlspace# = {\ }
-#ml# = #mlvowels##mlvirama##mlvowelsign##mlvelar# #mlpalatal##mlretroflex##mldental##mllabial##mlother##mlchillu#
+#ml-misc# = {\!}{\,}{\.}{\?}{\:}{\;}
+#ml# = #mlvowels##mlvirama##mlvowelsign##mlvelar# #mlpalatal##mlretroflex##mldental##mllabial##mlother##mlchillu##ml-misc#
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
 #IPAvelar# = ka kʰa ɡa ɡʱa ŋa
 #IPApalatal# = t͡ʃa t͡ʃʰa ɟa ɟʱa ɲa
@@ -28,13 +29,14 @@
 #dentalconsonanttag# = <dentalconsonant>
 #labiaalconsonanttag# = <labialconsonant>
 #otherconsonanttag# = <otherconsonant>
+#misc-tags# = <space> <exclamation> <comma> <period><questionmark><colon><semocolon>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 
 #consonantstag# = #velarconsonanttag# #palatalconsonanttag# #dentalconsonanttag# #labiaalconsonanttag# #otherconsonanttag#
 #phonetags# = #purevoweltag# #vowelsigntag# #consonantstag##viramatag# %#phonecharacteristic#
 
-#letters# = #mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother##mlchillu##mlspace# %for remove chillu atomic
-ALPHABET = [#ml# #phonetags# #IPA#]
+#letters# = #mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother##mlchillu##mlspace# #ml-misc#%for remove chillu atomic
+ALPHABET = [#ml# #phonetags# #IPA# #misc-tags#]
 $space$ = [\ ]:<space>
 $MISC$ = [\!]:<exclamation>|\
          [\,]:<comma>|\
@@ -132,7 +134,7 @@ $removeimplicitvowel2$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:
                           {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
                           {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{ra}) ^-> ( __[#consonantstag#][#IPAvowels#]+[#vowelsigntag#])
 $removeimplicitvowel$ = $removeimplicitvowel2$ || $removeimplicitvowel1$
-$removetag$ = ([#IPA#]|[#phonetags#]:<>)*
+$removetag$ = ([#IPA#]|[#phonetags#]:<>|[#misc-tags#])*
 % $tests$ = കവി | കി | ജിയ
 
 % $replace-chillu$ >> "replace-chillu.a"
