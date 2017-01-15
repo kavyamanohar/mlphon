@@ -18,7 +18,7 @@
 #IPAretroflex# = ʈa ʈʰa ɖa ɖʱa ɳa
 #IPAdental# = t̪a t̪ʰa d̪a d̪ʱa na
 #IPAlabial# = pa pʰa ba bʱa ma
-#IPAother# = ja ɾa la ʋa ʃa ʂa sa ɦa ɭa ɽa ra
+#IPAother# = ja ɾa la ʋa ʃa ʂa sa ɦa ɭa ɽa ra {ṯṯ‍a} {n‍ṯa}
 #IPA# = #IPAvowels##IPAvelar# #IPApalatal##IPAretroflex# #IPAdental# #IPAlabial##IPAother#
 #viramatag# = <virama>
 #purevoweltag#  = <purevowel>
@@ -36,6 +36,7 @@
 #phonetags# = #purevoweltag# #vowelsigntag# #consonantstag##viramatag# %#phonecharacteristic#
 
 #letters# = #mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother##mlchillu##mlspace# #ml-misc#%for remove chillu atomic
+#IPAandTags# = #IPA# #phonetags# #misc-tags#
 ALPHABET = [#ml# #phonetags# #IPA# #misc-tags#]
 $space$ = [\ ]:<space>
 $MISC$ = [\!]:<exclamation>|\
@@ -118,31 +119,37 @@ $otherconsonants$ = {യ}:{ja}<>:<otherconsonant>|\
                     {ള}:{ɭa}<>:<otherconsonant>|\
                     {ഴ}:{ɽa}<>:<otherconsonant>|\
                     {റ}:{ra}<>:<otherconsonant>
-$replace-chillu$ = ([#letters#] | {ൺ}:{ണ്}<>:<chil> | {ൻ}:{ന്}<>:<chil> |{ർ}:{ര്}<>:<chil> |{ൽ}:{ല്}<>:<chil> | {ൾ}:{ള്}<>:<chil>| {ൿ}:{ക്}<>:<chil> |\
-                                  {ണ്‍}:{ണ്}<>:<chil> | {ന്‍}:{ന്}<>:<chil> |{ര്‍}:{ര്}<>:<chil> |{ല്‍}:{ല്}<>:<chil> | {ള്‍}:{ള്}<>:<chil>| {ക്‍}:{ക്}<>:<chil>)*
+$replace-chillu$ = ([#letters#] | {ൺ}:{ണ്}<>:<chil> | {ൻ}:{ന്}<>:<chil> |{ർ}:{ര്}<>:<chil> |{ൽ}:{ല്}<>:<chil> | {ൾ}:{ള്}<>:<chil>| {ൿ}:{ക്}<>:<chil> |\ %atomic chillu
+                                  {ണ്‍}:{ണ്}<>:<chil> | {ന്‍}:{ന്}<>:<chil> |{ര്‍}:{ര്}<>:<chil> |{ല്‍}:{ല്}<>:<chil> | {ള്‍}:{ള്}<>:<chil>| {ക്‍}:{ക്}<>:<chil>)*  %traditional chillu
 $IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$labial$|$otherconsonants$|$vowelsign$)*
+$TTaconversion$ = {ra<otherconsonant><virama>ra}:{ṯṯ‍a<otherconsonant>} ^->(__<otherconsonant>)
+$NTaconversion$ = {n̪a<dentalconsonant><virama>ra}:{n‍ṯa<otherconsonant>} ^-> (__<otherconsonant>) %Note dental n̪a replace with alveolar n‍a
+% TTa conversions will result in two consecutive <otherconsonant> tags
+$ContextualPhoneticReplace$ = $TTaconversion$ || $NTaconversion$
+%This is checked in $removeimplicitvowel1$, ie one or more consonant tags
 $removeimplicitvowel1$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                          {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
                          {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
                          {t̪a}:{t̪}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
                          {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
                          {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
-                         {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{ra}) ^-> ( __[#consonantstag#][#viramatag#])
+                         {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{r}|{ṯṯ‍a}:{ṯṯ‍}|{n‍ṯa}:{n‍ṯ}) ^-> ( __[#consonantstag#]+[#viramatag#])
 $removeimplicitvowel2$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                           {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
                           {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
                           {t̪a}:{t̪}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
                           {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
                           {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
-                          {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{r}) ^-> ( __[#consonantstag#][#IPAvowels#]+[#vowelsigntag#])
+                          {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{r}|{ṯṯ‍a}:{ṯṯ‍}|{n‍ṯa}:{n‍ṯ}) ^-> ( __[#consonantstag#]+[#IPAvowels#]+[#vowelsigntag#])
 $removeimplicitvowel$ = $removeimplicitvowel2$ || $removeimplicitvowel1$
 $removetag$ = ([#IPA#]|[#phonetags#]:<>|[#misc-tags#])*
 % $tests$ = കവി | സന്തോഷ് | പോട്ട് പുല്ല്\!\! | എന്താല്ലേ\?
 
 $replace-chillu$ >> "replace-chillu.a"
 $IPAandTAGS$ >> "IPAandTAGS.a"
+$TTaconversion$ >> "TTaconversion.a"
 $removeimplicitvowel$ >> "removeimplicitvowel.a"
 % $removetag$ >> "removetag.a"
 % $tests$ >> "tests.a"
 % $tests$ ||
-$replace-chillu$ || $IPAandTAGS$ || $removeimplicitvowel$ || $removetag$
+$replace-chillu$ || $IPAandTAGS$ ||$ContextualPhoneticReplace$|| $removeimplicitvowel$ || $removetag$
