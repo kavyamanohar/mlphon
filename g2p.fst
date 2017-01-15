@@ -29,7 +29,7 @@
 #dentalconsonanttag# = <dentalconsonant>
 #labiaalconsonanttag# = <labialconsonant>
 #otherconsonanttag# = <otherconsonant>
-#misc-tags# = <space> <exclamation> <comma> <period><questionmark><colon><semocolon>
+#misc-tags# = <space> <exclamation> <comma> <period><questionmark><colon><semocolon><chil>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 
 #consonantstag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag# #labiaalconsonanttag# #otherconsonanttag#
@@ -43,7 +43,8 @@ $MISC$ = [\!]:<exclamation>|\
          [\.]:<period>|\
          [\?]:<questionmark>|\
          [\:]:<colon>|\
-         [\;]:<semocolon>
+         [\;]:<semocolon>|\
+         <chil>
 $virama$ = ്:<virama>
 $vowel$ = {അ}:{a}<>:<purevowel>|\
           {ആ}:{aː}<>:<purevowel>|\
@@ -117,7 +118,8 @@ $otherconsonants$ = {യ}:{ja}<>:<otherconsonant>|\
                     {ള}:{ɭa}<>:<otherconsonant>|\
                     {ഴ}:{ɽa}<>:<otherconsonant>|\
                     {റ}:{ra}<>:<otherconsonant>
-% $replace-chillu$ = ([#letters#] | {ൺ}:{ണ്} | {ൻ}:{ന്} |{ർ}:{ര്} |{ൽ}:{ല്} | {ൾ}:{ള്}| {ൿ}:{ക്} )*
+$replace-chillu$ = ([#letters#] | {ൺ}:{ണ്}<>:<chil> | {ൻ}:{ന്}<>:<chil> |{ർ}:{ര്}<>:<chil> |{ൽ}:{ല്}<>:<chil> | {ൾ}:{ള്}<>:<chil>| {ൿ}:{ക്}<>:<chil> |\
+                                  {ണ്‍}:{ണ്}<>:<chil> | {ന്‍}:{ന്}<>:<chil> |{ര്‍}:{ര്}<>:<chil> |{ല്‍}:{ല്}<>:<chil> | {ള്‍}:{ള്}<>:<chil>| {ക്‍}:{ക്}<>:<chil>)*
 $IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$labial$|$otherconsonants$|$vowelsign$)*
 $removeimplicitvowel1$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                          {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
@@ -135,13 +137,12 @@ $removeimplicitvowel2$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:
                           {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{r}) ^-> ( __[#consonantstag#][#IPAvowels#]+[#vowelsigntag#])
 $removeimplicitvowel$ = $removeimplicitvowel2$ || $removeimplicitvowel1$
 $removetag$ = ([#IPA#]|[#phonetags#]:<>|[#misc-tags#])*
-% $tests$ = കവി | കി | ജിയ
+% $tests$ = കവി | സന്തോഷ് | പോട്ട് പുല്ല്\!\! | എന്താല്ലേ\?
 
-% $replace-chillu$ >> "replace-chillu.a"
+$replace-chillu$ >> "replace-chillu.a"
 $IPAandTAGS$ >> "IPAandTAGS.a"
 $removeimplicitvowel$ >> "removeimplicitvowel.a"
 % $removetag$ >> "removetag.a"
 % $tests$ >> "tests.a"
-
 % $tests$ ||
-$IPAandTAGS$ || $removeimplicitvowel$ || $removetag$
+$replace-chillu$ || $IPAandTAGS$ || $removeimplicitvowel$ || $removetag$
