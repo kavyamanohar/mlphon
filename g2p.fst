@@ -32,7 +32,7 @@
 #misc-tags# = <space> <exclamation> <comma> <period><questionmark><colon><semocolon>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 
-#consonantstag# = #velarconsonanttag# #palatalconsonanttag# #dentalconsonanttag# #labiaalconsonanttag# #otherconsonanttag#
+#consonantstag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag# #labiaalconsonanttag# #otherconsonanttag#
 #phonetags# = #purevoweltag# #vowelsigntag# #consonantstag##viramatag# %#phonecharacteristic#
 
 #letters# = #mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother##mlchillu##mlspace# #ml-misc#%for remove chillu atomic
@@ -122,17 +122,17 @@ $IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$d
 $removeimplicitvowel1$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                          {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
                          {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
-                         {t̪a}:{ʈ}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
+                         {t̪a}:{t̪}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
                          {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
                          {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
                          {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{ra}) ^-> ( __[#consonantstag#][#viramatag#])
 $removeimplicitvowel2$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                           {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
                           {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
-                          {t̪a}:{ʈ}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
+                          {t̪a}:{t̪}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
                           {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
                           {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
-                          {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{ra}) ^-> ( __[#consonantstag#][#IPAvowels#]+[#vowelsigntag#])
+                          {sa}:{s}|{ɦa}:{ɦ}|{ɭa}:{ɭ}|{ɽa}:{ɽa} |{ra}:{r}) ^-> ( __[#consonantstag#][#IPAvowels#]+[#vowelsigntag#])
 $removeimplicitvowel$ = $removeimplicitvowel2$ || $removeimplicitvowel1$
 $removetag$ = ([#IPA#]|[#phonetags#]:<>|[#misc-tags#])*
 % $tests$ = കവി | കി | ജിയ
