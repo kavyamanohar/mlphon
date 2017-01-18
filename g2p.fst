@@ -5,21 +5,23 @@
 #mlpalatal# = ച ഛ ജ ഝ ഞ
 #mlretroflex# = ട ഠ ഡ ഢ ണ
 #mldental# = ത ഥ ദ ധ ന
+#mlalveolar# = ഺ ഩ
 #mllabial# = പ ഫ ബ ഭ മ
 #mlother# = യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
 #mlchilluatomic# =ൺൻർൽൾൿ
 #mlchillu# = ണ്‍ന്‍ര്‍ല്‍ള്‍ക്‍
 #mlspace# = {\ }
 #ml-misc# = {\!}{\,}{\.}{\?}{\:}{\;}
-#ml# = #mlvowels##mlvirama##mlvowelsign##mlvelar# #mlpalatal##mlretroflex##mldental##mllabial##mlother##mlchillu##ml-misc#
+#ml# = #mlvowels##mlvirama##mlvowelsign##mlvelar# #mlpalatal##mlretroflex##mldental# #mlalveolar# #mllabial##mlother##mlchillu##ml-misc#
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
 #IPAvelar# = ka kʰa ɡa ɡʱa ŋa
 #IPApalatal# = t͡ʃa t͡ʃʰa ɟa ɟʱa ɲa
 #IPAretroflex# = ʈa ʈʰa ɖa ɖʱa ɳa
 #IPAdental# = t̪a t̪ʰa d̪a d̪ʱa na
+#IPAalvolar# = ta na
 #IPAlabial# = pa pʰa ba bʱa ma
 #IPAother# = ja ɾa la ʋa ʃa ʂa sa ɦa ɭa ɽa ra {ṯṯ‍a} {n‍ṯa}
-#IPA# = #IPAvowels##IPAvelar# #IPApalatal##IPAretroflex# #IPAdental# #IPAlabial##IPAother#
+#IPA# = #IPAvowels##IPAvelar# #IPApalatal##IPAretroflex# #IPAdental# #IPAalvolar##IPAlabial##IPAother#
 #viramatag# = <virama>
 #purevoweltag#  = <purevowel>
 #vowelsigntag# = <vowelsign>
@@ -27,15 +29,16 @@
 #palatalconsonanttag# = <palatalconsonant>
 #retroflexconsonanttag# = <retroflexconsonant>
 #dentalconsonanttag# = <dentalconsonant>
+#alveolarcosonanttag# =<alveolarcosonant>
 #labiaalconsonanttag# = <labialconsonant>
 #otherconsonanttag# = <otherconsonant>
 #misc-tags# = <space> <exclamation> <comma> <period><questionmark><colon><semocolon><chil>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 
-#consonantstag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag# #labiaalconsonanttag# #otherconsonanttag#
+#consonantstag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag##alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 #phonetags# = #purevoweltag# #vowelsigntag# #consonantstag##viramatag# %#phonecharacteristic#
 
-#letters# = #mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental# #mllabial##mlother##mlchillu##mlspace# #ml-misc#%for remove chillu atomic
+#letters# = #mlvowels##mlvirama##mlvowelsign##mlvelar##mlpalatal##mlretroflex##mldental##mlalveolar# #mllabial##mlother##mlchillu##mlspace# #ml-misc#%for remove chillu atomic
 #IPAandTags# = #IPA# #phonetags# #misc-tags#
 ALPHABET = [#ml# #phonetags# #IPA# #misc-tags#]
 $space$ = [\ ]:<space>
@@ -103,6 +106,8 @@ $dental$ = {ത}:{t̪a}<>:<dentalconsonant>|\
            {ദ}:{d̪a}<>:<dentalconsonant>|\
            {ധ}:{d̪ʱa}<>:<dentalconsonant>|\
            {ന}:{n̪a}<>:<dentalconsonant>
+$alveolar$ = {ഺ}:{ṯ‍a}<>:<alveolarcosonant>|\
+             {ഩ}:{na}<>:<alveolarcosonant>
 $labial$ = {പ}:{pa}<>:<labialconsonant>|\
            {ഫ}:{pʰa}<>:<labialconsonant>|\
            {ബ}:{ba}<>:<labialconsonant>|\
@@ -121,7 +126,7 @@ $otherconsonants$ = {യ}:{ja}<>:<otherconsonant>|\
                     {റ}:{ra}<>:<otherconsonant>
 $replace-chillu$ = ([#letters#] | {ൺ}:{ണ്}<>:<chil> | {ൻ}:{ന്}<>:<chil> |{ർ}:{ര്}<>:<chil> |{ൽ}:{ല്}<>:<chil> | {ൾ}:{ള്}<>:<chil>| {ൿ}:{ക്}<>:<chil> |\ %atomic chillu
                                   {ണ്‍}:{ണ്}<>:<chil> | {ന്‍}:{ന്}<>:<chil> |{ര്‍}:{ര്}<>:<chil> |{ല്‍}:{ല്}<>:<chil> | {ള്‍}:{ള്}<>:<chil>| {ക്‍}:{ക്}<>:<chil>)*  %traditional chillu
-$IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$labial$|$otherconsonants$|$vowelsign$)*
+$IPAandTAGS$ = ($MISC$|$space$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$alveolar$|$labial$|$otherconsonants$|$vowelsign$)*
 $TTaconversion$ = {ra<otherconsonant><virama>ra}:{ṯṯ‍a<otherconsonant>} ^->(__<otherconsonant>)
 $NTaconversion$ = {n̪a<dentalconsonant><virama>ra}:{n‍ṯa<otherconsonant>} ^-> (__<otherconsonant>) %Note dental n̪a replace with alveolar n‍a
 % TTa conversions will result in two consecutive <otherconsonant> tags
@@ -130,6 +135,7 @@ $ContextualPhoneticReplace$ = $TTaconversion$ || $NTaconversion$
 $removeimplicitvowel1$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                          {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
                          {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
+                         {ṯ‍a}:{ṯ‍}|{na}:{n}|\
                          {t̪a}:{t̪}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
                          {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
                          {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
@@ -137,6 +143,7 @@ $removeimplicitvowel1$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:
 $removeimplicitvowel2$ = ({ka}:{k}|{kʰa}:{kʰ}|{ɡa}:{ɡ}|{ɡʱa}:{ɡʱ}|{ŋa}:{ŋ} |\
                           {t͡ʃa}:{t͡ʃ}| {t͡ʃʰa}:{t͡ʃʰ}|{ɟa}:{ɟ}|{ɟʱa}:{ɟʱ}|{ɲa}:{ɲ} |\
                           {ʈa}:{ʈ}|{ʈʰa}:{ʈʰ}|{ɖa}:{ɖ}|{ɖʱa}:{ɖʱ}|{ɳa}:{ɳ} |\
+                          {ṯ‍a}:{ṯ‍}|{na}:{n}|\
                           {t̪a}:{t̪}|{t̪ʰa}:{t̪ʰ}|{d̪a}:{d̪}|{d̪ʱa}:{d̪ʱ}|{n̪a}:{n̪} |\
                           {pa}:{p}|{pʰa}:{pʰ}|{ba}:{b}|{bʱa}:{bʱ}|{ma}:{m} |\
                           {ja}:{j}|{ɾa}:{ɾ}|{la}:{l}|{ʋa}:{ʋ}|{ʃa}:{ʃ}|{ʂa}:{ʂ}|\
