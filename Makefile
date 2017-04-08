@@ -1,6 +1,6 @@
 FSTFILESOURCE = g2p.fst
 FSTCOMPILED = g2p.a
-all: clean compile 
+all: clean compile
 default: clean compile
 
 compile:
