@@ -1,5 +1,6 @@
 #include "allsymbols.fst"
 #include "phoneticmap.fst"
-#include "phoneticreplace.fst"
+%#include "phoneticreplace.fst"
+#include "inherentvoweladd.fst"
 
-$inputfilter$ || $phoneticmap$ || $phoneticreplace$
+$inputfilter$ || $phoneticmap$ || $inherentvoweladd$
