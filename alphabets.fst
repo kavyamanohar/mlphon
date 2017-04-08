@@ -51,8 +51,8 @@
 
 #consonanttag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag##alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
-#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
-
+#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel> 
+#boundarytag# = <BoW> <EoW>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 
 
@@ -61,4 +61,4 @@
 %#digitsarabic# = 0 1 2 3 4 5 6 7 8 9
 %#digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
 %#digits# = #digitsarabic# #digitsmalayalam#
-#allsymbols# = #ml# #IPA# #phonetags# #misc-tags# #space# #spl-char# %#digitsarabic# #digitsmalayalam#
+#allsymbols# = #ml# #IPA# #phonetags# #misc-tags# #space# #spl-char# #boundarytag# %#digitsarabic# #digitsmalayalam#

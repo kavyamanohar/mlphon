@@ -6,8 +6,8 @@
 %         [\:]:<colon>|\
 %         [\;]:<semicolon>|\
 %         <chil>
-%ALPHABET = [#allsymbols#]
-$MISC$ = [#spl-char##space#]
+ALPHABET = [#allsymbols#]
+$MISC$ = [#spl-char##space##boundarytag#]
 $virama$ = ്:<virama>
 $vowel$ = {അ}:{a}<>:<purevowel>|\
           {ആ}:{aː}<>:<purevowel>|\

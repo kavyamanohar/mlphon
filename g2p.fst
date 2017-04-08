@@ -3,4 +3,4 @@
 %#include "phoneticreplace.fst"
 #include "inherentvoweladd.fst"
 
-$inputfilter$ || $phoneticmap$ || $inherentvoweladd$
+$inputfilter$  || $phoneticmap$ || $inherentvoweladd$
