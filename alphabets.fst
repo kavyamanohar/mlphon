@@ -30,7 +30,7 @@
 #IPAdental# = t̪ t̪ʰ d̪ d̪ʱ n̪
 #IPAalvolar# = t n
 #IPAlabial# = p pʰ b bʱ m
-#IPAother# = j ɾ l ʋ ʃ ʂ s ɦ ɭ ɽ r {ṯṯ} {n‍ṯ}
+#IPAother# = j ɾ l ʋ ʃ ʂ s ɦ ɭ ɽ r ṯṯ n‍ṯ
 
 #IPAconsonants# = #IPAvelar# #IPApalatal##IPAretroflex# #IPAdental# #IPAalvolar##IPAlabial##IPAother#
 
@@ -51,7 +51,7 @@
 
 #consonanttag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag##alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
-#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel> 
+#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
 #boundarytag# = <BoW> <EoW>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 

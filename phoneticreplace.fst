@@ -1,9 +1,4 @@
 ALPHABET = [#allsymbols#]
 
-$TTaconversion$ = {r<otherconsonant><virama>r}:{ṯṯ‍<otherconsonant>} ^->(__<otherconsonant>)
-$NTaconversion$ = {n̪<dentalconsonant><virama>r}:{n‍ṯ<otherconsonant>} ^-> (__<otherconsonant>) %Note dental n̪a replace with alveolar n‍a
-
-$TTaconversion$ >> "TTaconversion.a"
-$NTaconversion$ >> "NTaconversion.a"
-$phoneticreplace$ = $NTaconversion$ | $TTaconversion$
+$phoneticreplace$ = ({r<otherconsonant><virama>r}:{ṯṯ‍<otherconsonant><>} | {n̪<dentalconsonant><virama>r}:{n‍ṯ<otherconsonant><>}) ^->(__<otherconsonant>)
 $phoneticreplace$ >> "phoneticreplace.a"
