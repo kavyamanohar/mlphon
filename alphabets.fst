@@ -19,8 +19,8 @@
 
 #ml# = #mlvowel#  #mlvowelsign# #mlvirama#  #mlconsonant# #mlchillu#
 
-#space# = {\ }
-#spl-char# = {\!}{\,}{\.}{\?}{\:}{\;}
+%#space# = {\ }
+#spl-char# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
 
@@ -28,9 +28,9 @@
 #IPApalatal# = t͡ʃ t͡ʃʰ ɟ ɟʱ ɲ
 #IPAretroflex# = ʈ ʈʰ ɖ ɖʱ ɳ
 #IPAdental# = t̪ t̪ʰ d̪ d̪ʱ n̪
-#IPAalvolar# = t n
+#IPAalvolar# = ṯ n
 #IPAlabial# = p pʰ b bʱ m
-#IPAother# = j ɾ l ʋ ʃ ʂ s ɦ ɭ ɽ r ṯṯ n‍ṯ
+#IPAother# = j ɾ l ʋ ʃ ʂ s ɦ ɭ ɽ r {ṯṯ} {n‍ṯ}
 
 #IPAconsonants# = #IPAvelar# #IPApalatal##IPAretroflex# #IPAdental# #IPAalvolar##IPAlabial##IPAother#
 
@@ -51,7 +51,8 @@
 
 #consonanttag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag##alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
-#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
+%#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
+#misc-tags# = <chil> <inherentvowel>
 #boundarytag# = <BoW> <EoW>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 
@@ -61,4 +62,4 @@
 %#digitsarabic# = 0 1 2 3 4 5 6 7 8 9
 %#digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
 %#digits# = #digitsarabic# #digitsmalayalam#
-#allsymbols# = #ml# #IPA# #phonetags# #misc-tags# #space# #spl-char# #boundarytag# %#digitsarabic# #digitsmalayalam#
+#allsymbols# = #ml# #IPA# #phonetags# #misc-tags# #spl-char# #boundarytag# %#digitsarabic# #digitsmalayalam#
