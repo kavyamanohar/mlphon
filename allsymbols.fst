@@ -1,6 +1,6 @@
 #include "alphabets.fst"
 
-ALPHABET =  [#allsymbols#]
+ALPHABET =  [#ml##spl-char#]
 
 $inputfilter1$ = .*
 $inputfilter$ = <>:<BoW> $inputfilter1$ <>:<EoW>
