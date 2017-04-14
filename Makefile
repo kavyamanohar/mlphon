@@ -1,10 +1,9 @@
-FSTFILESOURCE = g2p.fst
-FSTCOMPILED = g2p.a
-all: clean compile
-default: clean compile
+include Makefile.inc
 
-compile:
-	fst-compiler-utf8 $(FSTFILESOURCE) $(FSTCOMPILED)
+all: g2p.a
 
 clean:
 	-rm -f *.a *.dot *~ Makefile.bak tests.all *.gen*.txt
+
+test: g2p.a
+	python3 test/mlg2p-test.py
