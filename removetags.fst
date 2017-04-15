@@ -1,3 +1,3 @@
-ALPHABET = [#space##spl-char##IPA##misc-tags##boundarytag##phonetags#]
-$removetags$ = ([#space#]|[#spl-char#]|[#IPA#]|[#misc-tags#]:<>|[#phonetags#]:<>|[#boundarytag#]:<>)*
+ALPHABET = [#spl-char##IPA##misc-tags##boundarytag##phonetags#]
+$removetags$ = ([#spl-char#]|[#IPA#]|[#misc-tags#]:<>|[#phonetags#]:<>|[#boundarytag#]:<>)*
 $removetags$ >> "removetags.a"
