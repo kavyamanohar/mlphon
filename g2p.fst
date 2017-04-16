@@ -1,7 +1,7 @@
-#include "allsymbols.fst"
-#include "phoneticmap.fst"
-#include "phoneticreplace.fst"
-#include "inherentvoweladd.fst"
-#include "removetags.fst"
+$inputfilter$ = "<inputfilter.a>"
+$phoneticmap$ = "<phoneticmap.a>"
+$phoneticreplace$ = "<phoneticreplace.a>"
+$inherentvoweladd$ = "<inherentvoweladd.a>"
+$removetags$ = "<removetags.a>"
 
-$inputfilter$  || $phoneticmap$ || $phoneticreplace$ || $inherentvoweladd$  %|| $removetags$
+$inputfilter$  || $phoneticmap$ || $phoneticreplace$ || $inherentvoweladd$  || $removetags$

@@ -1,3 +1,5 @@
+#include "alphabets.fst"
+
 ALPHABET = [#allsymbols#]
 % ADD inherent vowel to a consonant if followed by another consonat or word end indicated by special characters or space
 $schwa-addition$ =    {k}:{ka}|{kʰ}:{kʰa}|{ɡ}:{ɡa}|{ɡʱ}:{ɡʱa}|{ŋ}:{ŋa} |\
@@ -9,4 +11,4 @@ $schwa-addition$ =    {k}:{ka}|{kʰ}:{kʰa}|{ɡ}:{ɡa}|{ɡʱ}:{ɡʱa}|{ŋ}:{ŋa}
                       {j}:{ja}|{ɾ}:{ɾa}|{l}:{la}|{ʋ}:{ʋa}|{ʃ}:{ʃa}|{ʂ}:{ʂa}|\
                       {s}:{sa}|{ɦ}:{ɦa}|{ɭ}:{ɭa}|{ɽ}:{ɽa} |{r}:{ra}
 $inherentvoweladd$ =  ($schwa-addition$ <>:<inherentvowel>) ^-> (__[#consonanttag#][#IPAconsonants##spl-char#<EoW>])
-$inherentvoweladd$ >> "inherentvoweladd.a"
+$inherentvoweladd$

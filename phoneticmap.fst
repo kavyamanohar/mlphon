@@ -1,13 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%$space$ = [\ ]:<space>
-%$MISC$ = [\!]:<exclamation>|\
-%         [\,]:<comma>|\
-%         [\.]:<period>|\
-%         [\?]:<questionmark>|\
-%         [\:]:<colon>|\
-%         [\;]:<semicolon>|\
-%         <chil>
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#include "alphabets.fst"
+
 ALPHABET = [#ml##spl-char##boundarytag#]
 $MISC$ = [#spl-char##boundarytag#]
 $virama$ = ്:<virama>
@@ -88,4 +80,4 @@ $otherconsonants$ = {യ}:{j<otherconsonant>}|\
 $chillu$ = {ൺ}:{ɳ<chil>} | {ൻ}:{n<chil>} |{ർ}:{r<chil>} |{ൽ}:{l<chil>} | {ൾ}:{ɭ<chil>}| {ൿ}:{k<chil>} |\
             {ണ്‍}:{ɳ<chil>} | {ന്‍}:{n<chil>} |{ര്‍}:{r<chil>} |{ല്‍}:{l<chil>} | {ള്‍}:{ɭ<chil>}| {ക്‍}:{k<chil>}
 $phoneticmap$ = ($MISC$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$alveolar$|$labial$|$otherconsonants$|$vowelsign$|$chillu$)*
-$phoneticmap$ >> "phoneticmap.a"
+$phoneticmap$
