@@ -63,8 +63,7 @@ _TODO:Inherent vowel takes a special for certain graphemes at the <BoW>. This ha
 
 `$removetags$`
 
-Certain tags were added to identify the exact context for processing. Once all processing is done, the tags like `<BoW>` and `<EoW>` may be removed .
-_TODO:The code has to be rewritten to ensure lossless untagging._
+Certain tags were added to identify the exact context for processing. Once all processing is done, the tags like `<BoW>` and `<EoW>` is removed .
 
 ### Overall FST chain
 
@@ -89,11 +88,11 @@ To **generate** the phonetic mapping of malayalam script in IPA, use the followi
 
 Give your input in malayalam script and press Enter key.
 
-`കാവ്യ`
+`കാവ്യ!`
 
 It will give you the result
 
-`കാവ്യ   <BoW>k<velarconsonant>aː<vowelsign>ʋ<otherconsonant><virama>ja<inherentvowel><otherconsonant><EoW>`
+`കാവ്യ!   k<velarconsonant>aː<vowelsign>ʋ<otherconsonant><virama>ja<inherentvowel><otherconsonant>!`
 
 If the input is:
 
@@ -101,18 +100,18 @@ If the input is:
 
 The result is:
 
-`മലയാളം കേരളത്തിന്റെ മാതൃഭാഷ         <BoW>ma<inherentvowel><labialconsonant>la<inherentvowel><otherconsonant>j<otherconsonant>aː<vowelsign>ɭ<otherconsonant>am<vowelsign> k<velarconsonant>eː<vowelsign>ɾa<inherentvowel><otherconsonant>ɭa<inherentvowel><otherconsonant>t̪<dentalconsonant><virama>t̪<dentalconsonant>i<vowelsign>nṯ<otherconsonant>e<vowelsign> m<labialconsonant>aː<vowelsign>t̪a<inherentvowel><dentalconsonant>rɨ<vowelsign>bʱ<labialconsonant>aː<vowelsign>ʂa<inherentvowel><otherconsonant><EoW>`
+`മലയാളം കേരളത്തിന്റെ മാതൃഭാഷ         ma<inherentvowel><labialconsonant>la<inherentvowel><otherconsonant>j<otherconsonant>aː<vowelsign>ɭ<otherconsonant>am<vowelsign> k<velarconsonant>eː<vowelsign>ɾa<inherentvowel><otherconsonant>ɭa<inherentvowel><otherconsonant>t̪<dentalconsonant><virama>t̪<dentalconsonant>i<vowelsign>nṯ<otherconsonant>e<vowelsign> m<labialconsonant>aː<vowelsign>t̪a<inherentvowel><dentalconsonant>rɨ<vowelsign>bʱ<labialconsonant>aː<vowelsign>ʂa<inherentvowel><otherconsonant>`
 
 To **analyse** the phonetic script along with the tags to obtain malayalam script represenatation use the command:
 `python3 python/mlg2p.py -a  -f g2p.a`
 
 Give the input and press Enter.
 
-`<BoW>bʱ<labialconsonant>aː<vowelsign>ʋa<inherentvowel><otherconsonant>d̪<dentalconsonant>iː<vowelsign>p<labialconsonant><virama>t̪<dentalconsonant>i<vowelsign><EoW>`
+`bʱ<labialconsonant>aː<vowelsign>ʋa<inherentvowel><otherconsonant>d̪<dentalconsonant>iː<vowelsign>p<labialconsonant><virama>t̪<dentalconsonant>i<vowelsign>`
 
 It will return you the corresponding malayalam script
 
-`<BoW>bʱ<labialconsonant>aː<vowelsign>ʋa<inherentvowel><otherconsonant>d̪<dentalconsonant>iː<vowelsign>p<labialconsonant><virama>t̪<dentalconsonant>i<vowelsign><EoW>	ഭാവദീപ്തി`
+`bʱ<labialconsonant>aː<vowelsign>ʋa<inherentvowel><otherconsonant>d̪<dentalconsonant>iː<vowelsign>p<labialconsonant><virama>t̪<dentalconsonant>i<vowelsign>	ഭാവദീപ്തി`
 
 
 
