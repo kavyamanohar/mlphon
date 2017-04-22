@@ -1,0 +1,4 @@
+k<velarconsonant>aː<vowelsign>ʋ<otherconsonant><virama>ja<inherentvowel><otherconsonant>
+sa<inherentvowel><otherconsonant>n̪<dentalconsonant><virama>t̪<dentalconsonant>oː<vowelsign>ʂ<otherconsonant><virama>
+t̪<dentalconsonant>oː<vowelsign>ʈ<retroflexconsonant><virama>ʈ<retroflexconsonant>i<vowelsign>ŋ<velarconsonant><virama>ŋa<inherentvowel><velarconsonant>l<chil>
+sa<inherentvowel><otherconsonant>pʰa<inherentvowel><labialconsonant>la<inherentvowel><otherconsonant>m<labialconsonant>iː<vowelsign>j<otherconsonant>aː<vowelsign>t̪<dentalconsonant><virama>ɾa<inherentvowel><otherconsonant>!!

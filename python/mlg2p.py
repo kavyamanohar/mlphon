@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 """
-Simple python interface for omorfi using libhfst-python. Consider this
-class as a standard python interface to omorfi and standard reference for
+Simple python interface for ml-phonetic-analyser using libhfst-python. Consider this
+class as a standard python interface to ml-phonetic-analyser and standard reference for
 scientific studies, as far as python use goes.
 """
 
-from argparse import ArgumentParser
+import argparse
 from sys import stderr, stdin
 
 import hfst
@@ -25,8 +25,7 @@ class Mlg2p:
     def load_filename(self, fsa):
         istr = hfst.HfstInputStream(fsa)
         transducers = []
-        while not (istr.is_eof()):
-            transducers.append(istr.read())
+        transducers.append(istr.read())
         istr.close()
         self.transducer = transducers[0]
 
@@ -62,11 +61,13 @@ class Mlg2p:
 
 def main():
     """Invoke a simple CLI analyser or generator."""
-    a = ArgumentParser()
+    a = argparse.ArgumentParser()
     a.add_argument('-f', '--fsa', metavar='FSAPATH',
                    help="Path to directory of HFST format automata")
     a.add_argument('-i', '--input', metavar="INFILE", type=open,
                    dest="infile", help="source of analysis data")
+    a.add_argument('-o', '--output', metavar="OUTFILE", type=argparse.FileType('w+', encoding='UTF-8'),
+                   dest="outfile", help="target of generated strings")
     a.add_argument('-a', '--analyse', action='store_true',
                    help="Analyse the input file strings")
     a.add_argument('-g', '--generate', action='store_true',
@@ -88,15 +89,22 @@ def main():
             anals = mlg2p.analyse(line)
             if not anals:
                 print(line, "\t?")
+                if options.outfile:
+                    options.outfile.write("?"+"\n")
             for anal in anals:
                 print(line, "\t", anal[0])
+                if options.outfile:
+                    options.outfile.write(anal[0] +"\n")
         if options.generate:
             gens = mlg2p.generate(line)
             if not gens:
                 print(line, "\t?")
+                if options.outfile:
+                    options.outfile.write("?"+"\n")
             for gen in gens:
                 print(line, "\t",  gen[0])
-
+                if options.outfile:
+                    options.outfile.write(gen[0] +"\n" )
     print()
     exit(0)
 
