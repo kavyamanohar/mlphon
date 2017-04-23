@@ -7,7 +7,7 @@ scientific studies, as far as python use goes.
 """
 
 import argparse
-from sys import stderr, stdin
+from sys import stderr, stdin, stdout
 
 import hfst
 
@@ -79,6 +79,8 @@ def main():
         mlg2p = Mlg2p(options.fsa, options.verbose)
     if not options.infile:
         options.infile = stdin
+    if not options.outfile:
+        options.outfile = stdout
     if options.verbose:
         print("reading from", options.infile.name)
     for line in options.infile:
@@ -88,23 +90,15 @@ def main():
         if options.analyse:
             anals = mlg2p.analyse(line)
             if not anals:
-                print(line, "\t?")
-                if options.outfile:
-                    options.outfile.write("?"+"\n")
+                options.outfile.write(line+"\t\t"+"?"+"\n")
             for anal in anals:
-                print(line, "\t", anal[0])
-                if options.outfile:
-                    options.outfile.write(anal[0] +"\n")
+                options.outfile.write(line+"\t\t"+anal[0]+"\n")
         if options.generate:
             gens = mlg2p.generate(line)
             if not gens:
-                print(line, "\t?")
-                if options.outfile:
-                    options.outfile.write("?"+"\n")
+                options.outfile.write(line+"\t\t"+"?"+"\n")
             for gen in gens:
-                print(line, "\t",  gen[0])
-                if options.outfile:
-                    options.outfile.write(gen[0] +"\n" )
+                options.outfile.write(line+"\t\t"+gen[0]+"\n")
     print()
     exit(0)
 
