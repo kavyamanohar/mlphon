@@ -65,9 +65,12 @@ _TODO:Inherent vowel takes a special for certain graphemes at the <BoW>. This ha
 
 Certain tags were added to identify the exact context for processing. Once all processing is done, the tags like `<BoW>` and `<EoW>` is removed .
 
+
 ### Overall FST chain
 
 `$ml-g2p$` represents the overall FST which combines each of the above FSTs in a chain.
+
+*TODO:Remove all tags and retain only the phonetic symbols*
 
 # Installation
 You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile and use this analyzer. The Makefile provided compiles all the sources and produces the binary FSA ‘g2p.a'.
@@ -113,7 +116,20 @@ It will return you the corresponding malayalam script
 
 `bʱ<labialconsonant>aː<vowelsign>ʋa<inherentvowel><otherconsonant>d̪<dentalconsonant>iː<vowelsign>p<labialconsonant><virama>t̪<dentalconsonant>i<vowelsign>	ഭാവദീപ്തി`
 
+## Reading from and Writing results to files
 
+The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
+#### To generate IPA from malayalam script
+
+`python3 mlg2p.py -f g2p.a -g -i path/to/inputfile.txt -o `path/to/outputfile.txt`
+
+Here `path/to/inputfile.txt` contains the malayalm text to be used for generating corresponding IPA along with tags. The result will be written to `path/to/outputfile.txt`
+
+#### To analyse IPA and tags to get malayalam script
+
+`python3 mlg2p.py -f g2p.a -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
+
+Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
 
 # References
 1. Open morphology for Finnish https://github.com/flammie/omorfi
