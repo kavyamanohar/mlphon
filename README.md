@@ -85,7 +85,7 @@ Clone or download this git repository to your machine.
 
 # Examples
 
-To **generate** the phonetic mapping of malayalam script in IPA, use the following command:
+To **generate** the phonetic mapping of malayalam script in IPA along with the details of all consonants as tags, use the following command:
 
 `$ python3 python/mlg2p.py -g -f g2p.a`
 
@@ -130,6 +130,24 @@ Here `path/to/inputfile.txt` contains the malayalm text to be used for generatin
 `python3 mlg2p.py -f g2p.a -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
 
 Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
+
+## Generate IPA sequence from malayalam script
+
+The following command will generate IPA sequence from malayalam script
+
+`python3 IPAGenerator.py`
+
+For the input
+
+`സഫലമീയാത്ര!! `
+
+the output would be
+
+`sapʰalamiːjaːt̪ɾa!!`
+
+This command can take input from a text file and write the generated IPA to another text file
+
+`python3 IPAGenerator.py -i path/to/inputfile.txt -o path/to/outputfile.txt`
 
 # References
 1. Open morphology for Finnish https://github.com/flammie/omorfi

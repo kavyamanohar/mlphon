@@ -90,15 +90,15 @@ def main():
         if options.analyse:
             anals = mlg2p.analyse(line)
             if not anals:
-                options.outfile.write(line+"\t\t"+"?"+"\n")
+                options.outfile.write(line+"\t"+"?"+"\n")
             for anal in anals:
-                options.outfile.write(line+"\t\t"+anal[0]+"\n")
+                options.outfile.write(line+"\t"+anal[0]+"\n")
         if options.generate:
             gens = mlg2p.generate(line)
             if not gens:
-                options.outfile.write(line+"\t\t"+"?"+"\n")
+                options.outfile.write(line+"\t"+"?"+"\n")
             for gen in gens:
-                options.outfile.write(line+"\t\t"+gen[0]+"\n")
+                options.outfile.write(line+"\t"+gen[0]+"\n")
     print()
     exit(0)
 
