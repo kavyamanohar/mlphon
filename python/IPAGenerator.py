@@ -1,7 +1,7 @@
 #CLI for generating IPA
 import argparse
 from sys import stderr, stdin, stdout
-from mlg2p import Mlg2p
+from fsa import Fsa
 import os
 
 def main():
@@ -12,7 +12,7 @@ def main():
 					dest="outfile", help="target of generated IPA")
 	options = a.parse_args()
 	fsa = os.path.dirname(os.path.realpath(__file__))+'/../IPAGenerator.a'
-	IPA_generator = Mlg2p(fsa)
+	IPA_generator = Fsa(fsa)
 	if not options.infile:
 		options.infile = stdin
 	if not options.outfile:
