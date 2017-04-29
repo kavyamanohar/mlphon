@@ -1,7 +1,7 @@
 Planned Workflow
 ================
 1. Define every ml unicode character
-1. IPA mapping of every unicode character. Add tags for contextual identification.
+1. IPA mapping of every ml unicode character. Add tags for contextual identification.
 1. Contextually modify the mapping (eg.consonant or EoW after a consonant should add the implicit അ property of consonants)
 1. Contextually modify the mapping (ന്റ റ്റ ന ഹ്മ etc)
 1. Contextually modify the mappings (ര at the beginning of a word may be replaced by re instead of ra)

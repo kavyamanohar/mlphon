@@ -37,22 +37,22 @@
 #IPA# = #IPAvowels# #IPAconsonants#
 
 
-#purevoweltag#  = <purevowel>
-#vowelsigntag# = <vowelsign>
+#purevoweltag#  = <vowel>
+#vowelsigntag# = <v_sign>
 #viramatag# = <virama>
 
-#velarconsonanttag# = <velarconsonant>
-#palatalconsonanttag# = <palatalconsonant>
-#retroflexconsonanttag# = <retroflexconsonant>
-#dentalconsonanttag# = <dentalconsonant>
-#alveolarcosonanttag# = <alveolarcosonant>
-#labiaalconsonanttag# = <labialconsonant>
-#otherconsonanttag# = <otherconsonant>
+#velarconsonanttag# = <c_velar>
+#palatalconsonanttag# = <c_palatal>
+#retroflexconsonanttag# = <c_retroflex>
+#dentalconsonanttag# = <c_dental>
+#alveolarcosonanttag# = <c_alveolar>
+#labiaalconsonanttag# = <c_labial>
+#otherconsonanttag# = <c_other>
 
 #consonanttag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag##alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
-%#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
-#misc-tags# = <chil> <inherentvowel>
+%#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
+#misc-tags# = <chil> <schwa>
 #boundarytag# = <BoW> <EoW>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 

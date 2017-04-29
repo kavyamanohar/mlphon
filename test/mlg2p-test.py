@@ -11,7 +11,7 @@ class AnalyserGeneratorTests(unittest.TestCase):
 
     def setUp(self):
         self.csvfile = open('data.tsv')
-        fsa = '../g2p.a'
+        fsa = '../PhoneAnalyser.a'
         dialect = csv.Sniffer().sniff(self.csvfile.read(1024))
         # rewind
         self.csvfile.seek(0)
