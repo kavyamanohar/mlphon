@@ -30,10 +30,10 @@ _TODO:Provisions to accept malayalam/arabic numerals, archaic malayalam characte
 `$phoneticmap$`
 
 This transducer accepts inputs from the output of  previous transducer and performs the fundamental phonetic mapping. During this process along with associating graphemes to phonemes, tags are added to indicate if it is a pure vowel, a vowel sign or a consonant. The tags added by this transducer are:
-`<virama>` `<purevowel>` `<vowelsign>` `<velarconsonant>` `<palatalconsonant>` `<retroflexconsonant>` `<dentalconsonant>` `<alveolarcosonant>` `<labialconsonant>` `<otherconsonant>` `<chil>`
+`<virama>` `<vowel>` `<v_lsign>` `<c_velar>` `<c_palatal>` `<c_retroflex>` `<c_dental>` `<c_alveolar>` `<c_labial>` `<c_other>` `<chil>`
 
 
-The malayalam script assumes every consonant if not followed by a virama, has the inherent vowel associated with it. But this FST **does not** associate the inherent vowel to every consonant. But presence of a virama is clearly indicated using a tag <virama> for further processing. Both atomic and traditional chillu are accepted by the system and <chillu> tag added.
+The malayalam script assumes every consonant if not followed by a virama, has the inherent vowel associated with it. But this FST **does not** associate the inherent vowel to every consonant. But presence of a virama is clearly indicated using a tag ``<virama>` for further processing. Both atomic and traditional chillu are accepted by the system and `<chil>` tag added.
 
 ### FST for contextual phonetic replace
 
@@ -43,9 +43,9 @@ The unicode sequence `റ+ ് + റ` has a special phonetic mapping `(ṯṯ)` 
 
 Similar is the case with `ന + ് + റ` . Its phonetic mapping is `(nṯ)` which is much different from the mapping of `ന(n̪)` or `റ(r)`.
 
-This stage of FST replaces the already mapped റ+ ് + റ `r<otherconsonant><virama>r<otherconsonant>` to `ṯṯ<otherconsonant>` and  ന + ് + റ `<dentalconsonant><virama>r<otherconsonant>` to `nṯ<otherconsonant>`.
+This stage of FST replaces the already mapped റ+ ് + റ `r<c_other><virama>r<c_other>` to `ṯṯ<c_other>` and  ന + ് + റ `<c_dental><virama>r<c_other>` to `nṯ<c_other>`.
 
-_TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<dentalconsonant>`. Contextual rule has to be added to replace it with `n<alveolarcosonant>` whenever needed._
+_TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed._
 
 ### FST for contextual nasalisation( അനുനാസികാതിപ്രസരം)
 
@@ -55,7 +55,7 @@ _TODO: ഭംഗി -> ഭങ്ങി , ചിഹ്നം -> ചിന്ന�
 
 `$inherentvoweladd$`
 
-Inherent vowel has to be added to all consonants if it is followed by another consonant or if it is at the end of word. End of word is identified by `<EoW>` tag or the presence of any special character including space, period, comma, exclamation mark etc. This context is identified and schwa addition is done along with an `<inherentvowel>` tag.
+Inherent vowel has to be added to all consonants if it is followed by another consonant or if it is at the end of word. End of word is identified by `<EoW>` tag or the presence of any special character including space, period, comma, exclamation mark etc. This context is identified and schwa addition is done along with an `<schwa>` tag.
 
 _TODO:Inherent vowel takes a special for certain graphemes at the <BoW>. This has to be handled.Eg- രമ്യ - രെമ്യ , ഇല - എല_
 
@@ -68,9 +68,14 @@ Certain tags were added to identify the exact context for processing. Once all p
 
 ### Overall FST chain
 
-`$ml-g2p$` represents the overall FST which combines each of the above FSTs in a chain.
+`$PhoneAnalyser$` represents the overall FST which combines each of the above FSTs in a chain.
 
-*TODO:Remove all tags and retain only the phonetic symbols*
+### IPAGenerator
+
+`$IPAGenerator$` is a tranducer which removes all the tags to produce IPA sequence corresponding to input malayalam script.
+
+*NB:When used in analysis mode, this transducer will give huge number of output combinations which is difficult to process.*
+
 
 # Installation
 You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile and use this analyzer. The Makefile provided compiles all the sources and produces the binary FSA ‘g2p.a'.
@@ -84,52 +89,6 @@ Clone or download this git repository to your machine.
 ```$ make```
 
 # Examples
-
-To **generate** the phonetic mapping of malayalam script in IPA along with the details of all consonants as tags, use the following command:
-
-`$ python3 python/mlg2p.py -g -f g2p.a`
-
-Give your input in malayalam script and press Enter key.
-
-`കാവ്യ!`
-
-It will give you the result
-
-`കാവ്യ!   k<velarconsonant>aː<vowelsign>ʋ<otherconsonant><virama>ja<inherentvowel><otherconsonant>!`
-
-If the input is:
-
-`മലയാളം കേരളത്തിന്റെ മാതൃഭാഷ`
-
-The result is:
-
-`മലയാളം കേരളത്തിന്റെ മാതൃഭാഷ         ma<inherentvowel><labialconsonant>la<inherentvowel><otherconsonant>j<otherconsonant>aː<vowelsign>ɭ<otherconsonant>am<vowelsign> k<velarconsonant>eː<vowelsign>ɾa<inherentvowel><otherconsonant>ɭa<inherentvowel><otherconsonant>t̪<dentalconsonant><virama>t̪<dentalconsonant>i<vowelsign>nṯ<otherconsonant>e<vowelsign> m<labialconsonant>aː<vowelsign>t̪a<inherentvowel><dentalconsonant>rɨ<vowelsign>bʱ<labialconsonant>aː<vowelsign>ʂa<inherentvowel><otherconsonant>`
-
-To **analyse** the phonetic script along with the tags to obtain malayalam script represenatation use the command:
-`python3 python/mlg2p.py -a  -f g2p.a`
-
-Give the input and press Enter.
-
-`bʱ<labialconsonant>aː<vowelsign>ʋa<inherentvowel><otherconsonant>d̪<dentalconsonant>iː<vowelsign>p<labialconsonant><virama>t̪<dentalconsonant>i<vowelsign>`
-
-It will return you the corresponding malayalam script
-
-`bʱ<labialconsonant>aː<vowelsign>ʋa<inherentvowel><otherconsonant>d̪<dentalconsonant>iː<vowelsign>p<labialconsonant><virama>t̪<dentalconsonant>i<vowelsign>	ഭാവദീപ്തി`
-
-## Reading from and Writing results to files
-
-The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
-#### To generate IPA from malayalam script
-
-`python3 mlg2p.py -f g2p.a -g -i path/to/inputfile.txt -o `path/to/outputfile.txt`
-
-Here `path/to/inputfile.txt` contains the malayalm text to be used for generating corresponding IPA along with tags. The result will be written to `path/to/outputfile.txt`
-
-#### To analyse IPA and tags to get malayalam script
-
-`python3 mlg2p.py -f g2p.a -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
-
-Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
 
 ## Generate IPA sequence from malayalam script
 
@@ -148,6 +107,45 @@ the output would be
 This command can take input from a text file and write the generated IPA to another text file
 
 `python3 IPAGenerator.py -i path/to/inputfile.txt -o path/to/outputfile.txt`
+
+## Generate IPA sequence with tags from malayalam script and vice versa
+
+To **generate** the phonetic mapping of malayalam script in IPA along with the details of all vowels, vowelsigns, type of consonant etc. as tags, use the following command:
+
+`$ python3 python/phoneanalyser.py -g -f PhoneAnalyser.a`
+
+Give your input in malayalam script and press Enter key.
+
+`കാവ്യ!`
+
+It will give you the result
+
+`കാവ്യ!   k<c_velar>aː<v_sign>ʋ<c_other><virama>ja<schwa><c_other>!`
+
+
+The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
+
+`python3 python/phoneanalyser.py -f PhoneAnalyser.a -g -i path/to/inputfile.txt -o path/to/outputfile.txt`
+
+Here `path/to/inputfile.txt` contains the malayalm text to be used for generating corresponding IPA along with tags. The result will be written to `path/to/outputfile.txt`
+
+To **analyse** the phonetic script along with the tags to obtain malayalam script represenatation use the command:
+`python3 python/phoneanalyser.py -a  -f PhoneAnalyser.a`
+
+Give the input and press Enter.
+
+`bʱ<c_labial>aː<v_sign>ʋa<schwa><c_other>d̪<c_dental>iː<v_sign>p<c_labial><virama>t̪<c_dental>i<v_sign>`
+
+It will return you the corresponding malayalam script
+
+`bʱ<c_labial>aː<v_sign>ʋa<schwa><c_other>d̪<c_dental>iː<v_sign>p<c_labial><virama>t̪<c_dental>i<v_sign>	ഭാവദീപ്തി`
+
+The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
+
+`python3 python/phoneanalyser.py -f g2p.a -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
+
+Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
+
 
 # References
 1. Open morphology for Finnish https://github.com/flammie/omorfi
