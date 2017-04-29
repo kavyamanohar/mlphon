@@ -120,14 +120,8 @@ Give your input in malayalam script and press Enter key.
 
 It will give you the result
 
-`കാവ്യ!   k<c_velar>aː<v_sign>ʋ<c_other><virama>ja<schwa><c_other>!`
+`k<c_velar>aː<v_sign>ʋ<c_other><virama>ja<schwa><c_other>!`
 
-
-The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
-
-`python3 python/phoneanalyser.py -g -i path/to/inputfile.txt -o path/to/outputfile.txt`
-
-Here `path/to/inputfile.txt` contains the malayalm text to be used for generating corresponding IPA along with tags. The result will be written to `path/to/outputfile.txt`
 
 To **analyse** the phonetic script along with the tags to obtain malayalam script represenatation use the command:
 
@@ -139,13 +133,13 @@ Give the input and press Enter.
 
 It will return you the corresponding malayalam script
 
-`bʱ<c_labial>aː<v_sign>ʋa<schwa><c_other>d̪<c_dental>iː<v_sign>p<c_labial><virama>t̪<c_dental>i<v_sign>	ഭാവദീപ്തി`
+`ഭാവദീപ്തി`
 
-The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
+* The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
 
-`python3 python/phoneanalyser.py -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
+	`python3 python/phoneanalyser.py -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
 
-Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
+	Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
 
 
 # References
