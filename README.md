@@ -45,7 +45,7 @@ Similar is the case with `ന + ് + റ` . Its phonetic mapping is `(nṯ)` wh
 
 This stage of FST replaces the already mapped റ+ ് + റ `r<c_other><virama>r<c_other>` to `ṯṯ<c_other>` and  ന + ് + റ `<c_dental><virama>r<c_other>` to `nṯ<c_other>`.
 
-_TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed._
+*TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed.*
 
 ### FST for contextual nasalisation( അനുനാസികാതിപ്രസരം)
 
@@ -57,7 +57,7 @@ _TODO: ഭംഗി -> ഭങ്ങി , ചിഹ്നം -> ചിന്ന�
 
 Inherent vowel has to be added to all consonants if it is followed by another consonant or if it is at the end of word. End of word is identified by `<EoW>` tag or the presence of any special character including space, period, comma, exclamation mark etc. This context is identified and schwa addition is done along with an `<schwa>` tag.
 
-_TODO:Inherent vowel takes a special for certain graphemes at the <BoW>. This has to be handled.Eg- രമ്യ - രെമ്യ , ഇല - എല_
+_TODO:Inherent vowel takes a special for certain graphemes at the `<BoW>`. This has to be handled.Eg- രമ്യ - രെമ്യ , ഇല - എല_
 
 ### FST for tag removal
 
@@ -78,7 +78,7 @@ Certain tags were added to identify the exact context for processing. Once all p
 
 
 # Installation
-You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile and use this analyzer. The Makefile provided compiles all the sources and produces the binary FSA ‘g2p.a'.
+You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile and use this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `PhoneAnalyser.a`.
 
 In a debian/ubuntu based GNU/Linux, SFST can be installed as follows
 
@@ -135,11 +135,11 @@ It will return you the corresponding malayalam script
 
 `ഭാവദീപ്തി`
 
-* The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
+The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
 
-	`python3 python/phoneanalyser.py -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
+`python3 python/phoneanalyser.py -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
 
-	Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
+Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
 
 
 # References
