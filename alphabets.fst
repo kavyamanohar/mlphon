@@ -1,8 +1,11 @@
 %DEFINING ALL POSSIBLE INPUT AND OUTPUT ALPHABET SETS
 
-#mlvowel# = അ ആ ഇ ഈ ഉ ഊ ഋ ൠ ഌ ൡ എ ഏ ഐ ഒ ഓ ഔ അം അഃ
-#mlvowelsign# =  ാ ി ീ ൢ ൢ ു ൂ ൃ ൄ ൢ ൣ െ േ ൈ ൊ ോ  ൗ ൌ ം ഃ
+#mlvowel# = അ ആ ഇ ഈ ഉ ഊ ഋ ൠ ഌ ൡ എ ഏ ഐ ഒ ഓ ഔ
+#mlvowelsign# =  ാ ി ീ ൢ ൢ ു ൂ ൃ ൄ ൢ ൣ െ േ ൈ ൊ ോ  ൗ ൌ
+#anuswara# = ം
+#visarga# = ഃ
 #mlvirama# = ്
+#signs# = #mlvowelsign# #anuswara# #visarga# #mlvirama#
 
 #mlvelar# = ക ഖ ഗ ഘ ങ
 #mlpalatal# = ച ഛ ജ ഝ ഞ
@@ -14,7 +17,7 @@
 #mlconsonant# = #mlvelar# #mlpalatal# #mlretroflex# #mldental# #mlalveolar# #mllabial# #mlother#
 
 #mlchilluatomic# =ൺ ൻ ർ ൽ ൾ ൿ
-#mlchilluregular# = ണ്‍ ന്‍ ര്‍ ല്‍ ള്‍ ക്‍
+#mlchilluregular# = {ണ്‍} {ന്‍} {ര്‍} {ല്‍} {ള്‍} {ക്‍}
 #mlchillu# = #mlchilluatomic# #mlchilluregular#
 
 #ml# = #mlvowel#  #mlvowelsign# #mlvirama#  #mlconsonant# #mlchillu#
