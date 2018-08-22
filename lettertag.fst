@@ -1,12 +1,14 @@
 #include "alphabets.fst"
-ALPHABET =  [#ml##spl-char#]
+ALPHABET =  [#ml_letter##spl-char##boundarytag#]
 
-#=V# = #mlvowel#
-#=C# = #mlconsonant#
-#=VS# = #mlvowelsign#
+#=V# = #vowel#
+#=C# = #consonant#
+#=VS# = #vowelsign#
 #=visarga# = #visarga#
 #=anuswara# = #anuswara#
-#=virama# = #mlvirama#
-#=Chil# = #mlchilluatomic#
-$lettertag$ = {[#=V#]}:{[#=V#]<vowel>} | {[#=C#]}:{[#=C#]<consonant>} | {[#=VS#]}:{[#=VS#]<vowelsign>} |  {[#=visarga#]}:{[#=visarga#]<visarga>}| {[#=anuswara#]}:{[#=anuswara#]<anuswara>}| {[#=virama#]}:{[#=virama#]<virama>} | {[#=Chil#]}:{[#=Chil#]<chil>}
-($lettertag$)*
+#=virama# = #virama#
+#=chil# = #chillu#
+$MISC$ = [#spl-char##boundarytag#]
+
+$lettertag$ = {[#=V#]}:{[#=V#]<vowel>} | {[#=C#]}:{[#=C#]<consonant>} | {[#=VS#]}:{[#=VS#]<vowelsign>} |  {[#=visarga#]}:{[#=visarga#]<visarga>}| {[#=anuswara#]}:{[#=anuswara#]<anuswara>}| {[#=virama#]}:{[#=virama#]<virama>} | {[#=chil#]}:{[#=chil#]<chil>}
+($MISC$|$lettertag$)*
