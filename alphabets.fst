@@ -37,8 +37,9 @@
 #consonanttag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag##alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
 %#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
-#misc-tags# = <chil> <schwa>
-#boundarytag# = <BoW> <EoW>
+#chiltag# = <chil>
+#misc-tags# = <schwa>
+#boundarytag# = <BoW> <EoW> <BoS> <EoS>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 #lettertags# = #voweltag# #vowelsigntag# #consonanttag# #viramatag# #visargatag# #anuswaratag#
 
