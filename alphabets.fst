@@ -38,13 +38,13 @@
 
 %#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
 #chiltag# = <chil>
-#misc-tags# = <schwa>
+#schwatag# = <schwa>
 #boundarytag# = <BoW> <EoW> <BoS> <EoS>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
-#lettertags# = #voweltag# #vowelsigntag# #consonanttag# #viramatag# #visargatag# #anuswaratag# #chiltag#
+#lettertags# = #voweltag# #vowelsigntag# #consonanttag# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag#
 
 %#space# = {\ }
-#spl-char# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
+#punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
 
@@ -62,4 +62,4 @@
 %#digitsarabic# = 0 1 2 3 4 5 6 7 8 9
 %#digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
 %#digits# = #digitsarabic# #digitsmalayalam#
-#allsymbols# = #ml_letter# #IPA# #lettertags# #misc-tags# #spl-char# #boundarytag# %#digitsarabic# #digitsmalayalam#
+#allsymbols# = #ml_letter# #IPA# #lettertags# #punct# #boundarytag# %#digitsarabic# #digitsmalayalam#

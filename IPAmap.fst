@@ -1,7 +1,7 @@
 #include "alphabets.fst"
 
 %ALPHABET = [#ml##spl-char##boundarytag#]
-$MISC$ = [#spl-char##boundarytag#]
+$MISC$ = [#punct##boundarytag#]
 $virama$ = ്:<virama>
 $vowel$ = {അ}:{a<vowel>}|\
           {ആ}:{aː<vowel>}|\
