@@ -41,7 +41,7 @@
 #misc-tags# = <schwa>
 #boundarytag# = <BoW> <EoW> <BoS> <EoS>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
-#lettertags# = #voweltag# #vowelsigntag# #consonanttag# #viramatag# #visargatag# #anuswaratag#
+#lettertags# = #voweltag# #vowelsigntag# #consonanttag# #viramatag# #visargatag# #anuswaratag# #chiltag#
 
 %#space# = {\ }
 #spl-char# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}

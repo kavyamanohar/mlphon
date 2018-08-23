@@ -77,6 +77,6 @@ $otherconsonants$ = {യ}:{j}|\
                     {റ}:{r}
 $chillu$ = {ൺ}:{ɳ<chil>} | {ൻ}:{n<chil>} |{ർ}:{r<chil>} |{ൽ}:{l<chil>} | {ൾ}:{ɭ<chil>}| {ൿ}:{k<chil>}
 
-$phoneticmap$ = ($MISC$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$alveolar$|$labial$|$otherconsonants$|$vowelsign$|$chillu$)*
+$IPAmap$ = ($MISC$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$alveolar$|$labial$|$otherconsonants$|$vowelsign$|$chillu$)*
 
-$phoneticmap$
+$IPAmap$
