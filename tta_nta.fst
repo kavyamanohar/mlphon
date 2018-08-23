@@ -1,5 +1,8 @@
 #include "alphabets.fst"
+ALPHABET = [#allsymbols#]
 
-$tta_nta$ = {<BoS>r<virama>r}:{<BoS>ṯ<virama>ṯ} |{<BoS>n̪<virama>r}:{<BoS>n‍<virama>ṯ}
+$tta$ = {r<virama>r}:{ṯ<virama>ṯ} ^-> (<BoS>__)
+$nta$ = {n̪<virama>r}:{n‍<virama>ṯ} ^-> (<BoS>__)
 
+$tta_nta$ = $tta$ || $nta$
 $tta_nta$
