@@ -10,5 +10,5 @@ ALPHABET =  [#ml_letter##spl-char##boundarytag#]
 #=chil# = #chillu#
 $MISC$ = [#spl-char##boundarytag#]
 
-$lettertag$ = {[#=V#]}:{[#=V#]<vowel>} | {[#=C#]}:{[#=C#]<consonant>} | {[#=VS#]}:{[#=VS#]<vowelsign>} |  {[#=visarga#]}:{[#=visarga#]<visarga>}| {[#=anuswara#]}:{[#=anuswara#]<anuswara>}| {[#=virama#]}:{[#=virama#]<virama>} | {[#=chil#]}:{[#=chil#]<chil>}
+$lettertag$ = {[#=V#]}:{[#=V#]<vowel>} | {[#=C#]}:{[#=C#]<consonant>} | {[#=VS#]}:{[#=VS#]<v_sign>} |  {[#=visarga#]}:{[#=visarga#]<visarga>}| {[#=anuswara#]}:{[#=anuswara#]<anuswara>}| {[#=virama#]}:{[#=virama#]<virama>} | {[#=chil#]}:{[#=chil#]<chil>}
 ($MISC$|$lettertag$)*
