@@ -1,24 +1,24 @@
 %DEFINING ALL POSSIBLE INPUT AND OUTPUT ALPHABET SETS
 
-#vowel# = അ ആ ഇ ഈ ഉ ഊ ഋ ൠ ഌ ൡ എ ഏ ഐ ഒ ഓ ഔ
-#vowelsign# =  ാ ി ീ ൢ ൢ ു ൂ ൃ ൄ ൢ ൣ െ േ ൈ ൊ ോ  ൗ ൌ
+#vowels# = അ ആ ഇ ഈ ഉ ഊ ഋ ൠ ഌ ൡ എ ഏ ഐ ഒ ഓ ഔ
+#vowelsigns# =  ാ ി ീ ൢ ൢ ു ൂ ൃ ൄ ൢ ൣ െ േ ൈ ൊ ോ  ൗ ൌ
 #anuswara# = ം
 #visarga# = ഃ
 #virama# = ്
-#sign# = #vowelsign# #anuswara# #visarga# #virama#
+#signs# = #vowelsigns# #anuswara# #visarga# #virama#
 
-#velar# = ക ഖ ഗ ഘ ങ
-#palatal# = ച ഛ ജ ഝ ഞ
-#retroflex# = ട ഠ ഡ ഢ ണ
-#alveolar# = ഺ ഩ
-#dental# = ത ഥ ദ ധ ന
-#labial# = പ ഫ ബ ഭ മ
-#other# = യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
-#consonant# = #velar# #palatal# #retroflex# #dental# #alveolar# #labial# #other#
+#velars# = ക ഖ ഗ ഘ ങ
+#palatals# = ച ഛ ജ ഝ ഞ
+#retroflexes# = ട ഠ ഡ ഢ ണ
+#alveolars# = ഺ ഩ
+#dentals# = ത ഥ ദ ധ ന
+#labials# = പ ഫ ബ ഭ മ
+#others# = യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
+#consonants# = #velars# #palatals# #retroflexes# #dentals# #alveolars# #labials# #others#
 
-#chillu# =ൺ ൻ ർ ൽ ൾ ൿ
+#chillus# =ൺ ൻ ർ ൽ ൾ ൿ
 
-#ml_letter# = #vowel# #sign# #consonant# #chillu#
+#letters# = #vowels# #signs# #consonants# #chillus#
 
 #voweltag#  = <vowel>
 #vowelsigntag# = <v_sign>
@@ -34,32 +34,32 @@
 #labiaalconsonanttag# = <c_labial>
 #otherconsonanttag# = <c_other>
 
-#consonanttag# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag##dentalconsonanttag##alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
+#consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
 %#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
 #chiltag# = <chil>
 #schwatag# = <schwa>
-#boundarytag# = <BoW> <EoW> <BoS> <EoS>
+#boundarytags# = <BoW> <EoW> <BoS> <EoS>
 %#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
-#lettertags# = #voweltag# #vowelsigntag# #consonanttag# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag#
+#lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag#
 
 %#space# = {\ }
 #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
 
-#IPAvelar# = k kʰ ɡ ɡʱ ŋ
-#IPApalatal# = t͡ʃ t͡ʃʰ ɟ ɟʱ ɲ
-#IPAretroflex# = ʈ ʈʰ ɖ ɖʱ ɳ
-#IPAdental# = t̪ t̪ʰ d̪ d̪ʱ n̪
-#IPAalvolar# = ṯ n
-#IPAlabial# = p pʰ b bʱ m
-#IPAother# = j ɾ l ʋ ʃ ʂ s ɦ ɭ ɽ r {ṯṯ} {n‍ṯ}
-#IPAconsonants# = #IPAvelar# #IPApalatal##IPAretroflex# #IPAdental# #IPAalvolar##IPAlabial##IPAother#
+#IPAvelar# = {k} {kʰ} {ɡ} {ɡʱ} {ŋ}
+#IPApalatal# = {t͡ʃ} {t͡ʃʰ} {ɟ} {ɟʱ} {ɲ}
+#IPAretroflex# = {ʈ} {ʈʰ} {ɖ} {ɖʱ} {ɳ}
+#IPAdental# = {t̪} {t̪ʰ} {d̪} {d̪ʱ} {n̪}
+#IPAalveolar# = {ṯ} {n}
+#IPAlabial# = {p} {pʰ} {b} {bʱ} {m}
+#IPAother# = {j} {ɾ} {l} {ʋ} {ʃ} {ʂ} {s} {ɦ} {ɭ} {ɽ} {r} {ṯṯ} {n‍ṯ}
+#IPAconsonants# = #IPAvelar# #IPApalatal# #IPAretroflex# #IPAdental# #IPAalveolar# #IPAlabial# #IPAother#
 
-#IPA# = #IPAvowels# #IPAconsonants#
+#IPAs# = #IPAvowels# #IPAconsonants#
 
 %#digitsarabic# = 0 1 2 3 4 5 6 7 8 9
 %#digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
 %#digits# = #digitsarabic# #digitsmalayalam#
-#allsymbols# = #ml_letter# #IPA# #lettertags# #punct# #boundarytag# %#digitsarabic# #digitsmalayalam#
+#allsymbols# = #letters# #IPAs# #lettertags# #punct# #boundarytags# %#digitsarabic# #digitsmalayalam#
