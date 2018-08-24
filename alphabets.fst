@@ -46,8 +46,7 @@
 % #space# = {\ }
 #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 
-#IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
-
+#IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯}
 #IPAvelar# = {k} {kʰ} {ɡ} {ɡʱ} {ŋ}
 #IPApalatal# = {t͡ʃ} {t͡ʃʰ} {ɟ} {ɟʱ} {ɲ}
 #IPAretroflex# = {ʈ} {ʈʰ} {ɖ} {ɖʱ} {ɳ}

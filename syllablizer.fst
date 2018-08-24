@@ -1,8 +1,9 @@
 $wordfilter$ = "<wordfilter.a>"
 $syllable$ = "<syllable.a>"
 
-$test$ = കല | അൻവർ | ഹയ്യോ\! | കരിഷ്മ | സന്തോഷ് | ആപ്പ് | അംബുജം | ദുഃഖം
+$test$ =  കല | അൻവർ | ഹയ്യോ\! | കരിഷ്മ | സന്തോഷ് | ആപ്പ് | എന്റമ്മ | കാറ്റ് | അംബുജം | ദുഃഖം
 
-$test$ || $wordfilter$ || $syllable$ >> "syllablizer.test.a"
+$syllablizer$ = $wordfilter$ || $syllable$
+$test$ || $syllablizer$ >> "syllablizer.test.a"
 
-$wordfilter$ || $syllable$
+$syllablizer$

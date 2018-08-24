@@ -1,25 +1,26 @@
 #include "alphabets.fst"
 
 %ALPHABET = [#ml##spl-char##boundarytag#]
-$MISC$ = [#punct##boundarytag#]
+$MISC$ = [#punct##boundarytags#]
 $virama$ = ്:<virama>
-$vowel$ = {അ}:{a<vowel>}|\
-          {ആ}:{aː<vowel>}|\
-          {ഇ}:{i<vowel><vowel>}|\
-          {ഈ}:{iː<vowel>} |\
-          {ഉ}:{u<vowel>}|\
-          {ഊ}:{uː<vowel>}|\
-          {ഋ}:{rɨ<vowel>}|\
-          {ൠ}:{rɨː<vowel>}|\
-          {ഌ}:{lɨ<vowel>}|\
-          {ൡ}:{lɨː<vowel>}|\
-          {എ}:{e<vowel>}|\
-          {ഏ}:{eː<vowel>}|\
-          {ഐ}:{ai̯<vowel>}|\
-          {ഒ}:{o<vowel>}|\
-          {ഓ}:{oː<vowel>}|\
-          {ഔ}:{au̯<vowel>}
-$vowelsign$ = {ാ}:{aː}|\
+$vowel$ = ({അ}:{a}|\
+          {ആ}:{aː}|\
+          {ഇ}:{i}|\
+          {ഈ}:{iː} |\
+          {ഉ}:{u}|\
+          {ഊ}:{uː}|\
+          {ഋ}:{rɨ}|\
+          {ൠ}:{rɨː}|\
+          {ഌ}:{lɨ}|\
+          {ൡ}:{lɨː}|\
+          {എ}:{e}|\
+          {ഏ}:{eː}|\
+          {ഐ}:{ai̯}|\
+          {ഒ}:{o}|\
+          {ഓ}:{oː}|\
+          {ഔ}:{au̯}) <>:<vowel>
+$vowel1$ = ([#vowels#] : [#IPAvowels#] ) <>:<vowel>
+$vowelsign$ = ({ാ}:{aː}|\
               {ി}:{i}|\
               {ീ}:{iː}|\
               {ു}:{u}|\
@@ -34,9 +35,9 @@ $vowelsign$ = {ാ}:{aː}|\
               {ൊ}:{o}|\
               {ോ}:{oː}|\
               {ൗ}:{au̯}|\
-              {ൌ}:{au̯}|\
-              {ം}:{m<anuswara>}|\
-              {ഃ}:{h<visarga>}
+              {ൌ}:{au̯}) <>:<v_sign>
+$anuswara$ = {ം}:{m <anuswara>}
+$visarga$ = {ഃ}:{<visarga>}
 $velar$ = {ക}:{k}|\
           {ഖ}:{kʰ}|\
           {ഗ}:{ɡ}|\
@@ -77,6 +78,6 @@ $otherconsonants$ = {യ}:{j}|\
                     {റ}:{r}
 $chillu$ = {ൺ}:{ɳ<chil>} | {ൻ}:{n<chil>} |{ർ}:{r<chil>} |{ൽ}:{l<chil>} | {ൾ}:{ɭ<chil>}| {ൿ}:{k<chil>}
 
-$IPAmap$ = ($MISC$|$virama$|$vowel$|$velar$|$palatal$|$retroflex$|$dental$|$alveolar$|$labial$|$otherconsonants$|$vowelsign$|$chillu$)*
+$IPAmap$ = ( $MISC$ | $virama$ | $vowel$ | $vowelsign$ | $anuswara$ | $visarga$ | $velar$ | $palatal$ | $retroflex$ | $dental$ | $alveolar$ | $labial$ | $otherconsonants$ |$chillu$)*
 
 $IPAmap$
