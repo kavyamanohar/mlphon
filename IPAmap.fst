@@ -2,6 +2,8 @@
 
 %ALPHABET = [#ml##spl-char##boundarytag#]
 $MISC$ = [#punct##boundarytags#]
+$zwnj$ = [‌]:<zwnj>
+$zwj$ = [‍]:<zwj>
 $virama$ = ്:<virama>
 $vowel$ = (അ:{a}|\
           ആ:{aː}|\
@@ -37,34 +39,34 @@ $vowelsign$ = (	ാ:{aː}|\
 		            ൌ:{au̯}) <>:<v_sign>
 $anuswara$ = ം:{m <anuswara>}
 $visarga$ = ഃ:{<visarga>}
-$velar$ = ക:{k}|\
+$velar$ = (ക:{k<>}|\
           ഖ:{kʰ}|\
           ഗ:{ɡ}|\
           ഘ:{ɡʱ}|\
-          ങ:{ŋ}
-$palatal$ = ച:{t͡ʃ}|\
+          ങ:{ŋ}) <>:<velar>
+$palatal$ = (ച:{t͡ʃ}|\
             ഛ:{t͡ʃʰ}|\
             ജ:{ɟ}|\
             ഝ:{ɟʱ}|\
-            ഞ:{ɲ}
-$retroflex$ = ട:{ʈ}|\
+            ഞ:{ɲ}) <>:<palatal>
+$retroflex$ =( ട:{ʈ}|\
               ഠ:{ʈʰ}|\
               ഡ:{ɖ}|\
               ഢ:{ɖʱ}|\
-              ണ:{ɳ}
-$dental$ = ത:{t̪}|\
+              ണ:{ɳ}) <>:<retroflex>
+$dental$ = (ത:{t̪}|\
            ഥ:{t̪ʰ}|\
            ദ:{d̪}|\
            ധ:{d̪ʱ}|\
-           ന:{n̪}
-$alveolar$ = ഺ:{ṯ}|\
-             ഩ:{n}
-$labial$ = പ:{p}|\
+           ന:{n̪}) <>:<dental>
+$alveolar$ = (ഺ:{ṯ}|\
+             ഩ:{n}) <>:<alveolar>
+$labial$ = (പ:{p}|\
            ഫ:{pʰ}|\
            ബ:{b}|\
            ഭ:{bʱ}|\
-           മ:{m}
-$otherconsonants$ = യ:{j}|\
+           മ:{m}) <>:<labial>
+$otherconsonants$ = (യ:{j}|\
                     ര:{ɾ}|\
                     ല:{l}|\
                     വ:{ʋ}|\
@@ -74,9 +76,9 @@ $otherconsonants$ = യ:{j}|\
                     ഹ:{ɦ}|\
                     ള:{ɭ}|\
                     ഴ:{ɽ}|\
-                    റ:{r}
+                    റ:{r}) <>:<other>
 $chillu$ = ൺ:{ɳ<chil>} | ൻ:{n<chil>} |ർ:{r<chil>} |ൽ:{l<chil>} | ൾ:{ɭ<chil>}| ൿ:{k<chil>}
 
-$IPAmap$ = ( $MISC$ | $virama$ | $vowel$ | $vowelsign$ | $anuswara$ | $visarga$ | $velar$ | $palatal$ | $retroflex$ | $dental$ | $alveolar$ | $labial$ | $otherconsonants$ |$chillu$)*
+$IPAmap$ = ( $MISC$ |$virama$ | $zwj$ | $zwnj$ | $vowel$ | $vowelsign$ | $anuswara$ | $visarga$ | $velar$ | $palatal$ | $retroflex$ | $dental$ | $alveolar$ | $labial$ | $otherconsonants$ |$chillu$)*
 
 $IPAmap$

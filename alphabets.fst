@@ -16,9 +16,10 @@
 #others# = യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
 #consonants# = #velars# #palatals# #retroflexes# #dentals# #alveolars# #labials# #others#
 
-#chillus# =ൺ ൻ ർ ൽ ൾ ൿ
-
-#letters# = #vowels# #signs# #consonants# #chillus#
+#chillus# = ൺ ൻ ർ ൽ ൾ ൿ
+% invisible characters awj and zwnj
+#zerowidth# = ‌‍
+#letters# = #vowels# #signs# #consonants# #chillus# #zerowidth#
 
 #voweltag#  = <vowel>
 #vowelsigntag# = <v_sign>
@@ -26,18 +27,19 @@
 #visargatag# = <visarga>
 #anuswaratag# = <anuswara>
 
-#velarconsonanttag# = <c_velar>
-#palatalconsonanttag# = <c_palatal>
-#retroflexconsonanttag# = <c_retroflex>
-#dentalconsonanttag# = <c_dental>
-#alveolarcosonanttag# = <c_alveolar>
-#labiaalconsonanttag# = <c_labial>
-#otherconsonanttag# = <c_other>
+#velarconsonanttag# = <velar>
+#palatalconsonanttag# = <palatal>
+#retroflexconsonanttag# = <retroflex>
+#dentalconsonanttag# = <dental>
+#alveolarcosonanttag# = <alveolar>
+#labiaalconsonanttag# = <labial>
+#otherconsonanttag# = <other>
 
 #consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
 % #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
 #chiltag# = <chil>
+#zerowidthtag# = <zwj> <zwnj>
 #schwatag# = <schwa>
 #boundarytags# = <BoW> <EoW> <BoS> <EoS>
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
