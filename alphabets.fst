@@ -1,4 +1,4 @@
-%DEFINING ALL POSSIBLE INPUT AND OUTPUT ALPHABET SETS
+% DEFINING ALL POSSIBLE INPUT AND OUTPUT ALPHABET SETS
 
 #vowels# = അ ആ ഇ ഈ ഉ ഊ ഋ ൠ ഌ ൡ എ ഏ ഐ ഒ ഓ ഔ
 #vowelsigns# =  ാ ി ീ ൢ ൢ ു ൂ ൃ ൄ ൢ ൣ െ േ ൈ ൊ ോ  ൗ ൌ
@@ -36,14 +36,14 @@
 
 #consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
 
-%#misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
+% #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
 #chiltag# = <chil>
 #schwatag# = <schwa>
 #boundarytags# = <BoW> <EoW> <BoS> <EoS>
-%#phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
+% #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 #lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag#
 
-%#space# = {\ }
+% #space# = {\ }
 #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯} {am} {ah}
@@ -59,7 +59,7 @@
 
 #IPAs# = #IPAvowels# #IPAconsonants#
 
-%#digitsarabic# = 0 1 2 3 4 5 6 7 8 9
-%#digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
-%#digits# = #digitsarabic# #digitsmalayalam#
+%  #digitsarabic# = 0 1 2 3 4 5 6 7 8 9
+% #digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
+% #digits# = #digitsarabic# #digitsmalayalam#
 #allsymbols# = #letters# #IPAs# #lettertags# #punct# #boundarytags# %#digitsarabic# #digitsmalayalam#
