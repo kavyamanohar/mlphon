@@ -19,7 +19,7 @@ $c_virama_wordend$ = $c_virama$+ <em>:<>
 % Passes കല അൻവർ കരിഷ്മ as it is
 % Passes സന്തോഷ്<em> ആപ്പ്<em> after removing <em>
 % Does not pass സന്തോഷ് ആപ്
-$syllable1$ = ($vowel$ | $chillu$ | $cv$ | $conjunct$ | $c_virama_wordend$) $punct$?
+$syllable1$ = ($vowel$ | $chillu$ | $cv$ | $conjunct$ | $c_virama_wordend$) $punct$*
 
 % Set of syllables(between word tags) are passed afer adding syllable tag
 $word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)*  [<EoW>]
