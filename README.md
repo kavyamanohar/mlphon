@@ -83,29 +83,29 @@ Clone or download this git repository to your machine.
 
 # Examples
 
-## Generate IPA sequence from malayalam script
+## Syllablize a Malayalam Word
 
 The following command will generate IPA sequence from malayalam script
 
-`python3 IPAGenerator.py`
+`python3 syllablizer.py`
 
 For the input
 
-`സഫലമീയാത്ര!! `
+`സഫലമീയാത്ര`
 
 the output would be
 
-`sapʰalamiːjaːt̪ɾa!!`
+`<BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>`
 
 This command can take input from a text file and write the generated IPA to another text file
 
-`python3 IPAGenerator.py -i path/to/inputfile.txt -o path/to/outputfile.txt`
+`python3 syllablizer.py -i path/to/inputfile.txt -o path/to/outputfile.txt`
 
-## Generate IPA sequence with tags from malayalam script and vice versa
+## g2p conversion for Malayalam. Malayalam script would be turned to syllablized IPA sequence along with detailed phonetic feature tag
 
 To **generate** the phonetic mapping of malayalam script in IPA along with the details of all vowels, vowelsigns, type of consonant etc. as tags, use the following command:
 
-`$ python3 python/phoneanalyser.py -g`
+`$ python3 python/g2p.py -g`
 
 Give your input in malayalam script and press Enter key.
 
@@ -113,24 +113,24 @@ Give your input in malayalam script and press Enter key.
 
 It will give you the result
 
-`k<c_velar>aː<v_sign>ʋ<c_other><virama>ja<schwa><c_other>!`
+`<BoS>k<velar>aː<v_sign><EoS><BoS>ʋ<other><virama>j<other>!<EoS>!`
 
 
 To **analyse** the phonetic script along with the tags to obtain malayalam script represenatation use the command:
 
-`python3 python/phoneanalyser.py -a`
+`python3 python/g2p.py -a`
 
 Give the input and press Enter.
 
-`bʱ<c_labial>aː<v_sign>ʋa<schwa><c_other>d̪<c_dental>iː<v_sign>p<c_labial><virama>t̪<c_dental>i<v_sign>`
+`BoS>p<labial>aː<v_sign><EoS><BoS>l<chil><EoS>`
 
 It will return you the corresponding malayalam script
 
-`ഭാവദീപ്തി`
+`പാൽ`
 
 The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
 
-`python3 python/phoneanalyser.py -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
+`python3 python/g2p.py -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
 
 Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
 
