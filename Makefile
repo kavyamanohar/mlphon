@@ -8,3 +8,4 @@ clean:
 
 test: g2p.a
 	python3 test/g2p-test.py
+	python3 test/syllablizer-test.py
