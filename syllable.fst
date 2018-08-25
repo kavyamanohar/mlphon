@@ -9,6 +9,7 @@ $punct$ = [#punct#]
 $c_virama$ = [#consonants#][#virama#]
 $conjunct$ = $c_virama$+ $cv$  % ക്ഷ ഗ്ദ്ധ ന്നു ദ്ധി  ഭ്രം
 $zwnjboundary$ = $c_virama$+ [#zerowidth#]
+
 % Word-end Virama indicated by adding an end marker tag <em>
 % eg സന്തോഷ് -> സന്തോഷ്<em>, ആപ്പ് -> ആപ്പ്<em>
 $word_with_virama_at_end$ = [<BoW>] [#letters#]+ [#virama#] <>:<em> [<EoW>]

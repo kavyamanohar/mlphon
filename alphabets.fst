@@ -17,7 +17,7 @@
 #consonants# = #velars# #palatals# #retroflexes# #dentals# #alveolars# #labials# #others#
 
 #chillus# = ൺ ൻ ർ ൽ ൾ ൿ
-% invisible characters awj and zwnj
+% invisible characters zwj and zwnj
 #zerowidth# = ‌‍
 #letters# = #vowels# #signs# #consonants# #chillus# #zerowidth#
 
@@ -43,7 +43,7 @@
 #schwatag# = <schwa>
 #boundarytags# = <BoW> <EoW> <BoS> <EoS>
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
-#lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag#
+#lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag# #zerowidthtag#
 
 % #space# = {\ }
 #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
