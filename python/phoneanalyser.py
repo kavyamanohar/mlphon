@@ -17,7 +17,7 @@ def main():
     a.add_argument('-v', '--verbose', action='store_true',
                    help="print verbosely while processing")
     options = a.parse_args()
-    fsa = os.path.dirname(os.path.realpath(__file__))+'/../PhoneAnalyser.a'
+    fsa = os.path.dirname(os.path.realpath(__file__))+'/../g2p.a'
     transducer = Fsa(fsa)
     if not options.infile:
         options.infile = stdin
