@@ -7,21 +7,21 @@ sys.path.insert(0, '../python')
 
 from fsa import Fsa
 app = Flask(__name__)
-app.config['DEBUG'] = True
+#app.config['DEBUG'] = True
 
-ipa = Fsa('../IPAGenerator.a')
-g2p = Fsa('../PhoneAnalyser.a')
+syllablizer = Fsa('../syllablizer.a')
+g2p = Fsa('../g2p.a')
 
 @app.route("/")
 def index():
 	return render_template('index.html',)
 
-@app.route("/IPA", methods=['GET'])
+@app.route("/syllablizer", methods=['GET'])
 def generate():
 	generate_ipa = {}
 	text = request.args.get('text')
-	ipagen = ipa.generate(text);
-	return jsonify(ipagen)
+	syllables = syllablizer.generate(text);
+	return jsonify(syllables)
 
 @app.route("/g2pgenerate", methods=['GET'])
 def g2p_generate():
