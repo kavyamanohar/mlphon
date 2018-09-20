@@ -12,7 +12,7 @@ $zwnjboundary$ = $c_virama$+ [#zerowidth#]
 
 % Word-end Virama indicated by adding an end marker tag <em>
 % eg സന്തോഷ് -> സന്തോഷ്<em>, ആപ്പ് -> ആപ്പ്<em>
-$word_with_virama_at_end$ = [<BoW>] [#letters#]+ [#virama#] <>:<em> [<EoW>]
+$word_with_virama_at_end$ = [<BoW>] [#letters#]+ [#virama#] <>:<em> [#punct#]* [<EoW>]
 
 % Select those conjuntcs with virama at word ends and removes <em> tag
 $c_virama_wordend$ = $c_virama$+ <em>:<>
@@ -20,10 +20,10 @@ $c_virama_wordend$ = $c_virama$+ <em>:<>
 % Passes കല അൻവർ കരിഷ്മ as it is
 % Passes സന്തോഷ്<em> ആപ്പ്<em> after removing <em>
 % Does not pass സന്തോഷ് ആപ്
-$syllable1$ = ($vowel$ | $chillu$ | $cv$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$) $punct$*
+$syllable1$ = ($vowel$ | $chillu$ | $cv$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$)
 
 % Set of syllables(between word tags) are passed afer adding syllable tag
-$word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)*  [<EoW>]
+$word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)*  [#punct#]* [<EoW>]
 
 % കല pass through $word$
 % ആപ്പ് does not pass through $word$
