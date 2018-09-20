@@ -30,11 +30,11 @@ _TODO:Provisions to accept malayalam/arabic numerals, archaic malayalam characte
 
 It splits syllables with <BoS> <EoS> tags to indicate beginning and end of syllables respectively for words input to it with <BoW> and <EoW> tags
 
-*$Syllablizer$ is a composition of `$wordfilter$` and `$syllable$`*
+*`$syllablizer$` is a composition of `$wordfilter$` and `$syllable$`*
 
 ### FST for g2p mapping
 
-*g2p mapping is done on syllable splitted words. So `$syllablizer$` is a prerequisite for g2p processing.$g2p$ is composed of the followings FSTs*
+*g2p mapping is done on syllable splitted words. So `$syllablizer$` is a prerequisite for g2p processing.`$g2p$` is composed of the followings FSTs*
 
 `$IPAmap$`
 
@@ -46,9 +46,9 @@ The malayalam script assumes every consonant if not followed by a virama, has th
 
 `$schwa$`
 
-Inherent vowel has to be added to all consonants if it is at `<EoS>` or when it is folloed by `<anuswara>` or `<visarga>`.
+Inherent vowel has to be added to all consonants if it is at `<EoS>` or when it is followed by `<anuswara>` or `<visarga>`.
 
-This context is identified and schwa addition is done along with an `<schwa>` tag.
+This context is identified and schwa addition is done along with a `<schwa>` tag.
 
 _TODO: Presence of any special character including space, period, comma, exclamation mark etc to be identified and schwa addition to be done. Inherent vowel takes a special for certain graphemes at the `<BoW>`. This has to be handled.Eg- രമ്യ - രെമ്യ , ഇല - എല_
 
