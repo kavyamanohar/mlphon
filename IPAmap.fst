@@ -44,28 +44,28 @@ $velar$ = (ക:{k<plosive><voiceless><unaspirated>}|\
           ഗ:{ɡ<plosive><voiced><unaspirated>}|\
           ഘ:{ɡʱ<plosive><voiced><aspirated>}|\
           ങ:{ŋ<nasal>}) <>:<velar>
-$palatal$ = (ച:{t͡ʃ}|\
-            ഛ:{t͡ʃʰ}|\
-            ജ:{ɟ}|\
-            ഝ:{ɟʱ}|\
-            ഞ:{ɲ}) <>:<palatal>
-$retroflex$ =( ട:{ʈ}|\
-              ഠ:{ʈʰ}|\
-              ഡ:{ɖ}|\
-              ഢ:{ɖʱ}|\
-              ണ:{ɳ}) <>:<retroflex>
-$dental$ = (ത:{t̪}|\
-           ഥ:{t̪ʰ}|\
-           ദ:{d̪}|\
-           ധ:{d̪ʱ}|\
-           ന:{n̪}) <>:<dental>
-$alveolar$ = (ഺ:{ṯ}|\
-             ഩ:{n}) <>:<alveolar>
-$labial$ = (പ:{p}|\
-           ഫ:{pʰ}|\
-           ബ:{b}|\
-           ഭ:{bʱ}|\
-           മ:{m}) <>:<labial>
+$palatal$ = (ച:{t͡ʃ<plosive><voiceless><unaspirated>}|\
+            ഛ:{t͡ʃʰ<plosive><voiceless><aspirated>}|\
+            ജ:{ɟ<plosive><voiced><unaspirated>}|\
+            ഝ:{ɟʱ<plosive><voiced><aspirated>}|\
+            ഞ:{ɲ<nasal>}) <>:<palatal>
+$retroflex$ =( ട:{ʈ<plosive><voiceless><unaspirated><plosive><voiceless><unaspirated>}|\
+              ഠ:{ʈʰ<plosive><voiceless><aspirated>}|\
+              ഡ:{ɖ<plosive><voiced><unaspirated>}|\
+              ഢ:{ɖʱ<plosive><voiced><aspirated>}|\
+              ണ:{ɳ<nasal>}) <>:<retroflex>
+$dental$ = (ത:{t̪<plosive><voiceless><unaspirated>}|\
+           ഥ:{t̪ʰ<plosive><voiceless><aspirated>}|\
+           ദ:{d̪<plosive><voiced><unaspirated>}|\
+           ധ:{d̪ʱ<plosive><voiced><aspirated>}|\
+           ന:{n̪<nasal>}) <>:<dental>
+$alveolar$ = (ഺ:{ṯ<plosive><voiceless><unaspirated>}|\
+             ഩ:{n<nasal>}) <>:<alveolar>
+$labial$ = (പ:{p<plosive><voiceless><unaspirated>}|\
+           ഫ:{pʰ<plosive><voiceless><aspirated>}|\
+           ബ:{b<plosive><voiced><unaspirated>}|\
+           ഭ:{bʱ<plosive><voiced><aspirated>}|\
+           മ:{m<nasal>}) <>:<labial>
 $otherconsonants$ = (യ:{j}|\
                     ര:{ɾ}|\
                     ല:{l}|\
