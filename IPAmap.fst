@@ -39,11 +39,11 @@ $vowelsign$ = (	ാ:{aː}|\
 		            ൌ:{au̯}) <>:<v_sign>
 $anuswara$ = ം:{m <anuswara>}
 $visarga$ = ഃ:{<visarga>}
-$velar$ = (ക:{k<>}|\
-          ഖ:{kʰ}|\
-          ഗ:{ɡ}|\
-          ഘ:{ɡʱ}|\
-          ങ:{ŋ}) <>:<velar>
+$velar$ = (ക:{k<plosive><voiceless><unaspirated>}|\
+          ഖ:{kʰ<plosive><voiceless><aspirated>}|\
+          ഗ:{ɡ<plosive><voiced><unaspirated>}|\
+          ഘ:{ɡʱ<plosive><voiced><aspirated>}|\
+          ങ:{ŋ<nasal>}) <>:<velar>
 $palatal$ = (ച:{t͡ʃ}|\
             ഛ:{t͡ʃʰ}|\
             ജ:{ɟ}|\

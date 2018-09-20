@@ -139,3 +139,4 @@ Here `path/to/outputfile.txt` contains the IPA along with tags. The result of it
 1. Open morphology for Finnish https://github.com/flammie/omorfi
 1. Malyalam morphological analyser using finite state transducers https://github.com/santhoshtr/mlmorph
 1. The Festvox Indic Frontend for Grapheme-to-Phoneme Conversion  https://www.parlikar.com/files/aup_wildre_2016.pdf
+1. Malayalam Phonetic Archive by THUNCHATH EZHUTHACHAN MALAYALAM UNIVERSITY http://www.cmltemu.in/phonetic/#/

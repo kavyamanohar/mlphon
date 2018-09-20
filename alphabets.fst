@@ -35,7 +35,10 @@
 #labiaalconsonanttag# = <labial>
 #otherconsonanttag# = <other>
 
-#consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag#
+#plosivetag# = <plosive> <voiceless> <unaspirated> <voiced><aspirated>
+#nasaltag# = <nasal>
+
+#consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag# #plosivetag# #nasaltag#
 
 % #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
 #chiltag# = <chil>
