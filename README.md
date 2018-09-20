@@ -113,7 +113,7 @@ Give your input in malayalam script and press Enter key.
 
 It will give you the result
 
-`<BoS>k<velar>aː<v_sign><EoS><BoS>ʋ<other><virama>j<other>!<EoS>!`
+`<BoS>k<velar>aː<v_sign><EoS><BoS>ʋ<other><virama>j<other>a<schwa><EoS>!`
 
 
 To **analyse** the phonetic script along with the tags to obtain malayalam script represenatation use the command:
