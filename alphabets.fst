@@ -37,8 +37,14 @@
 
 #plosivetag# = <plosive> <voiceless> <unaspirated> <voiced><aspirated>
 #nasaltag# = <nasal>
+#fricativetag# = <fricative>
+#flappedtag# = <flapped>
+#lateraltag# = <lateral>
+#approximanttag# = <approximant>
+#glidetag# = <glide>
 
-#consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag# #plosivetag# #nasaltag#
+
+#consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #otherconsonanttag# #plosivetag# #nasaltag# #fricativetag# #flappedtag# #lateraltag# #approximanttag# #glidetag#
 
 % #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
 #chiltag# = <chil>

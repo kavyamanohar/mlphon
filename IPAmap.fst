@@ -66,17 +66,17 @@ $labial$ = (പ:{p<plosive><voiceless><unaspirated>}|\
            ബ:{b<plosive><voiced><unaspirated>}|\
            ഭ:{bʱ<plosive><voiced><aspirated>}|\
            മ:{m<nasal>}) <>:<labial>
-$otherconsonants$ = (യ:{j}|\
-                    ര:{ɾ}|\
-                    ല:{l}|\
-                    വ:{ʋ}|\
-                    ശ:{ʃ}|\
-                    ഷ:{ʂ}|\
-                    സ:{s}|\
-                    ഹ:{ɦ}|\
-                    ള:{ɭ}|\
-                    ഴ:{ɽ}|\
-                    റ:{r}) <>:<other>
+$otherconsonants$ = (യ:{j<glide>}|\
+                    ര:{ɾ<flapped>}|\
+                    ല:{l<lateral>}|\
+                    വ:{ʋ<glide>}|\
+                    ശ:{ʃ<fricative>}|\
+                    ഷ:{ʂ<fricative>}|\
+                    സ:{s<fricative>}|\
+                    ഹ:{ɦ<fricative>}|\
+                    ള:{ɭ<lateral>}|\
+                    ഴ:{ɽ<approximant>}|\
+                    റ:{r<flapped>}) <>:<other>
 $chillu$ = ൺ:{ɳ<chil>} | ൻ:{n<chil>} |ർ:{r<chil>} |ൽ:{l<chil>} | ൾ:{ɭ<chil>}| ൿ:{k<chil>}
 
 $IPAmap$ = ( $MISC$ |$virama$ | $zwj$ | $zwnj$ | $vowel$ | $vowelsign$ | $anuswara$ | $visarga$ | $velar$ | $palatal$ | $retroflex$ | $dental$ | $alveolar$ | $labial$ | $otherconsonants$ |$chillu$)*

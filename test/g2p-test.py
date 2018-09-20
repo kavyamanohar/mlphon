@@ -42,7 +42,7 @@ class AnalyserGeneratorTests(unittest.TestCase):
                 gens = self.fsa.analyse(row[1])
                 self.assertTrue(
                     len(gens) != 0, 'Generate failed for ' + row[1])
-                print(row[1], '\t<--\t', gens)
+                print(row[1], '\t-->\t', gens)
                 for index in range(len(gens)):
                     if row[0] == gens[index][0]:
                         match = True

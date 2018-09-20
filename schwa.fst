@@ -1,4 +1,5 @@
 #include "alphabets.fst"
+
 ALPHABET = [#allsymbols#]
 
 % ADD inherent vowel to a consonant
