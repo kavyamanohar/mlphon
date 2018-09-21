@@ -33,7 +33,7 @@ class AnalyserGeneratorTests(unittest.TestCase):
                     if row[1] == anals[index][0]:
                         match = True
                         break
-                self.assertEqual(match, True, 'Analysis for ' + row[1])
+                self.assertEqual(match, True, 'Analysis for ' + row[0])
 
     def test_generate(self):
         for row in self.data:
