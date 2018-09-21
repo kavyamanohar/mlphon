@@ -33,6 +33,7 @@ class Fsa:
         if not self.transducer:
             self.load_filename(self.fsa)
         generator = hfst.HfstTransducer(self.transducer)
+        generator.invert()
         generator.remove_epsilons()
         generator.lookup_optimize()
         self.generator = generator
@@ -41,7 +42,6 @@ class Fsa:
         if not self.transducer:
             self.load_filename(self.fsa)
         analyser = hfst.HfstTransducer(self.transducer)
-        analyser.invert()
         analyser.remove_epsilons()
         analyser.lookup_optimize()
         self.analyser = analyser
