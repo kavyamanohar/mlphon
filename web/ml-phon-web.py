@@ -17,24 +17,24 @@ def index():
 	return render_template('index.html',)
 
 @app.route("/syllablizer", methods=['GET'])
-def generate():
-	generate_ipa = {}
+def syllablize():
+	syllablize = {}
 	text = request.args.get('text')
-	syllables = syllablizer.generate(text);
+	syllables = syllablizer.analyse(text);
 	return jsonify(syllables)
-
-@app.route("/g2pgenerate", methods=['GET'])
-def g2p_generate():
-	generate_ipaandtags = {}
-	text = request.args.get('text')
-	IPAandTags = g2p.generate(text);
-	return jsonify(IPAandTags)
 
 @app.route("/g2panalyse", methods=['GET'])
 def g2p_analyse():
-	analyse_ipaandtags = {}
+	grapheme_analyse = {}
 	text = request.args.get('text')
-	graphemes = g2p.analyse(text);
+	IPAandTags = g2p.analyse(text);
+	return jsonify(IPAandTags)
+
+@app.route("/g2pgenerate", methods=['GET'])
+def g2p_generate():
+	grapheme_generate = {}
+	text = request.args.get('text')
+	graphemes = g2p.generate(text);
 	return jsonify(graphemes)
 
 if __name__ == "__main__":
