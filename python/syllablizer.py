@@ -3,6 +3,7 @@ import argparse
 from sys import stderr, stdin, stdout
 from fsa import Fsa
 import os
+import regex
 
 def main():
 	a = argparse.ArgumentParser()
@@ -26,6 +27,9 @@ def main():
 			options.outfile.write(line+"\t"+"?"+"\n")
 		for syl in syllables:
 			options.outfile.write(line+"\t"+syl[0]+"\n")
+			syls = regex.findall('<BoS>([ം-ൿ]+)<EoS>', syl[0])
+			print(syls)
+
 	print()
 	exit(0)
 if __name__ == "__main__":
