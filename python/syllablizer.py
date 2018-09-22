@@ -12,7 +12,7 @@ def main():
 					dest="outfile", help="target of splitted syllables")
 	options = a.parse_args()
 	fsa = os.path.dirname(os.path.realpath(__file__))+'/../syllablizer.a'
-	IPA_generator = Fsa(fsa)
+	syllablizer = Fsa(fsa)
 	if not options.infile:
 		options.infile = stdin
 	if not options.outfile:
@@ -21,11 +21,11 @@ def main():
 		line = line.strip()
 		if not line or line == '':
 			continue
-		gens = IPA_generator.generate(line)
-		if not gens:
+		syllables = syllablizer.analyse(line)
+		if not syllables:
 			options.outfile.write(line+"\t"+"?"+"\n")
-		for gen in gens:
-			options.outfile.write(line+"\t"+gen[0]+"\n")
+		for syl in syllables:
+			options.outfile.write(line+"\t"+syl[0]+"\n")
 	print()
 	exit(0)
 if __name__ == "__main__":
