@@ -1,6 +1,7 @@
 import sys
 import os
 from flask import Flask, jsonify, render_template, request
+import regex
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 sys.path.insert(0, '../python')
@@ -21,7 +22,9 @@ def syllablize():
 	syllablize = {}
 	text = request.args.get('text')
 	syllables = syllablizer.analyse(text);
-	return jsonify(syllables)
+	print(syllables)
+	syls = regex.findall('<BoS>([ം-ൿ]+)<EoS>', syllables[0][0])
+	return jsonify({'syllables': syls})
 
 @app.route("/g2panalyse", methods=['GET'])
 def g2p_analyse():
