@@ -30,7 +30,12 @@
 		</nav>
 	</header>
 	<div class="container">
-		{% block body %}{% endblock %}
+			<textarea id="text_to_analyse" placeholder='Text to analyse' class="materialize-textarea" name="text">{% if text %}{{text}}{% endif %}</textarea>
+			<a id='syllablize' class="waves-effect waves-light btn">Syllablize</a>
+			<a id='ipa' class="waves-effect waves-light btn">IPA</a>
+			<a id='analyse' class="waves-effect waves-light btn">Analyse</a>
+			<div id="syllable_results">
+			</div>
 	</div>
 	</div>
 	<footer class="page-footer teal lighten-2">

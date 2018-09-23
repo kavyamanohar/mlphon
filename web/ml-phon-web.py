@@ -17,23 +17,27 @@ g2p = Fsa('../g2p.a')
 def index():
 	return render_template('index.html',)
 
-@app.route("/syllablizer", methods=['GET'])
+@app.route("/api/syllablize", methods=['GET', 'POST'])
 def syllablize():
 	syllablize = {}
-	text = request.args.get('text')
+	if request.method == 'POST':
+		text = request.json.get('text')
+	else:
+		text = request.args.get('text')
+	text = text.strip()
 	syllables = syllablizer.analyse(text);
 	print(syllables)
 	syls = regex.findall('<BoS>([ം-ൿ]+)<EoS>', syllables[0][0])
-	return jsonify({'syllables': syls})
+	return jsonify({'text': text,'syllables': syls})
 
-@app.route("/g2panalyse", methods=['GET'])
+@app.route("/api/g2panalyse", methods=['GET'])
 def g2p_analyse():
 	grapheme_analyse = {}
 	text = request.args.get('text')
 	IPAandTags = g2p.analyse(text);
 	return jsonify(IPAandTags)
 
-@app.route("/g2pgenerate", methods=['GET'])
+@app.route("/api/g2pgenerate", methods=['GET'])
 def g2p_generate():
 	grapheme_generate = {}
 	text = request.args.get('text')

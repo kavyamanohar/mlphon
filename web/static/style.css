@@ -1,0 +1,23 @@
+.container {
+	min-height: 80vh;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.syllable {
+	font-family: 'Manjari', sans;
+	font-size: 1.2em;
+	border: 1px solid steelblue;
+	border-radius: 5px;
+	background-color: ivory;
+	padding: 5px;
+	margin-right: 10px;
+}
+
+#syllable_results {
+	margin-top: 20px;
+}
