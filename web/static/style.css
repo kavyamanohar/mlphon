@@ -18,6 +18,21 @@ header {
 	margin-right: 10px;
 }
 
+.IPAandTags{
+	font-family: 'Gentium-Basic', serif;
+	font-size: 1.2em;
+}
+
 #syllable_results {
 	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#analysis_results {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#ipa_results {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }

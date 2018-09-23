@@ -30,12 +30,16 @@ def syllablize():
 	syls = regex.findall('<BoS>([ം-ൿ]+)<EoS>', syllables[0][0])
 	return jsonify({'text': text,'syllables': syls})
 
-@app.route("/api/g2panalyse", methods=['GET'])
+@app.route("/api/g2panalyse", methods=['GET', 'POST'])
 def g2p_analyse():
 	grapheme_analyse = {}
-	text = request.args.get('text')
+	if request.method == 'POST':
+		text = request.json.get('text')
+	else:
+		text = request.args.get('text')
+	text = text.strip()
 	IPAandTags = g2p.analyse(text);
-	return jsonify(IPAandTags)
+	return jsonify({'text': text, 'IPAandTags':IPAandTags })
 
 @app.route("/api/g2pgenerate", methods=['GET'])
 def g2p_generate():
