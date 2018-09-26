@@ -1,8 +1,8 @@
 include Makefile.inc
 
 all: syllablizer.a g2p.a
-g2p.a: wordfilter.a syllable.a IPAmap.a schwa.a tta_nta.a removetags.a
-syllablizer.a: wordfilter.a syllable.a removetags.a
+g2p.a: wordfilter.a syllable.a IPAmap.a schwa.a tta_nta.a removeWordBoundary.a
+syllablizer.a: wordfilter.a syllable.a removeWordBoundary.a
 clean:
 	-rm -f *.a *.dot *~ Makefile.bak tests.all *.gen*.txt
 
