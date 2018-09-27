@@ -3,7 +3,6 @@
 $vowel$ = [#vowels#][#anuswara##visarga#]? % അ അം ഇം അഃ .
 $chillu$ = [#chillus#] %ൽ ൻ ൾ
 $cv$ = [#consonants#] [#vowelsigns#]?[#anuswara##visarga#]? %ക കി ദുഃ ജം വൈ
-$punct$ = [#punct#]
 
 % It is not a syllable but a part of many conjunts and word end syllables.
 $c_virama$ = [#consonants#][#virama#]
@@ -12,7 +11,7 @@ $zwnjboundary$ = $c_virama$+ [#zerowidth#]
 
 % Word-end Virama indicated by adding an end marker tag <em>
 % eg സന്തോഷ് -> സന്തോഷ്<em>, ആപ്പ് -> ആപ്പ്<em>
-$word_with_virama_at_end$ = [<BoW>] [#letters#]+ [#virama#] <>:<em> [#punct#]* [<EoW>]
+$word_with_virama_at_end$ = [<BoW>] [#letters#]+ [#virama#] <>:<em> [<EoW>]
 
 % Select those conjuntcs with virama at word ends and removes <em> tag
 $c_virama_wordend$ = $c_virama$+ <em>:<>
@@ -23,7 +22,7 @@ $c_virama_wordend$ = $c_virama$+ <em>:<>
 $syllable1$ = ($vowel$ | $chillu$ | $cv$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$)
 
 % Set of syllables(between word tags) are passed afer adding syllable tag
-$word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)*  [#punct#]* [<EoW>]
+$word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)* [<EoW>]
 
 % കല pass through $word$
 % ആപ്പ് does not pass through $word$

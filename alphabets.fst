@@ -55,7 +55,7 @@
 #lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag# #zerowidthtag#
 
 % #space# = {\ }
-#punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
+% #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯}
 #IPAvelar# = {k} {kʰ} {ɡ} {ɡʱ} {ŋ}
@@ -72,4 +72,4 @@
 %  #digitsarabic# = 0 1 2 3 4 5 6 7 8 9
 % #digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
 % #digits# = #digitsarabic# #digitsmalayalam#
-#allsymbols# = #letters# #IPAs# #lettertags# #punct# #boundarytags# %#digitsarabic# #digitsmalayalam#
+#allsymbols# = #letters# #IPAs# #lettertags# #boundarytags# %#punct#  #digitsarabic# #digitsmalayalam#

@@ -1,7 +1,7 @@
 #include "alphabets.fst"
 
 %ALPHABET = [#ml##spl-char##boundarytag#]
-$MISC$ = [#punct##boundarytags#]
+$MISC$ = [#boundarytags#]
 $zwnj$ = [‌]:<zwnj>
 $zwj$ = [‍]:<zwj>
 $virama$ = ്:<virama>

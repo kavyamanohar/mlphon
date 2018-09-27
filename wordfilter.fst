@@ -1,7 +1,7 @@
 #include "alphabets.fst"
 
 % Adding beginning and end tags for words
-$wordfilter$ = <>:<BoW> ([#letters# #punct#])* <>:<EoW>
+$wordfilter$ = <>:<BoW> ([#letters#])* <>:<EoW>
 
 % It does not identify words.
 % For now it simply assumes words are entered one by one

@@ -1,5 +1,5 @@
 #include "alphabets.fst"
-ALPHABET =[#IPAs##punct#] [#lettertags##boundarytags#]:<>
+ALPHABET =[#IPAs#] [#lettertags##boundarytags#]:<>
 
 $tagfilter$ = .*
 $tagfilter$
