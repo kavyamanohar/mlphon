@@ -1,0 +1,9 @@
+$g2p$ = "<g2p.a>"
+$tagfilter$ = "<tagfilter.a>"
+
+$ml2ipa$ = $g2p$ || $tagfilter$
+
+$test$ = കല | അൻവർ | ഹയ്യോ\! | കരിഷ്മ | സന്തോഷ് | ആപ്പ് | എന്റമ്മ | കാറ്റ് | അംബുജം | ദുഃഖം
+$test$ || $ml2ipa$ >> "ml2ipa.test.a"
+
+$ml2ipa$
