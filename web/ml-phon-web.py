@@ -12,6 +12,7 @@ app = Flask(__name__)
 
 syllablizer = Fsa('../syllablizer.a')
 g2p = Fsa('../g2p.a')
+ml2ipa = Fsa('../ml2ipa.a')
 
 @app.route("/")
 def index():
@@ -41,12 +42,24 @@ def g2p_analyse():
 	IPAandTags = g2p.analyse(text);
 	return jsonify({'text': text, 'IPAandTags':IPAandTags })
 
+@app.route("/api/getipa", methods=['GET', 'POST'])
+def getipa():
+	getipa = {}
+	if request.method == 'POST':
+		text = request.json.get('text')
+	else:
+		text = request.args.get('text')
+	IPA = ml2ipa.analyse(text);
+	return jsonify({'text': text, 'IPA':IPA })
+
 @app.route("/api/g2pgenerate", methods=['GET'])
 def g2p_generate():
 	grapheme_generate = {}
 	text = request.args.get('text')
 	graphemes = g2p.generate(text);
 	return jsonify(graphemes)
+
+
 
 if __name__ == "__main__":
     app.run()

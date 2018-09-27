@@ -23,6 +23,11 @@ header {
 	font-size: 1.2em;
 }
 
+.IPA{
+	font-family: 'Gentium-Basic', serif;
+	font-size: 1.2em;
+}
+
 #syllable_results {
 	margin-top: 20px;
 	margin-bottom: 20px;
