@@ -50,7 +50,7 @@
 #chiltag# = <chil>
 #zerowidthtag# = <zwj> <zwnj>
 #schwatag# = <schwa>
-#boundarytags# = <BoW> <EoW> <BoS> <EoS>
+#boundarytags# = <BoW> <EoW> <BoS> <EoS> <B>
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 #lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag# #zerowidthtag#
 
