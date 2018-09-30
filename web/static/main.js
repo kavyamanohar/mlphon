@@ -22,13 +22,37 @@ function onAnalyseClick(){
 }
 
 function showIPAandTags(results){
-	let resultsContainer = document.getElementById('analysis_results');
+	let syllables = results.syllables;
+ 	let resultsContainer = document.getElementById('analysis_results');
 	resultsContainer.innerHTML='';
-	for (let i=0;i<results.IPAandTags.length;i++){
-		let IPAandTags = document.createElement('span')
-		IPAandTags.className = 'IPAandTags';
-		IPAandTags.innerText=results.IPAandTags[i][0];
-		resultsContainer.appendChild(IPAandTags);
+	for (let i=0;i<syllables.length;i++){
+		let syllable = syllables[i];
+		let phonemes = syllable.phonemes;
+		let syllableNode = document.createElement('div');
+		syllableNode.className = 'syllable';
+		for (let j=0;j<phonemes.length;j++){
+			let phoneme = phonemes[j];
+			let phonemeNode =  document.createElement('div');
+			phonemeNode.className = 'phoneme';
+			let ipa = phoneme.ipa;
+			let ipaNode =  document.createElement('div');
+			ipaNode.className = 'ipa';
+			ipaNode.innerText=ipa;
+			phonemeNode.appendChild(ipaNode);
+			let tagsNode =  document.createElement('div');
+			tagsNode.className = 'tags';
+			phonemeNode.appendChild(tagsNode);
+			let tags = phoneme.tags;
+			for (let k=0;k<tags.length;k++){
+				let tag = tags[k];
+				let tagNode =  document.createElement('div');
+				tagNode.className = 'tag';
+				tagNode.innerText = tag;
+				tagsNode.appendChild(tagNode);
+			}
+			syllableNode.append(phonemeNode);
+		}
+		resultsContainer.appendChild(syllableNode);
 	}
 }
 

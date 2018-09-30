@@ -16,16 +16,31 @@ header {
 	background-color: ivory;
 	padding: 5px;
 	margin-right: 10px;
+	display: inline-flex;
 }
 
-.IPAandTags{
-	font-family: 'Gentium-Basic', serif;
-	font-size: 1.2em;
+.phoneme {
+	padding: 10px;
+	margin: 5px;
 }
 
-.IPA{
+.tag {
+	background: #fff;
+	border: 1px dotted;
+	padding: 5px;
+	margin: 5px;
+	font-family: "Fira Code", monospace;
+	font-size: 0.8em;
+	color: #333;
+}
+
+.ipa,
+.IPA {
 	font-family: 'Gentium-Basic', serif;
 	font-size: 1.2em;
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
 }
 
 #syllable_results {

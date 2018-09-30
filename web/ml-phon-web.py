@@ -27,9 +27,7 @@ def syllablize():
 		text = request.args.get('text')
 	text = text.strip()
 	syllables = syllablizer.analyse(text);
-	print(syllables)
 	syls = regex.findall('<BoS>([ം-ൿ]+)<EoS>', syllables[0][0])
-	print(syls)
 	return jsonify({'text': text,'syllables': syls})
 
 @app.route("/api/g2panalyse", methods=['GET', 'POST'])
@@ -41,7 +39,6 @@ def g2p_analyse():
 		text = request.args.get('text')
 	text = text.strip()
 	IPAandTags = g2p.analyse(text);
-	print(IPAandTags[0][0])
 	# IPAandTags[0][0] = <BoS>k<plosive><voiceless><unaspirated><velar>a<schwa><EoS><BoS>l<lateral><other>a<schwa><EoS>
 	sylBoundary_paser = regex.compile( r"<BoS>(.+?)<EoS>")
 	phoneme_parser = regex.compile( r"((?P<phonemes>([^<])+)(?P<tags>(<[^>]+>)+))+" )
@@ -54,11 +51,10 @@ def g2p_analyse():
 		match = phoneme_parser.match(syllables[rindex])
 		ipa = match.captures("phonemes")
 		tags = match.captures("tags")
-		print ('tags:', tags)
 		for pindex in range(len(ipa)):
 			tagsequence = tag_parser.findall(tags[pindex])
 			phonemes.append({'ipa': ipa[pindex], 'tags': tagsequence})
-		result.append(phonemes)
+		result.append({'phonemes': phonemes})
 	#result = [[{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'a', 'tags': ['schwa']}], [{'ipa': 'l', 'tags': ['lateral', 'other']}, {'ipa': 'a', 'tags': ['schwa']}]]
 	return jsonify({'text': text, 'syllables':result})
 
@@ -78,8 +74,6 @@ def g2p_generate():
 	text = request.args.get('text')
 	graphemes = g2p.generate(text);
 	return jsonify(graphemes)
-
-
 
 if __name__ == "__main__":
     app.run()
