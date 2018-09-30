@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+    ServerName mlphon.thottingal.in
+    WSGIDaemonProcess mlphon user=www-data group=www-data threads=5
+    WSGIScriptAlias / /home/kavya/kavyadev/ml-phonetic-analyser/web/mlphon.wsgi
+    <Directory /home/kavya/kavyadev/ml-phonetic-analyser/web/>
+        WSGIProcessGroup mlphon
+        WSGIApplicationGroup %{GLOBAL}
+        WSGIScriptReloading On
+        Require all granted
+    </Directory>
+     ErrorLog ${APACHE_LOG_DIR}/error-mlphon.log
+     CustomLog ${APACHE_LOG_DIR}/access-mlphon.log combined
+</VirtualHost>
+
