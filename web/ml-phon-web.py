@@ -47,15 +47,17 @@ def g2p_analyse():
 	phoneme_parser = regex.compile( r"((?P<phonemes>([^<])+)(?P<tags>(<[^>]+>)+))+" )
 	syllables = sylBoundary_paser.findall(IPAandTags[0][0])
 	#syllables = [k<plosive><voiceless><unaspirated><velar>a<schwa>, l<lateral><other>a<schwa>]
-	IPA = []
-	Tags = []
+	result=[]
 	for rindex in range(len(syllables)):
+		phonemes = []
 		match = phoneme_parser.match(syllables[rindex])
 		ipa = match.captures("phonemes")
-		IPA.append(ipa)
 		tags = match.captures("tags")
-		Tags.append(tags)
-	return jsonify({'text': text, 'IPA':IPA, 'Tags': Tags})
+		for pindex in range(len(ipa)):
+			phonemes.append({'ipa': ipa[pindex], 'tags': tags[pindex]})
+		result.append(phonemes)
+	print(result)
+	return jsonify({'text': text, 'syllables':result})
 
 @app.route("/api/getipa", methods=['GET', 'POST'])
 def getipa():
