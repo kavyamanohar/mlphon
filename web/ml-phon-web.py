@@ -45,6 +45,7 @@ def g2p_analyse():
 	# IPAandTags[0][0] = <BoS>k<plosive><voiceless><unaspirated><velar>a<schwa><EoS><BoS>l<lateral><other>a<schwa><EoS>
 	sylBoundary_paser = regex.compile( r"<BoS>(.+?)<EoS>")
 	phoneme_parser = regex.compile( r"((?P<phonemes>([^<])+)(?P<tags>(<[^>]+>)+))+" )
+	tag_parser =  regex.compile(r"<([a-z_]+)>+?")
 	syllables = sylBoundary_paser.findall(IPAandTags[0][0])
 	#syllables = [k<plosive><voiceless><unaspirated><velar>a<schwa>, l<lateral><other>a<schwa>]
 	result=[]
@@ -53,10 +54,12 @@ def g2p_analyse():
 		match = phoneme_parser.match(syllables[rindex])
 		ipa = match.captures("phonemes")
 		tags = match.captures("tags")
+		print ('tags:', tags)
 		for pindex in range(len(ipa)):
-			phonemes.append({'ipa': ipa[pindex], 'tags': tags[pindex]})
+			tagsequence = tag_parser.findall(tags[pindex])
+			phonemes.append({'ipa': ipa[pindex], 'tags': tagsequence})
 		result.append(phonemes)
-	print(result)
+	#result = [[{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'a', 'tags': ['schwa']}], [{'ipa': 'l', 'tags': ['lateral', 'other']}, {'ipa': 'a', 'tags': ['schwa']}]]
 	return jsonify({'text': text, 'syllables':result})
 
 @app.route("/api/getipa", methods=['GET', 'POST'])
