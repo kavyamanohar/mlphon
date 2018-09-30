@@ -27,7 +27,7 @@ def syllablize():
 		text = request.args.get('text')
 	text = text.strip()
 	syllables = syllablizer.analyse(text);
-	syls = regex.findall('<BoS>([ം-ൿ]+)<EoS>', syllables[0][0])
+	syls = regex.findall(u'<BoS>([‍ം-ൿ‌]+)<EoS>', syllables[0][0])
 	return jsonify({'text': text,'syllables': syls})
 
 @app.route("/api/g2panalyse", methods=['GET', 'POST'])

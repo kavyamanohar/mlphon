@@ -27,7 +27,7 @@ def main():
 			options.outfile.write(line+"\t"+"?"+"\n")
 		for syl in syllables:
 			options.outfile.write(line+"\t"+syl[0]+"\n")
-			syls = regex.findall('<BoS>([ം-ൿ]+)<EoS>', syl[0])
+			syls = regex.findall('<BoS>([‍ം-ൿ‌]+)<EoS>', syl[0])
 			print(syls)
 
 	print()
