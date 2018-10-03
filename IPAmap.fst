@@ -69,14 +69,14 @@ $labial$ = (പ:{p<plosive><voiceless><unaspirated>}|\
 $otherconsonants$ = (യ:{j<glide><palatal>}|\
                     ര:{ɾ<flapped><alveolar>}|\
                     ല:{l<lateral><alveolar>}|\
-                    വ:{ʋ<glide><labiodental>}|\
+                    വ:{ʋ<approximant><labiodental>}|\
                     ശ:{ʃ<fricative><palatal>}|\
                     ഷ:{ʂ<fricative><retroflex>}|\
                     സ:{s<fricative><alveolar>}|\
                     ഹ:{ɦ<fricative><glottal>}|\
                     ള:{ɭ<lateral><retroflex>}|\
-                    ഴ:{ɽ<retroflex><approximant>}|\
-                    റ:{r<flapped><alveolar>})
+                    ഴ:{ɽ<approximant><retroflex>}|\
+                    റ:{r<trill><alveolar>})
 $chillu$ = ൺ:{ɳ<chil>} | ൻ:{n<chil>} |ർ:{r<chil>} |ൽ:{l<chil>} | ൾ:{ɭ<chil>}| ൿ:{k<chil>}
 
 $IPAmap$ = ( $MISC$ |$virama$ | $zwj$ | $zwnj$ | $vowel$ | $vowelsign$ | $anuswara$ | $visarga$ | $velar$ | $palatal$ | $retroflex$ | $dental$ | $alveolar$ | $labial$ | $otherconsonants$ |$chillu$)*

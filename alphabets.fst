@@ -44,9 +44,10 @@
 #lateraltag# = <lateral>
 #approximanttag# = <approximant>
 #glidetag# = <glide>
+#trilltag# = <trill>
 
 
-#consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #labiodentalconsonanttag# #glottalconsonanttag# #otherconsonanttag# #plosivetag# #nasaltag# #fricativetag# #flappedtag# #lateraltag# #approximanttag# #glidetag#
+#consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #labiodentalconsonanttag# #glottalconsonanttag# #otherconsonanttag# #plosivetag# #nasaltag# #fricativetag# #flappedtag# #lateraltag# #approximanttag# #glidetag# #trilltag#
 
 % #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <schwa>
 #chiltag# = <chil>
