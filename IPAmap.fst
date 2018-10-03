@@ -75,7 +75,7 @@ $otherconsonants$ = (യ:{j<glide><palatal>}|\
                     സ:{s<fricative><alveolar>}|\
                     ഹ:{ɦ<fricative><glottal>}|\
                     ള:{ɭ<lateral><retroflex>}|\
-                    ഴ:{ɽ<approximant><retroflex>}|\
+                    ഴ:{ɻ<approximant><retroflex>}|\
                     റ:{r<trill><alveolar>})
 $chillu$ = ൺ:{ɳ<chil>} | ൻ:{n<chil>} |ർ:{r<chil>} |ൽ:{l<chil>} | ൾ:{ɭ<chil>}| ൿ:{k<chil>}
 
