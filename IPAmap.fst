@@ -49,7 +49,7 @@ $palatal$ = (ച:{t͡ʃ<plosive><voiceless><unaspirated>}|\
             ജ:{ɟ<plosive><voiced><unaspirated>}|\
             ഝ:{ɟʱ<plosive><voiced><aspirated>}|\
             ഞ:{ɲ<nasal>}) <>:<palatal>
-$retroflex$ =( ട:{ʈ<plosive><voiceless><unaspirated><plosive><voiceless><unaspirated>}|\
+$retroflex$ =( ട:{ʈ<plosive><voiceless><unaspirated>}|\
               ഠ:{ʈʰ<plosive><voiceless><aspirated>}|\
               ഡ:{ɖ<plosive><voiced><unaspirated>}|\
               ഢ:{ɖʱ<plosive><voiced><aspirated>}|\
