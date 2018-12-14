@@ -28,7 +28,7 @@ $word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)* [<EoW>]
 % ആപ്പ് does not pass through $word$
 % But ആപ്പ് passes throgh $word_with_virama_at_end$ || $word$
 $syllable$ = $word$ | ($word_with_virama_at_end$ || $word$  )
-$tests$ = <BoW> (കല | അൻവർ | ഹയ്യോ\! | കരിഷ്മ | സന്തോഷ് | ആപ്പ് | അംബുജം | ദുഃഖം ) <EoW>
+$tests$ = <BoW> (കല | അൻവർ | കരിഷ്മ | സന്തോഷ് | ആപ്പ് | അംബുജം | ദുഃഖം ) <EoW>
 $tests$ ||  $syllable$  >> "syllable.test.a"
 
 $syllable$
