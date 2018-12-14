@@ -8,5 +8,5 @@ clean:
 	-rm -f *.a *.dot *~ Makefile.bak tests.all *.gen*.txt
 
 test: g2p.a
-	python3 test/syllablizer-test.py
-	python3 test/g2p-test.py
+	python test/syllablizer-test.py
+	python test/g2p-test.py
