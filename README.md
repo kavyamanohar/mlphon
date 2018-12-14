@@ -22,9 +22,9 @@ The chain of transducers used din this system and their function are listed belo
 
 `$wordfilter$`
 
-This is the first level transducer which accepts malayalam scripts and add <BoW> and <EoW> word wrapping tags before further processing. Special characters are passed as such through this first stage transducer.
+This is the first level transducer which accepts malayalam scripts and add <BoW> and <EoW> word wrapping tags before further processing. 
 
-_TODO:Provisions to accept malayalam/arabic numerals, archaic malayalam characters, latin text etc. Currently it assumes what is given as input is a word. It will act as word splitter in future_
+_TODO:Provisions to accept punctuation marks, malayalam/arabic numerals, archaic malayalam characters, latin text etc. Currently it assumes what is given as input is a word. It will act as word splitter in future_
 
 `$syllable$`
 
@@ -34,12 +34,12 @@ It splits syllables with <BoS> <EoS> tags to indicate beginning and end of sylla
 
 ### FST for g2p mapping
 
-*g2p mapping is done on syllable splitted words. So `$syllablizer$` is a prerequisite for g2p processing.`$g2p$` is composed of the followings FSTs*
+*g2p mapping is done on syllable splitted words. So `$syllablizer$` is a prerequisite for g2p processing. `$g2p$` is composed of the followings FSTs*
 
 `$IPAmap$`
 
 This transducer accepts inputs from the output of  previous transducer and performs the IPA mapping. During this process along with associating graphemes to phonemes, tags are added to indicate if it is a pure vowel, a vowel sign or a consonant. The tags added by this transducer are:
-`<virama>` `<vowel>` `<v_sign>` `<visaraga>` `<anuswara>` `<c_velar>` `<c_palatal>` `<c_retroflex>` `<c_dental>` `<c_alveolar>` `<c_labial>` `<c_other>` `<chil>`
+`<virama>` `<vowel>` `<v_sign>` `<visaraga>` `<anuswara>` `<velar>` `<palatal>` `<retroflex>` `<dental>` `<alveolar>` `<labial>` `<labiodental>` ` <glottal>` `<chil>` `<plosive>` `<voiceless>` `<unaspirated>` `<voiced>` `<aspirated>` `<nasal>` `<fricative>` `<flapped>` `<lateral>` `<approximant>` `<glide>` `<trill>`
 
 
 The malayalam script assumes every consonant if not followed by a virama, has the inherent vowel associated with it. But this FST **does not** associate the inherent vowel to every consonant. But presence of a virama is clearly indicated using a tag `<virama>` for further processing. Only atomic chillus are accepted by the system and `<chil>` tag added.
@@ -58,7 +58,7 @@ The unicode sequence `റ+ ് + റ` has a special phonetic mapping `(ṯṯ)` 
 
 Similar is the case with `ന + ് + റ` . Its phonetic mapping is `(nṯ)` which is much different from the mapping of `ന(n̪)` or `റ(r)`.
 
-This stage of FST replaces the already mapped റ+ ് + റ `r<c_other><virama>r<c_other>` to `ṯṯ<c_other>` and  ന + ് + റ `<c_dental><virama>r<c_other>` to `nṯ<c_other>`.
+This stage of FST replaces the already mapped റ+ ് + റ `r<trill><alveolar><virama>r<trill><alveolar>` to `ṯ<plosive><voiceless><unaspirated><alveolar><virama>ṯ<plosive><voiceless><unaspirated><alveolar>` and  ന + ് + റ `n̪<nasal><dental><virama>r<trill><alveolar>` to `n<nasal><alveolar><virama>ṯ<plosive><voiceless><unaspirated><alveolar>`.
 
 *TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed.*
 
@@ -95,7 +95,9 @@ For the input
 
 the output would be
 
-`<BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>`
+`BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>`
+
+`['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']`
 
 This command can take input from a text file and write the generated IPA to another text file
 
@@ -103,26 +105,26 @@ This command can take input from a text file and write the generated IPA to anot
 
 ## g2p conversion for Malayalam. Malayalam script would be turned to syllablized IPA sequence along with detailed phonetic feature tag
 
-To **generate** the phonetic mapping of malayalam script in IPA along with the details of all vowels, vowelsigns, type of consonant etc. as tags, use the following command:
+To **analyse** the phonetic mapping of malayalam script in IPA along with the details of all vowels, vowelsigns, type of consonant etc. as tags, use the following command:
 
-`$ python3 python/g2p.py -g`
+`$ python3 python/g2p.py -a`
 
 Give your input in malayalam script and press Enter key.
 
-`കാവ്യ!`
+`കാവ്യ`
 
 It will give you the result
 
-`<BoS>k<velar>aː<v_sign><EoS><BoS>ʋ<other><virama>j<other>a<schwa><EoS>!`
+`<BoS>k<plosive><voiceless><unaspirated><velar>aː<v_sign><EoS><BoS>ʋ<approximant><labiodental><virama>j<glide><palatal>a<schwa><EoS>`
 
 
-To **analyse** the phonetic script along with the tags to obtain malayalam script represenatation use the command:
+To **generate** the Malayalam script from the phonetic script and the tags  use the command:
 
-`python3 python/g2p.py -a`
+`python3 python/g2p.py -g`
 
 Give the input and press Enter.
 
-`BoS>p<labial>aː<v_sign><EoS><BoS>l<chil><EoS>`
+`<BoS>p<plosive><voiceless><unaspirated><labial>aː<v_sign><EoS><BoS>l<chil><EoS>`
 
 It will return you the corresponding malayalam script
 
