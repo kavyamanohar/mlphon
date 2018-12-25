@@ -1,7 +1,60 @@
 import argparse
 from sys import stderr, stdin, stdout
-from fsa import Fsa
 import os
+import libhfst
+from pkg_resources import resource_filename, resource_exists
+
+def getTransducer(fsa):
+    istr = libhfst.HfstInputStream(fsa)
+    transducers = []
+    while not (istr.is_eof()):
+        transducers.append(istr.read())
+    istr.close()
+    return transducers[0]
+
+class IPA:
+    def __init__(self):
+        self.fsa = None
+        resource_path = 'data/ml2ipa.a'
+        if resource_exists(__name__, resource_path):
+            self.fsa = resource_filename(__name__, resource_path)
+        if not self.fsa:
+            raise ValueError('Could not read the fsa.')
+        self.transducer = None
+        self.analyser = None
+        self.generator = None
+
+    def getAnalyser(self):
+        if not self.transducer:
+            self.transducer = getTransducer(self.fsa)
+        analyser = libhfst.HfstTransducer(self.transducer)
+        analyser.remove_epsilons()
+        analyser.lookup_optimize()
+        return analyser
+
+    def getGenerator(self):
+        if not self.transducer:
+            self.transducer = getTransducer(self.fsa)
+        generator = libhfst.HfstTransducer(self.transducer)
+        generator.invert()
+        generator.remove_epsilons()
+        generator.lookup_optimize()
+        return generator
+
+    def analyse(self, token):
+        """Perform a simple analysis lookup. """
+        if not self.analyser:
+            self.analyser = self.getAnalyser()
+        analysis_results = self.analyser.lookup(token)
+        return analysis_results
+
+    def generate(self, token):
+        """Perform a simple generator lookup. """
+        if not self.generator:
+            self.generator = self.getGenerator()
+        generator_results = self.generator.lookup(token)
+        return generator_results
+
 
 def main():
     """Invoke a simple CLI analyser or generator."""
@@ -17,8 +70,7 @@ def main():
     a.add_argument('-v', '--verbose', action='store_true',
                    help="print verbosely while processing")
     options = a.parse_args()
-    fsa = os.path.dirname(os.path.realpath(__file__))+'/../ml2ipa.a'
-    transducer = Fsa(fsa)
+    mlipa = IPA()
     if not options.infile:
         options.infile = stdin
     if not options.outfile:
@@ -30,13 +82,13 @@ def main():
         if not line or line == '':
             continue
         if options.analyse:
-            anals = transducer.analyse(line)
+            anals = mlipa.analyse(line)
             if not anals:
                 options.outfile.write(line+"\t"+"?"+"\n")
             for anal in anals:
                 options.outfile.write(line+"\t"+anal[0]+"\n")
         if options.generate:
-            gens = transducer.generate(line)
+            gens = mlipa.generate(line)
             if not gens:
                 options.outfile.write(line+"\t"+"?"+"\n")
             for gen in gens:
