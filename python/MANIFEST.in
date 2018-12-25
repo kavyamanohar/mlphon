@@ -3,3 +3,4 @@ include setup.cfg
 include setup.py
 include README.md
 include VERSION
+include mlphon/data/*.a
