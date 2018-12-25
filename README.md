@@ -3,13 +3,182 @@
 ## Introduction
 ‘Phoneme’ is the fundamental unit in the the speech system of the language. ‘Grapheme’ is the fundamental unit in the writing system. From one or more graphemes a phoneme can be synthesized.  A phonetic analyser analyses the written form of the text to give the phonetic characteristics of the grapheme sequence.
 
+
+## Usage
+
+Using Virtual Environment (https://docs.python.org/3/library/venv.html) is recommended. 
+
+To start using this python library
+
+    `$ pip install mlphon`
+
+### Syllablize a Malayalam Word
+
+The following python snippet will split a word in Malayalam script into syllables.
+
+    from mlphon import Syllablizer
+    syl = Syllablizer()
+    syl.syllablize('കേരളം')
+
+It will give the result
+
+    (('<BoS>കേ<EoS><BoS>ര<EoS><BoS>ളം<EoS>', 0.0),)
+
+The second item in this result is the weight. It is not relevant in the current implementation.
+
+It can be invoked from the command line using the command
+
+    $ mlsyllablizer
+
+For the input 
+
+    `സഫലമീയാത്ര`
+
+the output would be
+
+    `BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>`
+
+    `['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']`
+
+#### More details on using mlsyllablize
+
+    $ mlsyllablize --help
+    usage: mlsyllablize [-h] [-i INFILE] [-o OUTFILE]  optional arguments:
+    -h, --help           
+                    show this help message and exit
+    -i INFILE, --input INFILE
+                    source of analysis data
+    -o OUTFILE, --output OUTFILE
+                    target of generated strings
+
+
+This command can take input from a text file and write the generated IPA to another text file
+
+    $mlsyllablizer -i path/to/inputfile.txt -o path/to/outputfile.txt
+
+## g2p conversion for Malayalam. Malayalam script would be turned to syllablized IPA sequence along with detailed phonetic feature tag
+
+To **analyse** the Malayalam script into IPA along with the details of all vowels, vowelsigns, type of consonant etc. as tags, use the following python snippet:
+
+    from mlphon import G2P
+    analyser = G2P()
+    analyser.analyse('കേരളം')
+
+It would give the output 
+
+    [(('<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS><BoS>ɾ<flapped><alveolar>a<schwa><EoS><BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>', 0.0),))]
+
+To **generate** Malayalam script from the phonetic details, use the following python-snippet
+
+    from mlphon import G2P
+    generator = G2P()
+    generator.generate('<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS><BoS>ɾ<flapped><alveolar>a<schwa><EoS><BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>')
+
+It would give the output
+
+    (('കേരളം', 0.0),)
+
+
+You can invoke the command below for the same purpose.
+
+    $ mlg2p -a
+
+Give the input 
+
+    `കാവ്യ`
+
+It will give you the result of g2p analysis as:
+
+    `<BoS>k<plosive><voiceless><unaspirated><velar>aː<v_sign><EoS><BoS>ʋ<approximant><labiodental><virama>j<glide><palatal>a<schwa><EoS>`
+
+
+To **generate** the Malayalam script from the phonetic script and the tags  use the command:
+
+    $ mlg2p -g
+
+Give the input and press Enter.
+
+    `<BoS>p<plosive><voiceless><unaspirated><labial>aː<v_sign><EoS><BoS>l<chil><EoS>`
+
+It will return you the corresponding malayalam script
+
+    `പാൽ`
+
+The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
+
+    `$ mlg2p -g -i path/to/inputfile.txt -o path/to/outputfile.txt`
+
+Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
+
+#### More details on using `$ mlg2p`
+
+    $ mlg2p --help
+    usage: mlg2p [-h] [-i INFILE] [-o OUTFILE] [-a] [-g] [-v]
+    optional arguments:
+    -h, --help           
+                        show this help message and exit
+    -i INFILE, --input INFILE
+                        source of analysis data
+    -o OUTFILE, --output OUTFILE
+                        target of generated strings
+    -a, --analyse        Analyse the input file strings
+    -g, --generate       Generate the input file strings
+    -v, --verbose        print verbosely while processing
+
+### IPA and Malayalam script Conversions
+
+For grapheme to IPA analysis, use the code snippet:
+
+    from mlphon import IPA
+    analyser = IPA()
+    analyser.analyse("കേരളം")
+
+This would give the result
+
+    (('keːɾaɭam<anuswara>', 0.0),)
+
+`<anauswara>, <visarga>, <chillu> ` tags are explisitly shown in the IPA analysis.
+
+For Malayalam script grapheme generation from IPA
+
+    from mlphon import IPA
+    generator = IPA()
+    generator.generate('keːɾaɭam<anuswara>')
+
+The result would be:
+
+    (('കേരളം', 0.0),)
+
+There can be multiple results in this generation. Please ignore the irrelevant ones, if any.
+
+The following command lets you do the same things
+
+    $ mlipa
+
+#### `mlipa` Command line usage
+
+    $ mlipa --help
+    usage: mlipa [-h] [-i INFILE] [-o OUTFILE] [-a] [-g] [-v]
+    optional arguments:
+    -h, --help           show this help message and exit
+    -i INFILE, --input INFILE
+                    source of analysis data
+    -o OUTFILE, --output OUTFILE
+                    target of generated strings
+    -a, --analyse   Analyse the input file strings
+    -g, --generate  Generate the input file strings
+    -v, --verbose   print verbosely while processing
+
+## For Developers
+
+
 Understanding the phonetic characteristics of a word is helpful in many computational linguistic problems. For instance, translating a word into its phonetic representation is needed in the synthesis of a text to speech (TTS) system. The phonetic representation is needed to transliterate the word to a different script. It will be more useful if the phonetic representation can be converted back to the grapheme sequence. A finite state transducer (FST) helps us to achieve this.
 
 Finite State Transducers provide a method for performing mathematical operations on ordered collections of context-sensitive rewrite rules such as those commonly used to implement fundamental natural language processing tasks. Multiple rules may be composed into a single pass, mega rule, significantly increasing the efficiency of rule-based systems.   An FST consists of a finite number of states which are linked by transitions labeled with an input/output pair. The FST starts out in a designated start state and jumps to different states depending on the input, while producing output according to its transition table.
 
 In this project we try to develop a phonetic analyser for malayalam script. A specific application of transliterating malayalam script to international phonetic alphabet (IPA) is demonstrated. Specifically, the system is developed using Stuttgart Finite State Toolkit(SFST) formalism and uses Helsinki Finite-State Technology(HFST) as Toolkit.
 
-## Grapheme Phoneme Correspondence(GPC) System
+### Grapheme Phoneme Correspondence(GPC) System
 
 FSTs when applied to GPC systems, the mapping is between the graphemes of the writing system of of a language and phonemes of the speech of that language. This transducer can be implemented as the composition of different transducers, each performing a specific mapping task. The whole task can be implemented by FST chains- One FST for rule based grapheme-phoneme mapping, another FST for implementing schwa addition depending on the context and so on.
 
@@ -18,7 +187,7 @@ Malayalam GPC using FST
 
 The chain of transducers used din this system and their function are listed below:
 
-### Syllablizer
+#### Syllablizer
 
 `$wordfilter$`
 
@@ -32,7 +201,7 @@ It splits syllables with <BoS> <EoS> tags to indicate beginning and end of sylla
 
 *`$syllablizer$` is a composition of `$wordfilter$` and `$syllable$`*
 
-### FST for g2p mapping
+#### FST for g2p mapping
 
 *g2p mapping is done on syllable splitted words. So `$syllablizer$` is a prerequisite for g2p processing. `$g2p$` is composed of the followings FSTs*
 
@@ -62,16 +231,16 @@ This stage of FST replaces the already mapped റ+ ് + റ `r<trill><alveolar>
 
 *TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed.*
 
-### FST for contextual nasalisation( അനുനാസികാതിപ്രസരം)
+#### FST for contextual nasalisation( അനുനാസികാതിപ്രസരം)
 
 _TODO: ഭംഗി -> ഭങ്ങി , ചിഹ്നം -> ചിന്നം_
 
-### Overall FST chain
+#### Overall FST chain
 
 `$g2p$` represents the overall FST which combines each of the above FSTs in a chain.
 
-# Installation
-You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile and use this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `PhoneAnalyser.a`.
+## Installation
+You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `PhoneAnalyser.a`.
 
 In a debian/ubuntu based GNU/Linux, SFST can be installed as follows
 
@@ -81,60 +250,7 @@ Clone or download this git repository to your machine.
 
 ```$ make```
 
-# Examples
 
-## Syllablize a Malayalam Word
-
-The following command will generate IPA sequence from malayalam script
-
-`python3 syllablizer.py`
-
-For the input
-
-`സഫലമീയാത്ര`
-
-the output would be
-
-`BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>`
-
-`['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']`
-
-This command can take input from a text file and write the generated IPA to another text file
-
-`python3 syllablizer.py -i path/to/inputfile.txt -o path/to/outputfile.txt`
-
-## g2p conversion for Malayalam. Malayalam script would be turned to syllablized IPA sequence along with detailed phonetic feature tag
-
-To **analyse** the phonetic mapping of malayalam script in IPA along with the details of all vowels, vowelsigns, type of consonant etc. as tags, use the following command:
-
-`$ python3 python/g2p.py -a`
-
-Give your input in malayalam script and press Enter key.
-
-`കാവ്യ`
-
-It will give you the result
-
-`<BoS>k<plosive><voiceless><unaspirated><velar>aː<v_sign><EoS><BoS>ʋ<approximant><labiodental><virama>j<glide><palatal>a<schwa><EoS>`
-
-
-To **generate** the Malayalam script from the phonetic script and the tags  use the command:
-
-`python3 python/g2p.py -g`
-
-Give the input and press Enter.
-
-`<BoS>p<plosive><voiceless><unaspirated><labial>aː<v_sign><EoS><BoS>l<chil><EoS>`
-
-It will return you the corresponding malayalam script
-
-`പാൽ`
-
-The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
-
-`python3 python/g2p.py -a -i path/to/inputfile.txt -o path/to/outputfile.txt`
-
-Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
 
 
 # References
