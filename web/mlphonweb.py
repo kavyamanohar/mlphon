@@ -2,17 +2,9 @@ import sys
 import os
 from flask import Flask, jsonify, render_template, request
 import regex
-
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-sys.path.insert(0, '../python')
-
-from fsa import Fsa
+from mlphon import IPA, G2P, Syllablizer
 app = Flask(__name__)
 #app.config['DEBUG'] = True
-
-syllablizer = Fsa('../syllablizer.a')
-g2p = Fsa('../g2p.a')
-ml2ipa = Fsa('../ml2ipa.a')
 
 @app.route("/")
 def index():
@@ -26,7 +18,8 @@ def syllablize():
 	else:
 		text = request.args.get('text')
 	text = text.strip()
-	syllables = syllablizer.analyse(text);
+	syllablizer = Syllablizer()
+	syllables = syllablizer.syllablize(text);
 	syls = regex.findall(u'<BoS>([‍ം-ൿ‌]+)<EoS>', syllables[0][0])
 	return jsonify({'text': text,'syllables': syls})
 
@@ -38,6 +31,7 @@ def g2p_analyse():
 	else:
 		text = request.args.get('text')
 	text = text.strip()
+	g2p = G2P()
 	IPAandTags = g2p.analyse(text);
 	# IPAandTags[0][0] = <BoS>k<plosive><voiceless><unaspirated><velar>a<schwa><EoS><BoS>l<lateral><other>a<schwa><EoS>
 	sylBoundary_paser = regex.compile( r"<BoS>(.+?)<EoS>")
@@ -65,13 +59,15 @@ def getipa():
 		text = request.json.get('text')
 	else:
 		text = request.args.get('text')
-	IPA = ml2ipa.analyse(text);
-	return jsonify({'text': text, 'IPA':IPA })
+	ml2ipa = IPA()
+	ipa = ml2ipa.analyse(text);
+	return jsonify({'text': text, 'IPA':ipa })
 
 @app.route("/api/g2pgenerate", methods=['GET'])
 def g2p_generate():
 	grapheme_generate = {}
 	text = request.args.get('text')
+	g2p = G2P()
 	graphemes = g2p.generate(text);
 	return jsonify(graphemes)
 
