@@ -1,6 +1,6 @@
 <VirtualHost *:80>
     ServerName mlphon.thottingal.in
-    WSGIDaemonProcess mlphon user=www-data group=www-data threads=5
+    WSGIDaemonProcess mlphon user=www-data group=www-data threads=5 python-home=/home/kavya/kavyadev/ml-phonetic-analyser/ENV_DIR/
     WSGIScriptAlias / /home/kavya/kavyadev/ml-phonetic-analyser/web/mlphon.wsgi
     <Directory /home/kavya/kavyadev/ml-phonetic-analyser/web/>
         WSGIProcessGroup mlphon
