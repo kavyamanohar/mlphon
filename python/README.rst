@@ -1,4 +1,4 @@
-Python Interface for Malayalam morphology analyser
+Python Interface for Malayalam phonetic analyser
 ==================================================
 .. image:: https://img.shields.io/pypi/v/mlphon.svg
     :target: https://pypi.python.org/pypi/mlphon
@@ -25,7 +25,7 @@ Grapheme to Phoneme analysis example
 
     from mlphon import G2P
     analyser = G2P()
-    analyser.analyse("കേരളം")
+    analyser.analyse('കേരളം')
 
 
 Gives
@@ -45,7 +45,7 @@ Grapheme to Phoneme generation example
 
     from mlphon import G2P
     generator = G2P()
-    generator.generate(''<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS><BoS>ɾ<flapped><alveolar>a<schwa><EoS><BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>')
+    generator.generate('<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS><BoS>ɾ<flapped><alveolar>a<schwa><EoS><BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>')
 
 
 Gives
@@ -100,7 +100,7 @@ Syllablizer
 
     from mlphon import Syllablizer
     syl = Syllablizer()
-    syl.syllablize("കേരളം")
+    syl.syllablize('കേരളം')
 
 Gives
 
