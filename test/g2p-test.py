@@ -2,21 +2,19 @@ import csv
 import unittest
 import sys
 import os
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-sys.path.insert(0, '../python')
-from fsa import Fsa
+from mlphon import G2P
 
+CURR_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 
 class AnalyserGeneratorTests(unittest.TestCase):
 
     def setUp(self):
-        self.csvfile = open('data.tsv')
-        automata = '../g2p.a'
+        self.csvfile = open(os.path.join(CURR_DIR, 'data.tsv'))
         dialect = csv.Sniffer().sniff(self.csvfile.read(1024))
         # rewind
         self.csvfile.seek(0)
         self.data = csv.reader(self.csvfile, dialect)
-        self.fsa = Fsa(automata)
+        self.g2p = G2P()
 
     def tearDown(self):
         self.csvfile.close()
@@ -24,7 +22,7 @@ class AnalyserGeneratorTests(unittest.TestCase):
     def test_analyse(self):
         for row in self.data:
             with self.subTest():
-                anals = self.fsa.analyse(row[0])
+                anals = self.g2p.analyse(row[0])
                 match = False
                 self.assertTrue(len(anals) != 0,
                                 'Analysis failed for ' + row[0])
@@ -39,7 +37,7 @@ class AnalyserGeneratorTests(unittest.TestCase):
         for row in self.data:
             with self.subTest():
                 match = False
-                gens = self.fsa.generate(row[1])
+                gens = self.g2p.generate(row[1])
                 self.assertTrue(
                     len(gens) != 0, 'Generate failed for ' + row[1])
                 print(row[1], '\t-->\t', gens)
