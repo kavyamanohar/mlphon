@@ -10,7 +10,7 @@ Using Virtual Environment (https://docs.python.org/3/library/venv.html) is recom
 
 To start using this python library
 
-    `$ pip install mlphon`
+    $ pip install mlphon
 
 ### Syllablize a Malayalam Word
 
@@ -32,13 +32,13 @@ It can be invoked from the command line using the command
 
 For the input 
 
-    `സഫലമീയാത്ര`
+    സഫലമീയാത്ര
 
 the output would be
 
-    `<BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>`
+    <BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>
 
-    `['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']`
+    ['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']
 
 #### More details on using mlsyllablize
 
@@ -85,11 +85,11 @@ You can invoke the command below for the same purpose.
 
 Give the input 
 
-    `കാവ്യ`
+    കാവ്യ
 
 It will give you the result of g2p analysis as:
 
-    `<BoS>k<plosive><voiceless><unaspirated><velar>aː<v_sign><EoS><BoS>ʋ<approximant><labiodental><virama>j<glide><palatal>a<schwa><EoS>`
+    <BoS>k<plosive><voiceless><unaspirated><velar>aː<v_sign><EoS><BoS>ʋ<approximant><labiodental><virama>j<glide><palatal>a<schwa><EoS>
 
 
 To **generate** the Malayalam script from the phonetic script and the tags  use the command:
@@ -98,15 +98,15 @@ To **generate** the Malayalam script from the phonetic script and the tags  use 
 
 Give the input and press Enter.
 
-    `<BoS>p<plosive><voiceless><unaspirated><labial>aː<v_sign><EoS><BoS>l<chil><EoS>`
+    <BoS>p<plosive><voiceless><unaspirated><labial>aː<v_sign><EoS><BoS>l<chil><EoS>
 
 It will return you the corresponding malayalam script
 
-    `പാൽ`
+    പാൽ
 
 The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
 
-    `$ mlg2p -g -i path/to/inputfile.txt -o path/to/outputfile.txt`
+    $ mlg2p -g -i path/to/inputfile.txt -o path/to/outputfile.txt
 
 Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
 
