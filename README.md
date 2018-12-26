@@ -44,7 +44,7 @@ the output would be
 
     $ mlsyllablize --help
     usage: mlsyllablize [-h] [-i INFILE] [-o OUTFILE]  optional arguments:
-    -h, --help           
+    -h, --help
                     show this help message and exit
     -i INFILE, --input INFILE
                     source of analysis data
@@ -64,7 +64,7 @@ To **analyse** the Malayalam script into IPA along with the details of all vowel
     analyser = G2P()
     analyser.analyse('കേരളം')
 
-It would give the output 
+It would give the output
 
     [(('<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS><BoS>ɾ<flapped><alveolar>a<schwa><EoS><BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>', 0.0),))]
 
@@ -137,7 +137,7 @@ This would give the result
 
     (('keːɾaɭam<anuswara>', 0.0),)
 
-`<anauswara>, <visarga>, <chillu> ` tags are explisitly shown in the IPA analysis.
+`<anauswara>, <visarga>, <chillu> <zwnj>` tags are explisitly shown in the IPA analysis.
 
 For Malayalam script grapheme generation from IPA
 
