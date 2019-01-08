@@ -149,7 +149,8 @@ The result would be:
 
     (('കേരളം', 0.0),)
 
-There can be multiple results in this generation. Please ignore the irrelevant ones, if any.
+There can be multiple results in this generation. Please ignore the ir
+vant ones, if any.
 
 The following command lets you do the same things
 
@@ -239,10 +240,14 @@ _TODO: ഭംഗി -> ഭങ്ങി , ചിഹ്നം -> ചിന്ന�
 
 `$g2p$` represents the overall FST which combines each of the above FSTs in a chain.
 
-## Installation
-You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `PhoneAnalyser.a`.
+### Malayalam to IPA with no phonetic tags
 
-In a debian/ubuntu based GNU/Linux, SFST can be installed as follows
+`$ml2ipa$` is the fst that converts the Malayalam script to IPA in the analysis mode. It uses the `$g2p$` FST combined with a tag filter `$tagfilter$` to achieve this. But tags like `<anauswara>, <visarga>, <chillu> <zwnj>` are explicitly retained in the IPA analysis. 
+
+## Installation
+You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `g2p.a`, `ml2ipa.a`, `syllablizer.a`.
+
+In a debian/ubuntu based GNU/Linux, HFST can be installed as follows
 
 ```$ sudo apt install hfst```
 
