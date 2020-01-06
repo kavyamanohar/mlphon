@@ -28,7 +28,7 @@ The second item in this result is the weight. It is not relevant in the current 
 
 It can be invoked from the command line using the command
 
-    $ mlsyllablizer
+    $ mlsyllablize
 
 For the input 
 
@@ -54,7 +54,7 @@ the output would be
 
 This command can take input from a text file and write the generated IPA to another text file
 
-    $mlsyllablizer -i path/to/inputfile.txt -o path/to/outputfile.txt
+    $mlsyllablize -i path/to/inputfile.txt -o path/to/outputfile.txt
 
 ## g2p conversion for Malayalam. Malayalam script would be turned to syllablized IPA sequence along with detailed phonetic feature tag
 
