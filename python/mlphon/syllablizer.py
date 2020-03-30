@@ -64,7 +64,8 @@ def main():
 			options.outfile.write(line+"\t"+"?"+"\n")
 		for syl in syllables:
 			options.outfile.write(line+"\t"+syl[0]+"\n")
-			syls = regex.findall('<BoS>([‍ം-ൿ‌]+)<EoS>', syl[0])
+			syls = regex.findall('<BoS>([‍ം-ൿ‌]+)<EoS>', syl[0]) # Take the first element of ('<BoS>കാ<EoS><BoS>വ്യ<EoS>', 0.0)
+			# and convert it to a sequence of syllables ['കാ','വ്യ']
 			print(syls)
 
 	print()
