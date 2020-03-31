@@ -57,7 +57,7 @@
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 #lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #schwatag# #zerowidthtag#
 
-% #space# = {\ }
+#space# = {\ }
 % #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯}
