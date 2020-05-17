@@ -137,7 +137,7 @@ This would give the result
 
     (('keːɾaɭam<anuswara>', 0.0),)
 
-`<anauswara>, <visarga>, <chillu> <zwnj>` tags are explisitly shown in the IPA analysis.
+`<anauswara>, <visarga>, <chillu> <zwnj>` tags are explicitly shown in the IPA analysis.
 
 For Malayalam script grapheme generation from IPA
 

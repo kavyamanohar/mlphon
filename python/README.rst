@@ -73,7 +73,7 @@ Gives
 
     (('keːɾaɭam<anuswara>', 0.0),)
 
-<anauswara>, <visarga>, <chillu> tags are explisitly shown in the IPA analysis.
+<anauswara>, <visarga>, <chillu> tags are explicitly shown in the IPA analysis.
 
 Grapheme generation from IPA
 ----------------------------
