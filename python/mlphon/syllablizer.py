@@ -5,43 +5,50 @@ import os
 import regex
 import libhfst
 from pkg_resources import resource_filename, resource_exists
+from .tagparse import getSyllablelist
 
 
 def getTransducer(fsa):
-    istr = libhfst.HfstInputStream(fsa)
-    transducers = []
-    while not (istr.is_eof()):
-        transducers.append(istr.read())
-    istr.close()
-    return transducers[0]
+	istr = libhfst.HfstInputStream(fsa)
+	transducers = []
+	while not (istr.is_eof()):
+		transducers.append(istr.read())
+	istr.close()
+	return transducers[0]
 
 
 class Syllablizer:
 
-    def __init__(self):
-        self.fsa = None
-        resource_path = 'data/syllablizer.a'
-        if resource_exists(__name__, resource_path):
-            self.fsa = resource_filename(__name__, resource_path)
-        if not self.fsa:
-            raise ValueError('Could not read the fsa.')
-        self.transducer = None
-        self.analyser = None
+	def __init__(self):
+		self.fsa = None
+		resource_path = 'data/syllablizer.a'
+		if resource_exists(__name__, resource_path):
+			self.fsa = resource_filename(__name__, resource_path)
+		if not self.fsa:
+			raise ValueError('Could not read the fsa.')
+		self.transducer = None
+		self.analyser = None
 
-    def getAnalyser(self):
-        if not self.transducer:
-            self.transducer = getTransducer(self.fsa)
-        analyser = libhfst.HfstTransducer(self.transducer)
-        analyser.remove_epsilons()
-        analyser.lookup_optimize()
-        return analyser
+	def getAnalyser(self):
+		if not self.transducer:
+			self.transducer = getTransducer(self.fsa)
+		analyser = libhfst.HfstTransducer(self.transducer)
+		analyser.remove_epsilons()
+		analyser.lookup_optimize()
+		return analyser
 
-    def syllablize(self, token):
-        """Perform a simple analysis lookup. """
-        if not self.analyser:
-            self.analyser = self.getAnalyser()
-        analysis_results = self.analyser.lookup(token)
-        return analysis_results
+	def syllablize(self, token):
+		"""Perform a simple analysis lookup. """
+		if not self.analyser:
+			self.analyser = self.getAnalyser()
+		analysis_results = self.analyser.lookup(token)
+		syllables=[]
+		if not analysis_results:
+			return syllables
+		else:
+			for result in analysis_results:
+				syllables= getSyllablelist(result[0])
+			return syllables
 
 def main():
 	a = argparse.ArgumentParser()
@@ -60,14 +67,10 @@ def main():
 		if not line or line == '':
 			continue
 		syllables = syllablizer.syllablize(line)
-		if not syllables:
-			options.outfile.write(line+"\t"+"?"+"\n")
-		for syl in syllables:
-			options.outfile.write(line+"\t"+syl[0]+"\n")
-			syls = regex.findall('<BoS>([‍ം-ൿ‌]+)<EoS>', syl[0]) # Take the first element of ('<BoS>കാ<EoS><BoS>വ്യ<EoS>', 0.0)
-			# and convert it to a sequence of syllables ['കാ','വ്യ']
-			print(syls)
-
+		if len(syllables):
+			options.outfile.write(line+"\t"+str(syllables)+"\n")
+		else:
+			options.outfile.write(line+"\t"+'?'+"\n")
 	print()
 	exit(0)
 if __name__ == "__main__":
