@@ -2,7 +2,7 @@ import sys
 import os
 from flask import Flask, jsonify, render_template, request
 import regex
-from mlphon import IPA, G2P, Syllablizer
+from mlphon import IPA, G2P, Syllablizer, getPhonemelist, getPhonemetaglist
 app = Flask(__name__)
 #app.config['DEBUG'] = True
 
@@ -20,8 +20,7 @@ def syllablize():
 	text = text.strip()
 	syllablizer = Syllablizer()
 	syllables = syllablizer.syllablize(text);
-	syls = regex.findall(u'<BoS>([‍ം-ൿ‌]+)<EoS>', syllables[0][0])
-	return jsonify({'text': text,'syllables': syls})
+	return jsonify({'text': text,'syllables': syllables})
 
 @app.route("/api/g2panalyse", methods=['GET', 'POST'])
 def g2p_analyse():
@@ -32,24 +31,10 @@ def g2p_analyse():
 		text = request.args.get('text')
 	text = text.strip()
 	g2p = G2P()
-	IPAandTags = g2p.analyse(text);
+	IPAandTags = g2p.analyse(text)
 	# IPAandTags[0][0] = <BoS>k<plosive><voiceless><unaspirated><velar>a<schwa><EoS><BoS>l<lateral><other>a<schwa><EoS>
-	sylBoundary_paser = regex.compile( r"<BoS>(.+?)<EoS>")
-	phoneme_parser = regex.compile( r"((?P<phonemes>([^<])+)(?P<tags>(<[^>]+>)+))+" )
-	tag_parser =  regex.compile(r"<([a-z_]+)>+?")
-	syllables = sylBoundary_paser.findall(IPAandTags[0][0])
-	#syllables = [k<plosive><voiceless><unaspirated><velar>a<schwa>, l<lateral><other>a<schwa>]
-	result=[]
-	for rindex in range(len(syllables)):
-		phonemes = []
-		match = phoneme_parser.match(syllables[rindex])
-		ipa = match.captures("phonemes")
-		tags = match.captures("tags")
-		for pindex in range(len(ipa)):
-			tagsequence = tag_parser.findall(tags[pindex])
-			phonemes.append({'ipa': ipa[pindex], 'tags': tagsequence})
-		result.append({'phonemes': phonemes})
-	#result = [[{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'a', 'tags': ['schwa']}], [{'ipa': 'l', 'tags': ['lateral', 'other']}, {'ipa': 'a', 'tags': ['schwa']}]]
+	# result = [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'l', 'tags': ['lateral', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}]
+	result = getPhonemetaglist(IPAandTags[0][0])
 	return jsonify({'text': text, 'syllables':result})
 
 @app.route("/api/getipa", methods=['GET', 'POST'])
