@@ -36,7 +36,6 @@ For the input
 
 the output would be
 
-    <BoS>സ<EoS><BoS>ഫ<EoS><BoS>ല<EoS><BoS>മീ<EoS><BoS>യാ<EoS><BoS>ത്ര<EoS>
 
     ['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']
 
