@@ -107,7 +107,7 @@ Gives
 
   .. code-block:: python
 
-    (('<BoS>കേ<EoS><BoS>ര<EoS><BoS>ളം<EoS>', 0.0),)
+    ['കേ', 'ര', 'ളം']
 
 
 
@@ -159,6 +159,69 @@ Syllablizer
                         source of analysis data
       -o OUTFILE, --output OUTFILE
                         target of generated strings
+
+Tag Parse Functions
+-------------------
+
+The analysis function of G2P returns the output with tags in angle brackets.The following functions parses and separates tags, syllables and phoneme sequences.
+
+
+getPhonemelist()
+-----------
+
+  .. code-block:: python
+
+    from mlphon import G2P, getPhonemelist
+    g2p = G2P()
+    analysis = g2p.analyse('കേരളം')
+    for item in analysis:
+      getPhonemelist(item[0])
+
+Gives
+
+
+  .. code-block:: python
+    
+      'k eː ɾ a ɭ a m'
+
+
+
+getPhonemetaglist()
+-----------
+
+  .. code-block:: python
+
+    from mlphon import G2P, getPhonemetaglist
+    g2p = G2P()
+    analysis = g2p.analyse('കേരളം')
+    for item in analysis:
+      getPhonemetaglist(item[0])
+
+Gives
+
+
+  .. code-block:: python
+
+  [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
+
+getSyllablelist()
+------------------
+
+
+  .. code-block:: python
+
+    from mlphon import G2P, getSyllablelist
+    g2p = G2P()
+    analysis = g2p.analyse('കേരളം')
+    for item in analysis:
+      getSyllablelist(item[0])
+
+It gives the syllable separated output as:
+
+  .. code-block:: python
+
+    ['k<plosive><voiceless><unaspirated><velar>eː<v_sign>', 'ɾ<flapped><alveolar>a<schwa>', 'ɭ<lateral><retroflex>a<schwa>m<anuswara>']
+
 
 
 .. _`Malayalam Phonetic Analyser - mlphon`: https://gitlab.com/smc/mlphon

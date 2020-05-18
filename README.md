@@ -170,6 +170,55 @@ The following command lets you do the same things
     -g, --generate  Generate the input file strings
     -v, --verbose   print verbosely while processing
 
+Tag Parse Functions
+-------------------
+
+The analysis function of G2P returns the output with tags in angle brackets.The following functions parses and separates tags, syllables and phoneme sequences.
+
+
+Using getPhonemelist()
+-----------
+
+    from mlphon import G2P, getPhonemelist
+    g2p = G2P()
+    analysis = g2p.analyse('കേരളം')
+    for item in analysis:
+      getPhonemelist(item[0])
+
+Gives
+
+      'k eː ɾ a ɭ a m'
+
+
+
+Using  getPhonemetaglist()
+-----------
+
+
+    from mlphon import G2P, getPhonemetaglist
+    g2p = G2P()
+    analysis = g2p.analyse('കേരളം')
+    for item in analysis:
+      getPhonemetaglist(item[0])
+
+Gives a list of dictionary objects
+
+
+    [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
+
+Using getSyllablelist()
+------------------
+
+    from mlphon import G2P, getSyllablelist
+    g2p = G2P()
+    analysis = g2p.analyse('കേരളം')
+    for item in analysis:
+      getSyllablelist(item[0])
+
+It gives the syllable separated output as:
+
+    ['k<plosive><voiceless><unaspirated><velar>eː<v_sign>', 'ɾ<flapped><alveolar>a<schwa>', 'ɭ<lateral><retroflex>a<schwa>m<anuswara>']
+
 ## For Developers
 
 
