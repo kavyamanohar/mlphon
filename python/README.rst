@@ -167,7 +167,7 @@ The analysis function of G2P returns the output with tags in angle brackets.The 
 
 
 getPhonemelist()
------------
+---------------------
 
   .. code-block:: python
 
@@ -187,7 +187,7 @@ Gives
 
 
 getPhonemetaglist()
------------
+-------------------
 
   .. code-block:: python
 
@@ -199,10 +199,9 @@ getPhonemetaglist()
 
 Gives
 
-
   .. code-block:: python
-
-  [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
+  
+      [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
 
 getSyllablelist()
 ------------------
