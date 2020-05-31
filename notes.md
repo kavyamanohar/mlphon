@@ -13,3 +13,10 @@ TODO
 1. Analyze/Generate all possible punctuation marks and their tags
 1. Define rarely used ml code points like DOT REPH, ALVEOLAR NA, malayalam numerals, datemark, malayalam numerals etc
 1. Contextual modification of above characters phonetic mapping
+
+
+Graphical Visualization
+===============
+
+hfst-fst2txt -i ml2ipa.test.a  -f dot -o ml2ipa.test.dot
+dot -Tpng ml2ipa.test.dot -o ml2ipa.png
