@@ -2,7 +2,7 @@ import os
 from sys import stderr, stdin, stdout
 import regex
 import argparse
-from flask import Flask, jsonify, render_template, request
+#from flask import Flask, jsonify, render_template, request
 
 def getSyllablelist(sequence):
     sylBoundary_parser = regex.compile( r"<BoS>(.+?)<EoS>")
