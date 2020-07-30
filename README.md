@@ -277,7 +277,16 @@ Similar is the case with `ന + ് + റ` . Its phonetic mapping is `(nṯ)` wh
 
 This stage of FST replaces the already mapped റ+ ് + റ `r<trill><alveolar><virama>r<trill><alveolar>` to `ṯ<plosive><voiceless><unaspirated><alveolar><virama>ṯ<plosive><voiceless><unaspirated><alveolar>` and  ന + ് + റ `n̪<nasal><dental><virama>r<trill><alveolar>` to `n<nasal><alveolar><virama>ṯ<plosive><voiceless><unaspirated><alveolar>`.
 
-*TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed.*
+
+`$reph$`
+
+The reph symbol in Malayalam corresponding to ് + ര (്ര) follows other consonants. But such conjuncts like ക്ര, ത്ര, സ്ര, ശ്ര etc. have the pronunciation which is closer to റ (alveolar trill) rather than ര (flapped trill). `reph.fst` has contextual rules to replace `<virama>ɾ<flapped>` with`<virama>r<trill>`.
+
+`$rephexp$`
+
+But there is an exception to the above rule for the conjuncts ഗ്ര and ദ്ര.
+
+*TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed. The reph exception rule for ബ്ര is complicated and is currently set to `r<trill>`*
 
 #### FST for contextual nasalisation( അനുനാസികാതിപ്രസരം)
 

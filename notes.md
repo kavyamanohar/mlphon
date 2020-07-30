@@ -20,3 +20,7 @@ Graphical Visualization
 
 hfst-fst2txt -i ml2ipa.test.a  -f dot -o ml2ipa.test.dot
 dot -Tpng ml2ipa.test.dot -o ml2ipa.png
+
+HFST to string
+==============
+hfst-fst2txt -i ml2ipa.test.a
