@@ -148,8 +148,7 @@ The result would be:
 
     (('കേരളം', 0.0),)
 
-There can be multiple results in this generation. Please ignore the ir
-vant ones, if any.
+There can be multiple results in this generation. Please ignore the irrelevant ones, if any.
 
 The following command lets you do the same things
 
