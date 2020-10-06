@@ -18,11 +18,11 @@ The following python snippet will split a word in Malayalam script into syllable
 
     from mlphon import Syllablizer
     syl = Syllablizer()
-    syl.syllablize('കേരളം')
+    syl.split2syllables('കേരളം')
 
 It will give the result
 
-    (('<BoS>കേ<EoS><BoS>ര<EoS><BoS>ളം<EoS>', 0.0),)
+    ['കേ', 'ര', 'ളം']
 
 The second item in this result is the weight. It is not relevant in the current implementation.
 
