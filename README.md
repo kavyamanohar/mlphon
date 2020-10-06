@@ -22,7 +22,7 @@ The following python snippet will split a word in Malayalam script into syllable
 
 It will give the result
 
-    ['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']
+    ['കേ', 'ര', 'ളം']
 
 It can be invoked from the command line using the command
 
