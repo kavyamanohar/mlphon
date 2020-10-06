@@ -22,9 +22,7 @@ The following python snippet will split a word in Malayalam script into syllable
 
 It will give the result
 
-    (('<BoS>കേ<EoS><BoS>ര<EoS><BoS>ളം<EoS>', 0.0),)
-
-The second item in this result is the weight. It is not relevant in the current implementation.
+    ['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']
 
 It can be invoked from the command line using the command
 
