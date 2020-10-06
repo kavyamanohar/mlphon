@@ -4,7 +4,7 @@ import regex
 import argparse
 #from flask import Flask, jsonify, render_template, request
 
-def getSyllablelist(sequence):
+def get_syllablelist(sequence):
     sylBoundary_parser = regex.compile( r"<BoS>(.+?)<EoS>")
     syllables = sylBoundary_parser.findall(sequence)
     return syllables
@@ -12,7 +12,7 @@ def getSyllablelist(sequence):
 def getPhonemetaglist(sequence):
     phoneme_parser = regex.compile( r"((?P<phonemes>([^<])+)(?P<tags>(<[^>]+>)+))+" )
     tag_parser =  regex.compile(r"<([a-z_]+)>+?")
-    syllables = getSyllablelist(sequence)
+    syllables = get_syllablelist(sequence)
     phonemetaglist =[]
     for sindex in range(len(syllables)):
         match = phoneme_parser.match(syllables[sindex])

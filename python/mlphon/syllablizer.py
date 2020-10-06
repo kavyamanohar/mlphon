@@ -5,7 +5,7 @@ import os
 import regex
 import libhfst
 from pkg_resources import resource_filename, resource_exists
-from .tagparse import getSyllablelist
+from .tagparse import get_syllablelist
 
 
 def getTransducer(fsa):
@@ -37,17 +37,16 @@ class Syllablizer:
 		analyser.lookup_optimize()
 		return analyser
 
-	def syllablize(self, token):
+	def split2syllables(self, token):
 		"""Perform a simple analysis lookup. """
 		if not self.analyser:
 			self.analyser = self.getAnalyser()
 		analysis_results = self.analyser.lookup(token)
-		syllables=[]
 		if not analysis_results:
-			return syllables
+			raise ValueError('Could not split '+ token + ' into syllables')
 		else:
 			for result in analysis_results:
-				syllables= getSyllablelist(result[0])
+				syllables= get_syllablelist(result[0])
 			return syllables
 
 def main():
@@ -66,12 +65,13 @@ def main():
 		line = line.strip()
 		if not line or line == '':
 			continue
-		syllables = syllablizer.syllablize(line)
-		if len(syllables):
-			options.outfile.write(line+"\t"+str(syllables)+"\n")
-		else:
+		try:
+			syllables = syllablizer.split2syllables(line)
+		except ValueError as error_instance:
+			print(error_instance)
 			options.outfile.write(line+"\t"+'?'+"\n")
-	print()
+		else:
+			options.outfile.write(line+"\t"+str(syllables)+"\n")
 	exit(0)
 if __name__ == "__main__":
 	main()
