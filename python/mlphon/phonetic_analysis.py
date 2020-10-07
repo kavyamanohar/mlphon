@@ -14,7 +14,7 @@ def getTransducer(fsa):
     istr.close()
     return transducers[0]
 
-class G2P:
+class Phonetic_analyser:
 
     def __init__(self):
         self.fsa = None
@@ -35,15 +35,6 @@ class G2P:
         analyser.lookup_optimize()
         return analyser
 
-    def getGenerator(self):
-        if not self.transducer:
-            self.transducer = getTransducer(self.fsa)
-        generator = libhfst.HfstTransducer(self.transducer)
-        generator.invert()
-        generator.remove_epsilons()
-        generator.lookup_optimize()
-        return generator
-
     def analyse(self, token):
         """Perform a simple analysis lookup. """
         if not self.analyser:
@@ -56,13 +47,6 @@ class G2P:
                 phonemedetails= parse_phonemetags(result[0])
             return phonemedetails
 
-    def generate(self, token):
-        """Perform a simple generator lookup. """
-        if not self.generator:
-            self.generator = self.getGenerator()
-        generator_results = self.generator.lookup(token)
-        return generator_results
-
 def main():
     """Invoke a simple CLI analyser or generator."""
     a = argparse.ArgumentParser()
@@ -70,14 +54,10 @@ def main():
                    dest="infile", help="source of analysis data")
     a.add_argument('-o', '--output', metavar="OUTFILE", type=argparse.FileType('w+', encoding='UTF-8'),
                    dest="outfile", help="target of generated strings")
-    a.add_argument('-a', '--analyse', action='store_true',
-                   help="Analyse the input file strings")
-    a.add_argument('-g', '--generate', action='store_true',
-                   help="Generate the input file strings")
     a.add_argument('-v', '--verbose', action='store_true',
                    help="print verbosely while processing")
     options = a.parse_args()
-    g2p = G2P()
+    phonetic_analyser = Phonetic_analyser()
     if not options.infile:
         options.infile = stdin
     if not options.outfile:
@@ -88,20 +68,13 @@ def main():
         line = line.strip()
         if not line or line == '':
             continue
-        if options.analyse:
-            try:
-                phonemedetails = g2p.analyse(line)
-            except ValueError as error_instance:
-                print(error_instance)
-                options.outfile.write(line+"\t"+"?"+"\n")
-            else:
-                options.outfile.write(line+"\t"+str(phonemedetails)+"\n")
-        if options.generate:
-            gens = g2p.generate(line)
-            if not gens:
-                options.outfile.write(line+"\t"+"?"+"\n")
-            for gen in gens:
-                options.outfile.write(line+"\t"+gen[0]+"\n")
+        try:
+            phonemedetails = phonetic_analyser.analyse(line)
+        except ValueError as error_instance:
+            print(error_instance)
+            options.outfile.write(line+"\t"+"?"+"\n")
+        else:
+            options.outfile.write(line+"\t"+str(phonemedetails)+"\n")
     exit(0)
 
 if __name__ == "__main__":
