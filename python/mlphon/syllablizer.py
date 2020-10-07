@@ -5,7 +5,7 @@ import os
 import regex
 import libhfst
 from pkg_resources import resource_filename, resource_exists
-from .tagparse import get_syllablelist
+from .tagparse import parse_syllabletags
 
 
 def getTransducer(fsa):
@@ -46,7 +46,7 @@ class Syllablizer:
 			raise ValueError('Could not split '+ token + ' into syllables')
 		else:
 			for result in analysis_results:
-				syllables= get_syllablelist(result[0])
+				syllables= parse_syllabletags(result[0])
 			return syllables
 
 def main():
