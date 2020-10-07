@@ -3,6 +3,8 @@ from sys import stderr, stdin, stdout
 import os
 import libhfst
 from pkg_resources import resource_filename, resource_exists
+from .tagparse import parse_phonemetags
+
 
 def getTransducer(fsa):
     istr = libhfst.HfstInputStream(fsa)
@@ -47,7 +49,12 @@ class G2P:
         if not self.analyser:
             self.analyser = self.getAnalyser()
         analysis_results = self.analyser.lookup(token)
-        return analysis_results
+        if not analysis_results:
+            raise ValueError('Could not analyse '+ token )
+        else:
+            for result in analysis_results:
+                phonemedetails= parse_phonemetags(result[0])
+            return phonemedetails
 
     def generate(self, token):
         """Perform a simple generator lookup. """
@@ -82,18 +89,19 @@ def main():
         if not line or line == '':
             continue
         if options.analyse:
-            anals = g2p.analyse(line)
-            if not anals:
+            try:
+                phonemedetails = g2p.analyse(line)
+            except ValueError as error_instance:
+                print(error_instance)
                 options.outfile.write(line+"\t"+"?"+"\n")
-            for anal in anals:
-                options.outfile.write(line+"\t"+anal[0]+"\n")
+            else:
+                options.outfile.write(line+"\t"+str(phonemedetails)+"\n")
         if options.generate:
             gens = g2p.generate(line)
             if not gens:
                 options.outfile.write(line+"\t"+"?"+"\n")
             for gen in gens:
                 options.outfile.write(line+"\t"+gen[0]+"\n")
-    print()
     exit(0)
 
 if __name__ == "__main__":
