@@ -4,16 +4,16 @@ import regex
 import argparse
 #from flask import Flask, jsonify, render_template, request
 
-def get_syllablelist(sequence):
+def parse_syllabletags(sequence):
     sylBoundary_parser = regex.compile( r"<BoS>(.+?)<EoS>")
     syllables = sylBoundary_parser.findall(sequence)
     return syllables
 
-def getPhonemetaglist(sequence):
+def parse_phonemetags(sequence):
     phoneme_parser = regex.compile( r"((?P<phonemes>([^<])+)(?P<tags>(<[^>]+>)+))+" )
     tag_parser =  regex.compile(r"<([a-z_]+)>+?")
-    syllables = get_syllablelist(sequence)
-    phonemetaglist =[]
+    syllables = parse_syllabletags(sequence)
+    phonemedetails =[]
     for sindex in range(len(syllables)):
         match = phoneme_parser.match(syllables[sindex])
         phonemes = match.captures("phonemes")
@@ -22,11 +22,11 @@ def getPhonemetaglist(sequence):
         for pindex in range(len(phonemes)):
             tagsequence = tag_parser.findall(tags[pindex])
             phonemetags.append({'ipa': phonemes[pindex], 'tags': tagsequence})
-        phonemetaglist.append({'phonemes': phonemetags})
-    return phonemetaglist
+        phonemedetails.append({'phonemes': phonemetags})
+    return phonemedetails
 
 def getPhonemelist(sequence):
-    phonemetaglist = getPhonemetaglist(sequence)
+    phonemetaglist = parse_phonemetags(sequence)
     phonemes =''
     for sylindex in range(len(phonemetaglist)):
         for phonemeindex in range(len(phonemetaglist[sylindex]['phonemes'])):
