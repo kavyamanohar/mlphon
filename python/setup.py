@@ -5,7 +5,7 @@ setup(
     version=open('VERSION').read().strip(),
     entry_points={
         'console_scripts': [
-            'mlg2p = mlphon.g2p:main',
+            'mlphoneticanalysis = mlphon.phonetic_analysis:main',
             'mlipa = mlphon.ml2ipa:main',
             'mlsyllablize = mlphon.syllablizer:main'
         ],

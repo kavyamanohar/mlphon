@@ -2,7 +2,7 @@ import csv
 import unittest
 import sys
 import os
-from mlphon import G2P
+from mlphon import Phonetic_analyser
 
 CURR_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 
@@ -14,7 +14,7 @@ class AnalyserGeneratorTests(unittest.TestCase):
         # rewind
         self.csvfile.seek(0)
         self.data = csv.reader(self.csvfile, dialect)
-        self.g2p = G2P()
+        self.g2p = Phonetic_analyser()
 
     def tearDown(self):
         self.csvfile.close()
