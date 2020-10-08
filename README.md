@@ -28,7 +28,7 @@ It will give the result
 
     from mlphon import Phonetic_analyser
     mlphon = Phonetic_analyser()
-    mlphon.split2syllables('കേരളം')
+    mlphon.analyse('കേരളം')
 
 It gives the result as a sequence of ipa and associated phonetic tags.
 
@@ -98,7 +98,7 @@ A typical use case of phonetic analysis is to create a phonetic lexicon to be us
 
     from mlphon import Phonetic_analyser, split_as_phonemes
     mlphon = Phonetic_analyser()
-    split_as_phonemes(mlphon.analyse('ഇന്ത്യ'))
+    split_as_phonemes(mlphon.analyse('ഇന്ത്യയുടെ'))
 
 It results in the output:
 
