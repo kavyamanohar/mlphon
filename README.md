@@ -16,9 +16,9 @@ To start using this python library
 
 The following python snippet will split a word in Malayalam script into syllables.
 
-    from mlphon import Phonetic_analyser
+    from mlphon import PhoneticAnalyser
     mlphon = Phonetic_analyser()
-    mlphon.split2syllables('കേരളം')
+    mlphon.split_to_syllables('കേരളം')
 
 It will give the result
 
@@ -26,8 +26,8 @@ It will give the result
 
 ### Phonetically analyse a Malayalam Word
 
-    from mlphon import Phonetic_analyser
-    mlphon = Phonetic_analyser()
+    from mlphon import PhoneticAnalyser
+    mlphon = PhoneticAnalyser()
     mlphon.analyse('കേരളം')
 
 It gives the result as a sequence of ipa and associated phonetic tags.
@@ -36,9 +36,9 @@ It gives the result as a sequence of ipa and associated phonetic tags.
 
 ### Malayalam g2p : Grapheme to Phoneme conversion
 
-    from mlphon import Phonetic_analyser
-    mlphon = Phonetic_analyser()
-    mlphon.convertg2p('കാറ്റ്')
+    from mlphon import PhoneticAnalyser
+    mlphon = PhoneticAnalyser()
+    mlphon.grapheme_to_phonemes('കാറ്റ്')
 
 It gives the ipa sequence as output.
 
@@ -46,9 +46,9 @@ It gives the ipa sequence as output.
 
 ### Malayalam p2g : Phoneme to Grapheme conversion
 
-    from mlphon import Phonetic_analyser
-    mlphon = Phonetic_analyser()
-    mlphon.convertp2g('kaːṯṯ')
+    from mlphon import PhoneticAnalyser
+    mlphon = PhoneticAnalyser()
+    mlphon.phoneme_to_grapheme('kaːṯṯ')
 
 It gives the corresponding grapheme sequences as output. See that it gives two possible sequences, one of which is obsolete.
 
@@ -96,8 +96,8 @@ Outputfile contents:
 
 A typical use case of phonetic analysis is to create a phonetic lexicon to be used in Automatic Speech Recognition or Text to Speech Synthesis. The phonetic representation with each phoneme separated by a space can be obtained as below:
 
-    from mlphon import Phonetic_analyser, split_as_phonemes
-    mlphon = Phonetic_analyser()
+    from mlphon import PhoneticAnalyser, split_as_phonemes
+    mlphon = PhoneticAnalyser()
     split_as_phonemes(mlphon.analyse('ഇന്ത്യയുടെ'))
 
 It results in the output:
@@ -106,8 +106,8 @@ It results in the output:
 
 The phonetic representation with each syllable separated by a space can be obtained as below:
 
-    from mlphon import Phonetic_analyser, split_as_syllables
-    mlphon = Phonetic_analyser()
+    from mlphon import PhoneticAnalyser, split_as_syllables
+    mlphon = PhoneticAnalyser()
     split_as_syllables(mlphon.analyse('ഇന്ത്യയുടെ'))
 
 It results in the output:
