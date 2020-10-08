@@ -6,8 +6,6 @@ setup(
     entry_points={
         'console_scripts': [
             'mlphon = mlphon.phonetic_analysis:main',
-            'mlipa = mlphon.ml2ipa:main',
-            'mlsyllablize = mlphon.syllablizer:main'
         ],
     }
 )
