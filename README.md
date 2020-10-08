@@ -10,210 +10,109 @@ Using Virtual Environment (https://docs.python.org/3/library/venv.html) is recom
 
 To start using this python library
 
-    $ pip install mlphon
+     pip install mlphon
 
 ### Syllablize a Malayalam Word
 
 The following python snippet will split a word in Malayalam script into syllables.
 
-    from mlphon import Syllablizer
-    syl = Syllablizer()
-    syl.syllablize('കേരളം')
+    from mlphon import PhoneticAnalyser
+    mlphon = Phonetic_analyser()
+    mlphon.split_to_syllables('കേരളം')
 
 It will give the result
 
     ['കേ', 'ര', 'ളം']
 
-It can be invoked from the command line using the command
+### Phonetically analyse a Malayalam Word
 
-    $ mlsyllablize
+    from mlphon import PhoneticAnalyser
+    mlphon = PhoneticAnalyser()
+    mlphon.analyse('കേരളം')
 
-For the input 
-
-    സഫലമീയാത്ര
-
-the output would be
-
-
-    ['സ', 'ഫ', 'ല', 'മീ', 'യാ', 'ത്ര']
-
-#### More details on using mlsyllablize
-
-    $ mlsyllablize --help
-    usage: mlsyllablize [-h] [-i INFILE] [-o OUTFILE]  optional arguments:
-    -h, --help
-                    show this help message and exit
-    -i INFILE, --input INFILE
-                    source of analysis data
-    -o OUTFILE, --output OUTFILE
-                    target of generated strings
-
-
-This command can take input from a text file and write the generated IPA to another text file
-
-    $mlsyllablize -i path/to/inputfile.txt -o path/to/outputfile.txt
-
-## g2p conversion for Malayalam. Malayalam script would be turned to syllablized IPA sequence along with detailed phonetic feature tag
-
-To **analyse** the Malayalam script into IPA along with the details of all vowels, vowelsigns, type of consonant etc. as tags, use the following python snippet:
-
-    from mlphon import G2P
-    analyser = G2P()
-    analyser.analyse('കേരളം')
-
-It would give the output
-
-    [(('<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS><BoS>ɾ<flapped><alveolar>a<schwa><EoS><BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>', 0.0),))]
-
-To **generate** Malayalam script from the phonetic details, use the following python-snippet
-
-    from mlphon import G2P
-    generator = G2P()
-    generator.generate('<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS><BoS>ɾ<flapped><alveolar>a<schwa><EoS><BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>')
-
-It would give the output
-
-    (('കേരളം', 0.0),)
-
-
-You can invoke the command below for the same purpose.
-
-    $ mlg2p -a
-
-Give the input 
-
-    കാവ്യ
-
-It will give you the result of g2p analysis as:
-
-    <BoS>k<plosive><voiceless><unaspirated><velar>aː<v_sign><EoS><BoS>ʋ<approximant><labiodental><virama>j<glide><palatal>a<schwa><EoS>
-
-
-To **generate** the Malayalam script from the phonetic script and the tags  use the command:
-
-    $ mlg2p -g
-
-Give the input and press Enter.
-
-    <BoS>p<plosive><voiceless><unaspirated><labial>aː<v_sign><EoS><BoS>l<chil><EoS>
-
-It will return you the corresponding malayalam script
-
-    പാൽ
-
-The command line interface allows to read from a text file and write the result of analysis or generation to a text file.
-
-    $ mlg2p -g -i path/to/inputfile.txt -o path/to/outputfile.txt
-
-Here `path/to/outputfile.txt` contains the IPA along with tags. The result of its analysis is written to `path/to/outputfile.txt`
-
-#### More details on using `$ mlg2p`
-
-    $ mlg2p --help
-    usage: mlg2p [-h] [-i INFILE] [-o OUTFILE] [-a] [-g] [-v]
-    optional arguments:
-    -h, --help           
-                        show this help message and exit
-    -i INFILE, --input INFILE
-                        source of analysis data
-    -o OUTFILE, --output OUTFILE
-                        target of generated strings
-    -a, --analyse        Analyse the input file strings
-    -g, --generate       Generate the input file strings
-    -v, --verbose        print verbosely while processing
-
-### IPA and Malayalam script Conversions
-
-For grapheme to IPA analysis, use the code snippet:
-
-    from mlphon import IPA
-    analyser = IPA()
-    analyser.analyse("കേരളം")
-
-This would give the result
-
-    (('keːɾaɭam<anuswara>', 0.0),)
-
-`<anauswara>, <visarga>, <chillu> <zwnj>` tags are explicitly shown in the IPA analysis.
-
-For Malayalam script grapheme generation from IPA
-
-    from mlphon import IPA
-    generator = IPA()
-    generator.generate('keːɾaɭam<anuswara>')
-
-The result would be:
-
-    (('കേരളം', 0.0),)
-
-There can be multiple results in this generation. Please ignore the irrelevant ones, if any.
-
-The following command lets you do the same things
-
-    $ mlipa
-
-#### `mlipa` Command line usage
-
-    $ mlipa --help
-    usage: mlipa [-h] [-i INFILE] [-o OUTFILE] [-a] [-g] [-v]
-    optional arguments:
-    -h, --help           show this help message and exit
-    -i INFILE, --input INFILE
-                    source of analysis data
-    -o OUTFILE, --output OUTFILE
-                    target of generated strings
-    -a, --analyse   Analyse the input file strings
-    -g, --generate  Generate the input file strings
-    -v, --verbose   print verbosely while processing
-
-Tag Parse Functions
--------------------
-
-The analysis function of G2P returns the output with tags in angle brackets.The following functions parses and separates tags, syllables and phoneme sequences.
-
-
-Using getPhonemelist()
------------
-
-    from mlphon import G2P, getPhonemelist
-    g2p = G2P()
-    analysis = g2p.analyse('കേരളം')
-    for item in analysis:
-      getPhonemelist(item[0])
-
-Gives
-
-      'k eː ɾ a ɭ a m'
-
-
-
-Using  getPhonemetaglist()
------------
-
-
-    from mlphon import G2P, getPhonemetaglist
-    g2p = G2P()
-    analysis = g2p.analyse('കേരളം')
-    for item in analysis:
-      getPhonemetaglist(item[0])
-
-Gives a list of dictionary objects
-
+It gives the result as a sequence of ipa and associated phonetic tags.
 
     [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
 
-Using getSyllablelist()
-------------------
+### Malayalam g2p : Grapheme to Phoneme conversion
 
-    from mlphon import G2P, getSyllablelist
-    g2p = G2P()
-    analysis = g2p.analyse('കേരളം')
-    for item in analysis:
-      getSyllablelist(item[0])
+    from mlphon import PhoneticAnalyser
+    mlphon = PhoneticAnalyser()
+    mlphon.grapheme_to_phonemes('കാറ്റ്')
 
-It gives the syllable separated output as:
+It gives the ipa sequence as output.
 
-    ['k<plosive><voiceless><unaspirated><velar>eː<v_sign>', 'ɾ<flapped><alveolar>a<schwa>', 'ɭ<lateral><retroflex>a<schwa>m<anuswara>']
+    ['kaːṯṯ']
+
+### Malayalam p2g : Phoneme to Grapheme conversion
+
+    from mlphon import PhoneticAnalyser
+    mlphon = PhoneticAnalyser()
+    mlphon.phoneme_to_grapheme('kaːṯṯ')
+
+It gives the corresponding grapheme sequences as output. See that it gives two possible sequences, one of which is obsolete.
+
+    ['കാറ്റ്', 'കാഺ്ഺ്']
+
+
+### Command Line Interface for the above operations: `mlphon`
+
+    usage: 
+    mlphon [-h] [-s] [-a] [-p] [-g] [-i INFILE] [-o OUTFILE] [-v]
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -s, --syllablize      Syllablize the input Malayalam string
+    -a, --analyse         Phonetically analyse the input Malayalam string
+    -p, --tophoneme       Transcribe the input Malayalam grapheme to phoneme
+                            sequence
+    -g, --tographeme      Transcribe the input phoneme sequence to Malayalam
+                            grapheme
+    -i INFILE, --input INFILE
+                            source of analysis data
+    -o OUTFILE, --output OUTFILE
+                            target of generated strings
+    -v, --verbose         print verbosely while processing
+
+For example to perform g2p operation on a set of words stored in input.txt with one Malayalam word per line,
+
+    mlphon -p -i path/to/inputfile.txt -o path/to/outputfile.txt
+
+Inputfile contents:
+
+    cat path/to/inputfile.txt
+    അകത്തുള്ളത്
+    അകപ്പെട്ടത്
+    അകലെ
+
+Outputfile contents:
+
+	അകത്തുള്ളത് akat̪t̪uɭɭat̪
+	അകപ്പെട്ടത്        akappeʈʈat̪
+	അകലെ    akale
+
+
+### Application: Using `mlphon` to create a phonetic lexicon
+
+A typical use case of phonetic analysis is to create a phonetic lexicon to be used in Automatic Speech Recognition or Text to Speech Synthesis. The phonetic representation with each phoneme separated by a space can be obtained as below:
+
+    from mlphon import PhoneticAnalyser, split_as_phonemes
+    mlphon = PhoneticAnalyser()
+    split_as_phonemes(mlphon.analyse('ഇന്ത്യയുടെ'))
+
+It results in the output:
+
+    'i n̪ t̪ j a j u ʈ e'
+
+The phonetic representation with each syllable separated by a space can be obtained as below:
+
+    from mlphon import PhoneticAnalyser, split_as_syllables
+    mlphon = PhoneticAnalyser()
+    split_as_syllables(mlphon.analyse('ഇന്ത്യയുടെ'))
+
+It results in the output:
+
+    'i n̪t̪ja ju ʈe'
 
 ## For Developers
 
