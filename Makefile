@@ -17,3 +17,4 @@ clean:
 test: g2p.a python
 	python3 test/syllablizer-test.py
 	python3 test/g2p-test.py
+	python3 test/p2g-test.py	

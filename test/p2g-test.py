@@ -9,20 +9,21 @@ CURR_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 class AnalyserTests(unittest.TestCase):
 
     def setUp(self):
-        self.csvfile = open(os.path.join(CURR_DIR, 'data_g2p.tsv'))
+        self.csvfile = open(os.path.join(CURR_DIR, 'data_p2g.tsv'))
+        # Correct the csv read file using tab delimiter
         dialect = csv.Sniffer().sniff(self.csvfile.read(1024))
         # rewind
         self.csvfile.seek(0)
-        self.data_g2p = csv.reader(self.csvfile, dialect)
+        self.data_p2g = csv.reader(self.csvfile, dialect)
         self.mlphon = PhoneticAnalyser()
 
     def tearDown(self):
         self.csvfile.close()
 
     def test_analyse(self):
-        for row in self.data_g2p:
+        for row in self.data_p2g:
             with self.subTest():
-                anals = self.mlphon.grapheme_to_phoneme(row[0])
+                anals = self.mlphon.phoneme_to_grapheme(row[0])
                 match = False
                 self.assertTrue(len(anals) != 0,
                                 'Analysis failed for ' + row[0])
