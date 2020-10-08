@@ -101,7 +101,7 @@ class Phonetic_analyser:
                 phonemedetails= parse_phonemetags(result[0])
             return phonemedetails
 
-    def convert_g2p(self, token):
+    def convertg2p(self, token):
         if not self.g2pconverter:
             self.g2pconverter = self.getG2Pconverter()
         g2p_results = self.g2pconverter.lookup(token)
@@ -110,7 +110,7 @@ class Phonetic_analyser:
         else:
             return g2p_results
 
-    def convert_p2g(self, token):
+    def convertp2g(self, token):
         if not self.p2gconverter:
             self.p2gconverter = self.getP2Gconverter()
         p2g_results = self.p2gconverter.lookup(token)
@@ -166,7 +166,7 @@ def main():
                 options.outfile.write(line+"\t"+str(phonemedetails)+"\n")
         if options.tophoneme:
             try:
-                phonemes = phonetic_analyser.convert_g2p(line)
+                phonemes = phonetic_analyser.convertg2p(line)
             except ValueError as error_instance:
                 print(error_instance)
                 options.outfile.write(line+"\t"+"?"+"\n")
@@ -175,7 +175,7 @@ def main():
                     options.outfile.write(line+"\t"+result[0]+"\n")
         if options.tographeme:
             try:
-                graphemes = phonetic_analyser.convert_p2g(line)
+                graphemes = phonetic_analyser.convertp2g(line)
             except ValueError as error_instance:
                 print(error_instance)
                 options.outfile.write(line+"\t"+"?"+"\n")
