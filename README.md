@@ -92,7 +92,7 @@ Outputfile contents:
 	അകലെ    akale
 
 
-### Application: Using `mlphon' to create a phonetic lexicon
+### Application: Using `mlphon` to create a phonetic lexicon
 
 A typical use case of phonetic analysis is to create a phonetic lexicon to be used in Automatic Speech Recognition or Text to Speech Synthesis. The phonetic representation with each phoneme separated by a space can be obtained as below:
 
