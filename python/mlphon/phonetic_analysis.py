@@ -14,30 +14,30 @@ def getTransducer(fsa):
     istr.close()
     return transducers[0]
 
-class Phonetic_analyser:
 
+class PhoneticAnalyser:
     def __init__(self):
         self.fsa_syl = None
         self.fsa_ptags = None
         self.fsa_g2p = None
         # Set resource path for syllable splitting
-        resource_path_syllables = 'data/syllablizer.a'
+        resource_path_syllables = "data/syllablizer.a"
         if resource_exists(__name__, resource_path_syllables):
             self.fsa_syl = resource_filename(__name__, resource_path_syllables)
         if not self.fsa_syl:
-            raise ValueError('Could not read the fsa.')
+            raise ValueError("Could not read the fsa.")
         # Set resource path for phonetic analysis
-        resource_path_phonetictag = 'data/g2p.a'
+        resource_path_phonetictag = "data/g2p.a"
         if resource_exists(__name__, resource_path_phonetictag):
             self.fsa_ptags = resource_filename(__name__, resource_path_phonetictag)
         if not self.fsa_ptags:
-            raise ValueError('Could not read the fsa.')
+            raise ValueError("Could not read the fsa.")
         # Set resource path for g2p splitting
-        resource_path_g2p = 'data/ml2ipa.a'
+        resource_path_g2p = "data/ml2ipa.a"
         if resource_exists(__name__, resource_path_g2p):
             self.fsa_g2p = resource_filename(__name__, resource_path_g2p)
         if not self.fsa_g2p:
-            raise ValueError('Could not read the fsa.')
+            raise ValueError("Could not read the fsa.")
         self.syllabletransducer = None
         self.syllablizer = None
         self.phonetictransducer = None
@@ -79,15 +79,15 @@ class Phonetic_analyser:
         p2gconverter.lookup_optimize()
         return p2gconverter
 
-    def split2syllables(self, token):
+    def split_to_syllables(self, token):
         if not self.syllabletransducer:
             self.syllablizer = self.getSyllableanalyser()
         syllablizer_results = self.syllablizer.lookup(token)
         if not syllablizer_results:
-            raise ValueError('Could not split '+ token + ' into syllables')
+            raise ValueError("Could not split " + token + " into syllables")
         else:
             for result in syllablizer_results:
-                syllables= parse_syllabletags(result[0])
+                syllables = parse_syllabletags(result[0])
             return syllables
 
     def analyse(self, token):
@@ -95,55 +95,85 @@ class Phonetic_analyser:
             self.phoneticanalyser = self.getPhoneticanalyser()
         analysis_results = self.phoneticanalyser.lookup(token)
         if not analysis_results:
-            raise ValueError('Could not analyse '+ token )
+            raise ValueError("Could not analyse " + token)
         else:
             for result in analysis_results:
                 phonemedetails = parse_phonemetags(result[0])
             return phonemedetails
 
-    def convertg2p(self, token):
+    def grapheme_to_phoneme(self, token):
         if not self.g2pconverter:
             self.g2pconverter = self.getG2Pconverter()
         g2p_results = self.g2pconverter.lookup(token)
         if not g2p_results:
-            raise ValueError('Could not perform g2p on '+ token )
+            raise ValueError("Could not perform g2p on " + token)
         else:
             phonemes = []
             for result in g2p_results:
                 phonemes.append(result[0])
             return phonemes
 
-    def convertp2g(self, token):
+    def phoneme_to_grapheme(self, token):
         if not self.p2gconverter:
             self.p2gconverter = self.getP2Gconverter()
         p2g_results = self.p2gconverter.lookup(token)
         if not p2g_results:
-            raise ValueError('Could not perform p2g on '+ token )
+            raise ValueError("Could not perform p2g on " + token)
         else:
             graphemes = []
             for result in p2g_results:
                 graphemes.append(result[0])
             return graphemes
 
+
 def main():
     """Invoke a simple CLI analyser or generator."""
     a = argparse.ArgumentParser()
-    a.add_argument('-s', '--syllablize', action='store_true',
-                help="Syllablize the input Malayalam string")
-    a.add_argument('-a', '--analyse', action='store_true',
-                help="Phonetically analyse the input Malayalam string")
-    a.add_argument('-p', '--tophoneme', action='store_true',
-                help="Transcribe the input Malayalam grapheme to phoneme sequence")
-    a.add_argument('-g', '--tographeme', action='store_true',
-                help="Transcribe the input phoneme sequence to Malayalam grapheme")
-    a.add_argument('-i', '--input', metavar="INFILE", type=open,
-                   dest="infile", help="source of analysis data")
-    a.add_argument('-o', '--output', metavar="OUTFILE", type=argparse.FileType('w+', encoding='UTF-8'),
-                   dest="outfile", help="target of generated strings")
-    a.add_argument('-v', '--verbose', action='store_true',
-                   help="print verbosely while processing")
+    a.add_argument(
+        "-s",
+        "--syllablize",
+        action="store_true",
+        help="Syllablize the input Malayalam string",
+    )
+    a.add_argument(
+        "-a",
+        "--analyse",
+        action="store_true",
+        help="Phonetically analyse the input Malayalam string",
+    )
+    a.add_argument(
+        "-p",
+        "--tophoneme",
+        action="store_true",
+        help="Transcribe the input Malayalam grapheme to phoneme sequence",
+    )
+    a.add_argument(
+        "-g",
+        "--tographeme",
+        action="store_true",
+        help="Transcribe the input phoneme sequence to Malayalam grapheme",
+    )
+    a.add_argument(
+        "-i",
+        "--input",
+        metavar="INFILE",
+        type=open,
+        dest="infile",
+        help="source of analysis data",
+    )
+    a.add_argument(
+        "-o",
+        "--output",
+        metavar="OUTFILE",
+        type=argparse.FileType("w+", encoding="UTF-8"),
+        dest="outfile",
+        help="target of generated strings",
+    )
+    a.add_argument(
+        "-v", "--verbose", action="store_true", help="print verbosely while processing"
+    )
     options = a.parse_args()
-    phonetic_analyser = Phonetic_analyser()
+    phonetic_analyser = PhoneticAnalyser()
     if not options.infile:
         options.infile = stdin
     if not options.outfile:
@@ -152,43 +182,44 @@ def main():
         print("reading from", options.infile.name)
     for line in options.infile:
         line = line.strip()
-        if not line or line == '':
+        if not line or line == "":
             continue
         if options.syllablize:
             try:
-                syllables = phonetic_analyser.split2syllables(line)
+                syllables = phonetic_analyser.split_to_syllables(line)
             except ValueError as error_instance:
                 print(error_instance)
-                options.outfile.write(line+"\t"+'?'+"\n")
+                options.outfile.write(line + "\t" + "?" + "\n")
             else:
-                options.outfile.write(line+"\t"+str(syllables)+"\n")
+                options.outfile.write(line + "\t" + str(syllables) + "\n")
         if options.analyse:
             try:
                 phonemedetails = phonetic_analyser.analyse(line)
             except ValueError as error_instance:
                 print(error_instance)
-                options.outfile.write(line+"\t"+"?"+"\n")
+                options.outfile.write(line + "\t" + "?" + "\n")
             else:
-                options.outfile.write(line+"\t"+str(phonemedetails)+"\n")
+                options.outfile.write(line + "\t" + str(phonemedetails) + "\n")
         if options.tophoneme:
             try:
-                phonemes = phonetic_analyser.convertg2p(line)
+                phonemes = phonetic_analyser.grapheme_to_phoneme(line)
             except ValueError as error_instance:
                 print(error_instance)
-                options.outfile.write(line+"\t"+"?"+"\n")
+                options.outfile.write(line + "\t" + "?" + "\n")
             else:
                 for result in phonemes:
-                    options.outfile.write(line+"\t"+result+"\n")
+                    options.outfile.write(line + "\t" + result + "\n")
         if options.tographeme:
             try:
-                graphemes = phonetic_analyser.convertp2g(line)
+                graphemes = phonetic_analyser.phoneme_to_grapheme(line)
             except ValueError as error_instance:
                 print(error_instance)
-                options.outfile.write(line+"\t"+"?"+"\n")
+                options.outfile.write(line + "\t" + "?" + "\n")
             else:
                 for result in graphemes:
-                    options.outfile.write(line+"\t"+result+"\n")
+                    options.outfile.write(line + "\t" + result + "\n")
     exit(0)
+
 
 if __name__ == "__main__":
     main()
