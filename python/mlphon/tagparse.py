@@ -25,16 +25,23 @@ def parse_phonemetags(sequence):
         phonemedetails.append({'phonemes': phonemetags})
     return phonemedetails
 
-def getPhonemelist(sequence):
-    phonemetaglist = parse_phonemetags(sequence)
+def split_as_phonemes(phonemedetails):
     phonemes =''
-    for sylindex in range(len(phonemetaglist)):
-        for phonemeindex in range(len(phonemetaglist[sylindex]['phonemes'])):
+    for sylindex in range(len(phonemedetails)):
+        for phonemeindex in range(len(phonemedetails[sylindex]['phonemes'])):
             if len(phonemes) !=0:
                 phonemes+=' '
-            phonemes+=(str(phonemetaglist[sylindex]['phonemes'][phonemeindex]['ipa']))
+            phonemes+=(str(phonemedetails[sylindex]['phonemes'][phonemeindex]['ipa']))
     return(phonemes)
 
+def split_as_syllables(phonemedetails):
+    phonemes =''
+    for sylindex in range(len(phonemedetails)):
+        if len(phonemes) !=0:
+            phonemes+=' '
+        for phonemeindex in range(len(phonemedetails[sylindex]['phonemes'])):
+            phonemes+=(str(phonemedetails[sylindex]['phonemes'][phonemeindex]['ipa']))
+    return(phonemes)
 
 def main():
     exit(0)

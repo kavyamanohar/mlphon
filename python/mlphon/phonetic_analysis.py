@@ -98,7 +98,7 @@ class Phonetic_analyser:
             raise ValueError('Could not analyse '+ token )
         else:
             for result in analysis_results:
-                phonemedetails= parse_phonemetags(result[0])
+                phonemedetails = parse_phonemetags(result[0])
             return phonemedetails
 
     def convertg2p(self, token):
@@ -108,7 +108,10 @@ class Phonetic_analyser:
         if not g2p_results:
             raise ValueError('Could not perform g2p on '+ token )
         else:
-            return g2p_results
+            phonemes = []
+            for result in g2p_results:
+                phonemes.append(result[0])
+            return phonemes
 
     def convertp2g(self, token):
         if not self.p2gconverter:
@@ -117,7 +120,10 @@ class Phonetic_analyser:
         if not p2g_results:
             raise ValueError('Could not perform p2g on '+ token )
         else:
-            return p2g_results
+            graphemes = []
+            for result in p2g_results:
+                graphemes.append(result[0])
+            return graphemes
 
 def main():
     """Invoke a simple CLI analyser or generator."""
@@ -172,7 +178,7 @@ def main():
                 options.outfile.write(line+"\t"+"?"+"\n")
             else:
                 for result in phonemes:
-                    options.outfile.write(line+"\t"+result[0]+"\n")
+                    options.outfile.write(line+"\t"+result+"\n")
         if options.tographeme:
             try:
                 graphemes = phonetic_analyser.convertp2g(line)
@@ -181,7 +187,7 @@ def main():
                 options.outfile.write(line+"\t"+"?"+"\n")
             else:
                 for result in graphemes:
-                    options.outfile.write(line+"\t"+result[0]+"\n")
+                    options.outfile.write(line+"\t"+result+"\n")
     exit(0)
 
 if __name__ == "__main__":
