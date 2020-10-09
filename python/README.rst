@@ -25,7 +25,7 @@ To start using this python library
      pip install mlphon
 
 Syllablize a Malayalam Word
------
+---------------------------
 
 The following python snippet will split a word in Malayalam script into syllables.
 
@@ -38,7 +38,7 @@ It will give the result
     ['കേ', 'ര', 'ളം']
 
 Phonetically analyse a Malayalam Word
------
+-------------------------------------
 
     from mlphon import PhoneticAnalyser
     mlphon = PhoneticAnalyser()
@@ -49,7 +49,7 @@ It gives the result as a sequence of ipa and associated phonetic tags.
     [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
 
 Malayalam g2p : Grapheme to Phoneme conversion
------
+----------------------------------------------
 
     from mlphon import PhoneticAnalyser
     mlphon = PhoneticAnalyser()
@@ -60,7 +60,7 @@ It gives the ipa sequence as output.
     ['kaːṯṯ']
 
 Malayalam p2g : Phoneme to Grapheme conversion
------
+----------------------------------------------
     from mlphon import PhoneticAnalyser
     mlphon = PhoneticAnalyser()
     mlphon.phoneme_to_grapheme('kaːṯṯ')
@@ -71,7 +71,7 @@ It gives the corresponding grapheme sequences as output. See that it gives two p
 
 
 Command Line Interface for the above operations: `mlphon`
------
+----------------------------------------------------------
 
     usage: 
     mlphon [-h] [-s] [-a] [-p] [-g] [-i INFILE] [-o OUTFILE] [-v]
@@ -81,13 +81,9 @@ Command Line Interface for the above operations: `mlphon`
     -s, --syllablize      Syllablize the input Malayalam string
     -a, --analyse         Phonetically analyse the input Malayalam string
     -p, --tophoneme       Transcribe the input Malayalam grapheme to phoneme
-                            sequence
-    -g, --tographeme      Transcribe the input phoneme sequence to Malayalam
-                            grapheme
-    -i INFILE, --input INFILE
-                            source of analysis data
-    -o OUTFILE, --output OUTFILE
-                            target of generated strings
+    -g, --tographeme      Transcribe the input phoneme to Malayalam grapheme
+    -i INFILE, --input INFILE   source of analysis data
+    -o OUTFILE, --output OUTFILE    target of generated strings
     -v, --verbose         print verbosely while processing
 
 For example to perform g2p operation on a set of words stored in input.txt with one Malayalam word per line,
@@ -108,7 +104,7 @@ Outputfile contents:
 	അകലെ    akale
 
 Application: Using `mlphon` to create a phonetic lexicon
------
+--------------------------------------------------------
 
 A typical use case of phonetic analysis is to create a phonetic lexicon to be used in Automatic Speech Recognition or Text to Speech Synthesis. The phonetic representation with each phoneme separated by a space can be obtained as below:
 
