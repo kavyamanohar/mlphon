@@ -24,7 +24,7 @@ The following python snippet will split a word in Malayalam script into syllable
   .. code-block:: python
 
     from mlphon import PhoneticAnalyser
-    mlphon = Phonetic_analyser()
+    mlphon = PhoneticAnalyser()
     mlphon.split_to_syllables('കേരളം')
 
 It will give the result
@@ -51,7 +51,7 @@ Malayalam g2p : Grapheme to Phoneme conversion
 
     from mlphon import PhoneticAnalyser
     mlphon = PhoneticAnalyser()
-    mlphon.grapheme_to_phonemes('കാറ്റ്')
+    mlphon.grapheme_to_phoneme('കാറ്റ്')
 
 It gives the ipa sequence as output.
 
