@@ -1,4 +1,4 @@
-from .phonetic_analysis import PhoneticAnalyser
+from .phonetic_analyser import PhoneticAnalyser
 from .tagparse import (
     parse_syllabletags,
     parse_phonemetags,

@@ -5,7 +5,7 @@ setup(
     version=open("VERSION").read().strip(),
     entry_points={
         "console_scripts": [
-            "mlphon = mlphon.phonetic_analysis:main",
+            "mlphon = mlphon.cli:main",
         ],
     },
 )
