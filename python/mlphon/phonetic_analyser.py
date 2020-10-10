@@ -34,7 +34,7 @@ class PhoneticAnalyser:
         optimized syllable transducer
     phonetictransducer :
         transducer derived from fsa_ptags
-    phoneticanalyser : 
+    phoneticanalyser :
         optimized phonetic analyser as a transducer
     g2ptransducer :
         transducer derived from fsa_g2p
@@ -54,10 +54,8 @@ class PhoneticAnalyser:
     analyse()
     grapheme_to_phoneme()
     phoneme_to_grapheme()
-        
+
     """
-
-
 
     def __init__(self):
         self.fsa_syl = None
@@ -117,14 +115,14 @@ class PhoneticAnalyser:
         if not self.g2ptransducer:
             self.g2ptransducer = getTransducer(self.fsa_g2p)
         p2gconverter = libhfst.HfstTransducer(self.g2ptransducer)
-        #p2gconverter is obtained by inverting the g2ptransducer
+        # p2gconverter is obtained by inverting the g2ptransducer
         p2gconverter.invert()
         p2gconverter.remove_epsilons()
         p2gconverter.lookup_optimize()
         return p2gconverter
 
     def split_to_syllables(self, word):
-        '''Split Malayalam word to syllables
+        """Split Malayalam word to syllables
 
         Parameters
         ----------
@@ -146,7 +144,7 @@ class PhoneticAnalyser:
         mlphon.syllablize('കേരളം') Returns
 
         ['കേ', 'ര', 'ളം']
-        '''
+        """
         if not self.syllabletransducer:
             self.syllablizer = self.getSyllableanalyser()
         syllablizer_results = self.syllablizer.lookup(word)
@@ -158,7 +156,7 @@ class PhoneticAnalyser:
             return syllables
 
     def analyse(self, word):
-        '''Split Malayalam word to syllables
+        """Split Malayalam word to syllables
 
         Parameters
         ----------
@@ -180,9 +178,9 @@ class PhoneticAnalyser:
         mlphon.analyse('കേരളം') Returns
 
         [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]},
-         {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, 
+         {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]},
          {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
-        '''
+        """
         if not self.phoneticanalyser:
             self.phoneticanalyser = self.getPhoneticanalyser()
         analysis_results = self.phoneticanalyser.lookup(word)
@@ -194,7 +192,7 @@ class PhoneticAnalyser:
             return phonemedetails
 
     def grapheme_to_phoneme(self, token):
-        '''Convert Malayalam grapheme to phonemes in IPA
+        """Convert Malayalam grapheme to phonemes in IPA
 
         Parameters
         ----------
@@ -210,15 +208,15 @@ class PhoneticAnalyser:
         -------
         list
             a list of strings. Each string is a valid pronunciation in International Phonetic alphabet
-        
+
         Example
         -------
-        mlphon.grapheme_to_phoneme('കാറ്റ്') 
-        
+        mlphon.grapheme_to_phoneme('കാറ്റ്')
+
         Returns
 
         ['kaːṯṯ']
-        '''
+        """
         if not self.g2pconverter:
             self.g2pconverter = self.getG2Pconverter()
         g2p_results = self.g2pconverter.lookup(token)
@@ -231,7 +229,7 @@ class PhoneticAnalyser:
             return phonemes
 
     def phoneme_to_grapheme(self, token):
-        '''Convert IPA to Malayalam grapheme if possible
+        """Convert IPA to Malayalam grapheme if possible
 
         Parameters
         ----------
@@ -249,12 +247,12 @@ class PhoneticAnalyser:
             a list of strings. Each string is a possible Malayalam graphemic representation of given IPA sequence
         Example
         -------
-        mlphon.phoneme_to_grapheme('kaːṯṯ') 
-        
+        mlphon.phoneme_to_grapheme('kaːṯṯ')
+
         Returns
 
         ['കാറ്റ്', 'കാഺ്ഺ്']
-        '''
+        """
         if not self.p2gconverter:
             self.p2gconverter = self.getP2Gconverter()
         p2g_results = self.p2gconverter.lookup(token)
