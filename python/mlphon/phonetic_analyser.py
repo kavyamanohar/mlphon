@@ -46,10 +46,10 @@ class PhoneticAnalyser:
 
     Methods
     -------
-    getSyllableanalyser(self)
-    getPhoneticanalyser(self)
-    getG2Pconverter(self)
-    getP2Gconverter(self)
+    getSyllableanalyser()
+    getPhoneticanalyser()
+    getG2Pconverter()
+    getP2Gconverter()
     split_to_syllables()
     analyse()
     grapheme_to_phoneme()
@@ -127,7 +127,7 @@ class PhoneticAnalyser:
         Parameters
         ----------
         word : str
-            A word in Malayalam
+            A word in Malayalam, example : 'കേരളം'
 
         Raises
         ------
@@ -137,7 +137,7 @@ class PhoneticAnalyser:
         Returns
         -------
         list
-            a list of strings is returned
+            a list of strings
 
         Example
         -------
@@ -161,7 +161,7 @@ class PhoneticAnalyser:
         Parameters
         ----------
         word : str
-            A word in Malayalam
+            A word in Malayalam, example: 'കേരളം'
 
         Raises
         ------
@@ -171,15 +171,26 @@ class PhoneticAnalyser:
         Returns
         -------
         list
-            a list of dict items. Each element in the list is a dict of two keys - ipa and tags
+            a list of dict items. Each element in the list is a dict. See example
 
         Example
         -------
-        mlphon.analyse('കേരളം') Returns
+        mlphon.analyse('കേരളം')
 
-        [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]},
-         {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]},
-         {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
+        [{'phonemes': [{'ipa': 'k',
+                        'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']},
+                       {'ipa': 'eː',
+                        'tags': ['v_sign']}]},
+        {'phonemes': [{'ipa': 'ɾ',
+                       'tags': ['flapped', 'alveolar']},
+                       {'ipa': 'a',
+                        'tags': ['schwa']}]},
+        {'phonemes': [{'ipa': 'ɭ',
+                       'tags': ['lateral', 'retroflex']},
+                      {'ipa': 'a',
+                       'tags': ['schwa']},
+                     {'ipa': 'm',
+                      'tags': ['anuswara']}]}]
         """
         if not self.phoneticanalyser:
             self.phoneticanalyser = self.getPhoneticanalyser()
@@ -191,13 +202,13 @@ class PhoneticAnalyser:
                 phonemedetails = parse_phonemetags(result[0])
             return phonemedetails
 
-    def grapheme_to_phoneme(self, token):
+    def grapheme_to_phoneme(self, word):
         """Convert Malayalam grapheme to phonemes in IPA
 
         Parameters
         ----------
         word : str
-            A word in Malayalam
+            A word in Malayalam, example: 'കാറ്റ്'
 
         Raises
         ------
@@ -207,7 +218,7 @@ class PhoneticAnalyser:
         Returns
         -------
         list
-            a list of strings. Each string is a valid pronunciation in International Phonetic alphabet
+            a list of strings. Each string represents a valid pronunciation of input string in IPA format
 
         Example
         -------
@@ -219,22 +230,22 @@ class PhoneticAnalyser:
         """
         if not self.g2pconverter:
             self.g2pconverter = self.getG2Pconverter()
-        g2p_results = self.g2pconverter.lookup(token)
+        g2p_results = self.g2pconverter.lookup(word)
         if not g2p_results:
-            raise ValueError("Could not perform g2p on " + token)
+            raise ValueError("Could not perform g2p on " + word)
         else:
             phonemes = []
             for result in g2p_results:
                 phonemes.append(result[0])
             return phonemes
 
-    def phoneme_to_grapheme(self, token):
+    def phoneme_to_grapheme(self, ipa_sequence):
         """Convert IPA to Malayalam grapheme if possible
 
         Parameters
         ----------
-        word : str
-            An IPA sequence
+        ipa_sequence : str
+            An IPA sequence, example: 'kaːṯṯ'
 
         Raises
         ------
@@ -244,7 +255,7 @@ class PhoneticAnalyser:
         Returns
         -------
         list
-            a list of strings. Each string is a possible Malayalam graphemic representation of given IPA sequence
+            a list of strings. Each string is a possible Malayalam word, corresponding to given IPA sequence
         Example
         -------
         mlphon.phoneme_to_grapheme('kaːṯṯ')
@@ -255,9 +266,9 @@ class PhoneticAnalyser:
         """
         if not self.p2gconverter:
             self.p2gconverter = self.getP2Gconverter()
-        p2g_results = self.p2gconverter.lookup(token)
+        p2g_results = self.p2gconverter.lookup(ipa_sequence)
         if not p2g_results:
-            raise ValueError("Could not perform p2g on " + token)
+            raise ValueError("Could not perform p2g on " + ipa_sequence)
         else:
             graphemes = []
             for result in p2g_results:
