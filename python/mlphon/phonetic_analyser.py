@@ -18,7 +18,7 @@ def getTransducer(fsa):
 
 class PhoneticAnalyser:
     """
-    A class used to represent an Phonetic Analyser
+    A class used to represent a Phonetic Analyser
 
     Attributes
     ----------
