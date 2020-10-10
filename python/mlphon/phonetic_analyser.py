@@ -3,7 +3,7 @@ from sys import stderr, stdin, stdout
 import os
 import libhfst
 from pkg_resources import resource_filename, resource_exists
-from .tagparse import parse_syllabletags, parse_phonemetags
+from .utilities import parse_syllabletags, parse_phonemetags
 
 
 def getTransducer(fsa):

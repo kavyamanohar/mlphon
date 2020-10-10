@@ -1,5 +1,5 @@
 from .phonetic_analyser import PhoneticAnalyser
-from .tagparse import (
+from .utilities import (
     parse_syllabletags,
     parse_phonemetags,
     split_as_phonemes,
