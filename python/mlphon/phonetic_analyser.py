@@ -195,7 +195,7 @@ class PhoneticAnalyser:
                       'tags': ['anuswara']}]}]
         """
         if not self.phoneticanalyser:
-            self.phoneticanalyser = self.getPhoneticanalyser()
+            self.phoneticanalyser = self.getPhoneticAnalyser()
         analysis_results = self.phoneticanalyser.lookup(word)
         if not analysis_results:
             raise ValueError("Could not analyse " + word)
