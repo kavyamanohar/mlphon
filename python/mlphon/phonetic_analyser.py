@@ -7,7 +7,7 @@ from .utilities import parse_syllabletags, parse_phonemetags
 
 
 def getTransducer(fsa):
-    """"Returns transducer from finite state automata"""
+    """Returns transducer from finite state automata"""
     istr = libhfst.HfstInputStream(fsa)
     transducers = []
     while not (istr.is_eof()):
@@ -46,10 +46,10 @@ class PhoneticAnalyser:
 
     Methods
     -------
-    getSyllableanalyser()
-    getPhoneticanalyser()
-    getG2Pconverter()
-    getP2Gconverter()
+    getSyllableAnalyser()
+    getPhoneticAnalyser()
+    getG2PConverter()
+    getP2GConverter()
     split_to_syllables()
     analyse()
     grapheme_to_phoneme()
@@ -87,7 +87,7 @@ class PhoneticAnalyser:
         self.g2pconverter = None
         self.p2gconverter = None
 
-    def getPhoneticanalyser(self):
+    def getPhoneticAnalyser(self):
         if not self.phonetictransducer:
             self.phonetictransducer = getTransducer(self.fsa_ptags)
         phoneticanalyser = libhfst.HfstTransducer(self.phonetictransducer)
@@ -95,7 +95,7 @@ class PhoneticAnalyser:
         phoneticanalyser.lookup_optimize()
         return phoneticanalyser
 
-    def getSyllableanalyser(self):
+    def getSyllableAnalyser(self):
         if not self.syllabletransducer:
             self.syllabletransducer = getTransducer(self.fsa_syl)
         syllablizer = libhfst.HfstTransducer(self.syllabletransducer)
@@ -103,7 +103,7 @@ class PhoneticAnalyser:
         syllablizer.lookup_optimize()
         return syllablizer
 
-    def getG2Pconverter(self):
+    def getG2PConverter(self):
         if not self.g2ptransducer:
             self.g2ptransducer = getTransducer(self.fsa_g2p)
         g2pconverter = libhfst.HfstTransducer(self.g2ptransducer)
@@ -111,7 +111,7 @@ class PhoneticAnalyser:
         g2pconverter.lookup_optimize()
         return g2pconverter
 
-    def getP2Gconverter(self):
+    def getP2GConverter(self):
         if not self.g2ptransducer:
             self.g2ptransducer = getTransducer(self.fsa_g2p)
         p2gconverter = libhfst.HfstTransducer(self.g2ptransducer)
@@ -146,7 +146,7 @@ class PhoneticAnalyser:
         ['കേ', 'ര', 'ളം']
         """
         if not self.syllabletransducer:
-            self.syllablizer = self.getSyllableanalyser()
+            self.syllablizer = self.getSyllableAnalyser()
         syllablizer_results = self.syllablizer.lookup(word)
         if not syllablizer_results:
             raise ValueError("Could not split " + word + " into syllables")
@@ -161,11 +161,13 @@ class PhoneticAnalyser:
         Parameters
         ----------
         word : str
+
             A word in Malayalam, example: 'കേരളം'
 
         Raises
         ------
         ValueError
+
             If the word passed in not a valid Malayalam word
 
         Returns
@@ -229,7 +231,7 @@ class PhoneticAnalyser:
         ['kaːṯṯ']
         """
         if not self.g2pconverter:
-            self.g2pconverter = self.getG2Pconverter()
+            self.g2pconverter = self.getG2PConverter()
         g2p_results = self.g2pconverter.lookup(word)
         if not g2p_results:
             raise ValueError("Could not perform g2p on " + word)
@@ -265,7 +267,7 @@ class PhoneticAnalyser:
         ['കാറ്റ്', 'കാഺ്ഺ്']
         """
         if not self.p2gconverter:
-            self.p2gconverter = self.getP2Gconverter()
+            self.p2gconverter = self.getP2GConverter()
         p2g_results = self.p2gconverter.lookup(ipa_sequence)
         if not p2g_results:
             raise ValueError("Could not perform p2g on " + ipa_sequence)
@@ -274,11 +276,3 @@ class PhoneticAnalyser:
             for result in p2g_results:
                 graphemes.append(result[0])
             return graphemes
-
-
-def main():
-    exit(0)
-
-
-if __name__ == "__main__":
-    main()

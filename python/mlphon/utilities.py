@@ -3,9 +3,6 @@ from sys import stderr, stdin, stdout
 import regex
 import argparse
 
-# from flask import Flask, jsonify, render_template, request
-
-
 def parse_syllabletags(sequence):
     """Parse a string with syllable tags to return the list of syllables
 
@@ -39,7 +36,7 @@ def parse_syllabletags(sequence):
 
 
 def parse_phonemetags(sequence):
-    """Parse a string with syllable and phoneme tags to return the list of  in dict format
+    """Parse a string with syllable and phoneme tags to return the list of dict
 
     Parameters
     ----------
