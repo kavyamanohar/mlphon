@@ -42,12 +42,7 @@ Phonetically analyse a Malayalam Word
 
 It gives the result as a sequence of ipa and associated phonetic tags.
 
-    [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']},
-                   {'ipa': 'eː', 'tags': ['v_sign']}]},
-     {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']},
-                   {'ipa': 'a', 'tags': ['schwa']}]},
-     {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']},
-                   {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
+    [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['schwa']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['schwa']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
 
 Malayalam g2p : Grapheme to Phoneme conversion
 ----------------------------------------------
