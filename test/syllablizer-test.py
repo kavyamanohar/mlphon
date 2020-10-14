@@ -8,21 +8,19 @@ from mlphon import PhoneticAnalyser
 CURR_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 
 # കല	['ക', 'ല']
+# പാൽ	['പാൽ']
 
 class AnalyserGeneratorTests(unittest.TestCase):
     def setUp(self):
         self.csvfile = open(os.path.join(CURR_DIR, "data_syllable.tsv"))
-        dialect = csv.Sniffer().sniff(self.csvfile.read(1024), delimiters="\t")
-        # rewind
-        self.csvfile.seek(0)
-        self.data = csv.reader(self.csvfile, dialect)
+        self.datasyl = csv.reader(self.csvfile, delimiter="\t")
         self.mlphon = PhoneticAnalyser()
 
     def tearDown(self):
         self.csvfile.close()
 
     def test_analyse(self):
-        for row in self.data:
+        for row in self.datasyl:
             with self.subTest():
                 anals = self.mlphon.split_to_syllables(row[0])
                 match = False
