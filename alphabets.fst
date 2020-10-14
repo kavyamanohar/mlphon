@@ -16,7 +16,7 @@
 #others# = യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
 #consonants# = #velars# #palatals# #retroflexes# #dentals# #alveolars# #labials# #others#
 
-#chillus# = ൺ ൻ ർ ൽ ൾ ൿ
+#chillus# = ൺ ൻ ർ ൽ ൾ ൿ ൔ ൕ ൖ
 % invisible characters zwj and zwnj
 #zerowidth# = ‌‍
 #letters# = #vowels# #signs# #consonants# #chillus# #zerowidth#

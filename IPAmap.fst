@@ -77,7 +77,7 @@ $otherconsonants$ = (യ:{j<glide><palatal>}|\
                     ള:{ɭ<lateral><retroflex>}|\
                     ഴ:{ɻ<approximant><retroflex>}|\
                     റ:{r<trill><alveolar>})
-$chillu$ = ൺ:{ɳ<chil>} | ൻ:{n<chil>} |ർ:{r<chil>} |ൽ:{l<chil>} | ൾ:{ɭ<chil>}| ൿ:{k<chil>}
+$chillu$ = ൺ:{ɳ<chil>} | ൻ:{n<chil>} |ർ:{r<chil>} |ൽ:{l<chil>} | ൾ:{ɭ<chil>}| ൿ:{k<chil>}| ൔ:{m<chil>} | ൕ:{j<chil>} | ൖ:{ɻ<chil>}
 
 $IPAmap$ = ( $MISC$ |$virama$ | $zwj$ | $zwnj$ | $vowel$ | $vowelsign$ | $anuswara$ | $visarga$ | $velar$ | $palatal$ | $retroflex$ | $dental$ | $alveolar$ | $labial$ | $otherconsonants$ |$chillu$)*
 
