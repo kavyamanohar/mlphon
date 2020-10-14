@@ -1,8 +1,7 @@
 #include "alphabets.fst"
 
-$vowel$ = [#vowels#][#anuswara##visarga#]? % അ അം ഇം അഃ .
-$chillu$ = [#chillus#] %ൽ ൻ ൾ
-$cv$ = [#consonants#] [#vowelsigns#]?[#anuswara##visarga#]? %ക കി ദുഃ ജം വൈ
+$vowel$ = [#vowels#][#anuswara##visarga##chillus#]? % അ അം ഇം അഃ .അൻ
+$cv$ = [#consonants#] [#vowelsigns#]?[#anuswara##visarga##chillus#]? %ക കി ദുഃ ജം വൈ സ്കർ
 
 % It is not a syllable but a part of many conjunts and word end syllables.
 $c_virama$ = [#consonants#][#virama#]
@@ -24,7 +23,7 @@ $samvruthokaram2_wordend$ = $samvruthokaram2$ <em>:<>
 % Passes കല അൻവർ കരിഷ്മ as it is
 % Passes സന്തോഷ്<em> ആപ്പ്<em> എനിയ്ക്കു്<em> അതിനു്<em> after removing <em>
 % Does not pass സന്തോഷ് ആപ്പ്
-$syllable1$ = ($vowel$ | $chillu$ | $cv$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$ | $samvruthokaram1_wordend$ | $samvruthokaram2_wordend$ )
+$syllable1$ = ($vowel$ | $cv$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$ | $samvruthokaram1_wordend$ | $samvruthokaram2_wordend$ )
 
 % Set of syllables(between word tags) are passed afer adding syllable tag
 $word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)* [<EoW>]
@@ -33,6 +32,6 @@ $word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)* [<EoW>]
 % ആപ്പ്, അതിനു്, അവയ്ക്കു് does not pass through $word$
 % But ആപ്പ് അതിനു്, അവയ്ക്കു് passes through $word_with_virama_at_end$ || $word$
 $syllable$ = $word$ | ($word_with_virama_at_end$ || $word$  )
-$tests$ = <BoW> (കല | അൻവർ | കരിഷ്മ | സന്തോഷ് | ആപ്പ് | അംബുജം |അതിന് |അതിനു |അതിനു് | എനിക്കു് | എനിയ്ക്കു് |ദുഃഖം | സന്തോഷ് ) <EoW>
+$tests$ = <BoW> (കല | അൻവർ | കരിഷ്മ | സന്തോഷ് | ആപ്പ് | അംബുജം |അതിന് |അതിനു |അതിനു് | എനിക്കു് | എനിയ്ക്കു് |ദുഃഖം | സന്തോഷ് | ആക്റ്റ് | ആക്‌റ്റ്) <EoW>
 $tests$ ||  $syllable$  >> "syllable.test.a"
 $syllable$

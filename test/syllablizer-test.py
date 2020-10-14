@@ -7,15 +7,11 @@ from mlphon import PhoneticAnalyser
 
 CURR_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 
-# tests=[
-#     {
-#         text: "ga",
-#         syllables: ["g","a"]
-#     }
-# ]
+# കല	['ക', 'ല']
+
 class AnalyserGeneratorTests(unittest.TestCase):
     def setUp(self):
-        self.csvfile = open(os.path.join(CURR_DIR, "syllable-test.tsv"))
+        self.csvfile = open(os.path.join(CURR_DIR, "data_syllable.tsv"))
         dialect = csv.Sniffer().sniff(self.csvfile.read(1024), delimiters="\t")
         # rewind
         self.csvfile.seek(0)
