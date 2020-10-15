@@ -2,11 +2,19 @@
 
 ALPHABET = [#allsymbols#]
 
-% ADD inherent vowel to a consonant
-% if followed by <EoS> tag or virama or visaraga
-$schwa-addition1$ = [#IPAconsonants#] [#consonanttags#]+ <>:{a<schwa>} ^-> (__ <EoS>)
-$schwa-addition2$ = [#IPAconsonants#] [#consonanttags#]+ <>:{a<schwa>} ^-> (__ m <anuswara>)
-$schwa-addition3$ = [#IPAconsonants#] [#consonanttags#]+ <>:{a<schwa>} ^-> (__ <visarga>)
+% Add inherent vowel to consonants if it is
+% -  At the end of Syllable 
+% eg: വ -> [{'phonemes': [{'ipa': 'ʋ', 'tags': ['approximant', 'labiodental']}, {'ipa': 'a', 'tags': ['inherentvowel']}]}]
+% - Followed by anuswara 
+%  eg: വം -> [{'phonemes': [{'ipa': 'ʋ', 'tags': ['approximant', 'labiodental']}, {'ipa': 'a', 'tags': ['inherentvowel']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
+% - Followed by visarga
+%  eg: വഃ: [{'phonemes': [{'ipa': 'ʋ', 'tags': ['approximant', 'labiodental']}, {'ipa': 'a', 'tags': ['inherentvowel', 'visarga']}]}]
+% - Followed by chillu 
+% eg: വർ [{'phonemes': [{'ipa': 'ʋ', 'tags': ['approximant', 'labiodental']}, {'ipa': 'a', 'tags': ['inherentvowel']}, {'ipa': 'r', 'tags': ['chil']}]}]
 
-$schwa$ =  $schwa-addition1$ || $schwa-addition2$ || $schwa-addition3$
+
+#inherentvowelcontext# = #chiltag# #anuswaratag# #visargatag# <EoS>
+$inherentvowel-addition$ = [#IPAconsonants#] [#consonanttags#]+ <>:{a<schwa>} ^-> (__ [#IPAconsonants#]? [#inherentvowelcontext#])
+
+$schwa$ =  $inherentvowel-addition$
 $schwa$
