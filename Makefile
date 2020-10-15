@@ -4,15 +4,19 @@ SUBDIRS = python fst
 .PHONY: all subdirs $(SUBDIRS)
 
 all: syllablizer.a g2p.a ml2ipa.a python
-g2p.a: wordfilter.a syllable.a IPAmap.a schwa.a tta_nta.a reph.a rephexp.a removeWordBoundary.a
-syllablizer.a: wordfilter.a syllable.a removeWordBoundary.a
-ml2ipa.a: g2p.a tagfilter.a
+
+g2p.a: fst
+syllablizer.a: fst
+ml2ipa.a: fst
 subdirs: $(SUBDIRS)
+
+
 $(SUBDIRS):
 	$(MAKE) -C $@
 
-clean:
-	-rm -f *.a *.dot *~ Makefile.bak tests.all *.gen*.txt
+clean: 
+	# -rm -f *.a *.dot *~ Makefile.bak tests.all *.gen*.txt
+	-rm -f fst/*.a 
 
 test: g2p.a python
 	python3 test/syllablizer-test.py
