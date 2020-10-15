@@ -1,5 +1,5 @@
 include Makefile.inc
-SUBDIRS = python
+SUBDIRS = python fst
 
 .PHONY: all subdirs $(SUBDIRS)
 
