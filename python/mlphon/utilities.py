@@ -12,8 +12,8 @@ def parse_syllabletags(sequence):
         String with syllable boundary tags <BoS> and <EoS>
         Example 1 : '<BoS>കേ<EoS><BoS>ര<EoS><BoS>ളം<EoS>'
         Example 2 : '<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS>
-                        <BoS>ɾ<flapped><alveolar>a<schwa><EoS>
-                        <BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>'
+                        <BoS>ɾ<flapped><alveolar>a<inherentvowel><EoS>
+                        <BoS>ɭ<lateral><retroflex>a<inherentvowel>m<anuswara><EoS>'
 
     Returns
     -------
@@ -26,9 +26,9 @@ def parse_syllabletags(sequence):
     returns : ['കേ', 'ര', 'ളം']
 
     parse_syllabletags('<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS>
-                        <BoS>ɾ<flapped><alveolar>a<schwa><EoS>
-                        <BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>')
-    returns: ['k<plosive><voiceless><unaspirated><velar>eː<v_sign>', '<ɾ<flapped><alveolar>a<schwa>', 'ɭ<lateral><retroflex>a<schwa>m<anuswara>']
+                        <BoS>ɾ<flapped><alveolar>a<inherentvowel><EoS>
+                        <BoS>ɭ<lateral><retroflex>a<inherentvowel>m<anuswara><EoS>')
+    returns: ['k<plosive><voiceless><unaspirated><velar>eː<v_sign>', '<ɾ<flapped><alveolar>a<inherentvowel>', 'ɭ<lateral><retroflex>a<inherentvowel>m<anuswara>']
     """
     sylBoundary_parser = regex.compile(r"<BoS>(.+?)<EoS>")
     syllables = sylBoundary_parser.findall(sequence)
@@ -43,8 +43,8 @@ def parse_phonemetags(sequence):
     sequence : str
         String with syllable boundary tags and phonetic tags
         Example 1 : '<BoS>k<plosive><voiceless><unaspirated><velar>eː<v_sign><EoS>
-                        <BoS>ɾ<flapped><alveolar>a<schwa><EoS>
-                        <BoS>ɭ<lateral><retroflex>a<schwa>m<anuswara><EoS>'
+                        <BoS>ɾ<flapped><alveolar>a<inherentvowel><EoS>
+                        <BoS>ɭ<lateral><retroflex>a<inherentvowel>m<anuswara><EoS>'
 
     Returns
     -------
@@ -58,11 +58,11 @@ def parse_phonemetags(sequence):
         {'phonemes': [{'ipa': 'ɾ',
                        'tags': ['flapped', 'alveolar']},
                        {'ipa': 'a',
-                        'tags': ['schwa']}]},
+                        'tags': ['inherentvowel']}]},
         {'phonemes': [{'ipa': 'ɭ',
                        'tags': ['lateral', 'retroflex']},
                       {'ipa': 'a',
-                       'tags': ['schwa']},
+                       'tags': ['inherentvowel']},
                      {'ipa': 'm',
                       'tags': ['anuswara']}]}]
 
@@ -97,11 +97,11 @@ def split_as_phonemes(phonemedetails):
         {'phonemes': [{'ipa': 'ɾ',
                        'tags': ['flapped', 'alveolar']},
                        {'ipa': 'a',
-                        'tags': ['schwa']}]},
+                        'tags': ['inherentvowel']}]},
         {'phonemes': [{'ipa': 'ɭ',
                        'tags': ['lateral', 'retroflex']},
                       {'ipa': 'a',
-                       'tags': ['schwa']},
+                       'tags': ['inherentvowel']},
                      {'ipa': 'm',
                       'tags': ['anuswara']}]}]
     Returns
@@ -134,11 +134,11 @@ def split_as_syllables(phonemedetails):
         {'phonemes': [{'ipa': 'ɾ',
                        'tags': ['flapped', 'alveolar']},
                        {'ipa': 'a',
-                        'tags': ['schwa']}]},
+                        'tags': ['inherentvowel']}]},
         {'phonemes': [{'ipa': 'ɭ',
                        'tags': ['lateral', 'retroflex']},
                       {'ipa': 'a',
-                       'tags': ['schwa']},
+                       'tags': ['inherentvowel']},
                      {'ipa': 'm',
                       'tags': ['anuswara']}]}]
     Returns

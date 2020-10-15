@@ -12,9 +12,8 @@ ALPHABET = [#allsymbols#]
 % - Followed by chillu 
 % eg: വർ [{'phonemes': [{'ipa': 'ʋ', 'tags': ['approximant', 'labiodental']}, {'ipa': 'a', 'tags': ['inherentvowel']}, {'ipa': 'r', 'tags': ['chil']}]}]
 
-
 #inherentvowelcontext# = #chiltag# #anuswaratag# #visargatag# <EoS>
-$inherentvowel-addition$ = [#IPAconsonants#] [#consonanttags#]+ <>:{a<schwa>} ^-> (__ [#IPAconsonants#]? [#inherentvowelcontext#])
+$inherentvowel-addition$ = [#IPAconsonants#] [#consonanttags#]+ <>:{a<inherentvowel>} ^-> (__ [#IPAconsonants#]? [#inherentvowelcontext#])
 
-$schwa$ =  $inherentvowel-addition$
-$schwa$
+$inherentvowel$ =  $inherentvowel-addition$
+$inherentvowel$

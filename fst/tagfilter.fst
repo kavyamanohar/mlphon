@@ -1,7 +1,7 @@
 #include "alphabets.fst"
 
 % %%%%%%%Previous rule for tag removal. Retaining as a  comment here
-ALPHABET =[#IPAs##chiltag##visargatag# #anuswaratag##zerowidthtag#] [#voweltag# #vowelsigntag# #consonanttags# #viramatag#  #schwatag# #boundarytags#]:<>
+ALPHABET =[#IPAs##chiltag##visargatag# #anuswaratag##zerowidthtag#] [#voweltag# #vowelsigntag# #consonanttags# #viramatag#  #inherentvoweltag# #boundarytags#]:<>
 $tagfilter$ = .*
 %%%%%%%%%%%%%%
 

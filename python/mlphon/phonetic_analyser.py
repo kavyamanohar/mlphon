@@ -186,11 +186,11 @@ class PhoneticAnalyser:
         {'phonemes': [{'ipa': 'ɾ',
                        'tags': ['flapped', 'alveolar']},
                        {'ipa': 'a',
-                        'tags': ['schwa']}]},
+                        'tags': ['inherentvowel']}]},
         {'phonemes': [{'ipa': 'ɭ',
                        'tags': ['lateral', 'retroflex']},
                       {'ipa': 'a',
-                       'tags': ['schwa']},
+                       'tags': ['inherentvowel']},
                      {'ipa': 'm',
                       'tags': ['anuswara']}]}]
         """
