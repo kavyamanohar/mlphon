@@ -58,28 +58,30 @@ Vowel Sounds in Malayalam and their IPA
 
 /rɨ/ /rɨː/ /lɨ/ /lɨː/
 
-IPA mapping of all Malayalam characters
+IPA mapping of all Malayalam alphabets in Unicode
 =====================================
-
-## Standalone Vowels
 
 ### Long and Short Vowels
 
-|അ   |ആ|ഇ  |ഈ|ഉ  |ഊ |എ |ഏ |ഒ  |ഓ |
-|---  |---|---|---|---|---|---|---|---|---|
-|a    |aː |i  |iː  |u  |uː |e  |eː |o  |oː |
+|Standalone Vowles|അ   |ആ|ഇ  |ഈ|ഉ  |ഊ |എ |ഏ |ഒ  |ഓ |
+|---              |---  |---|---|---|---|---|---|---|---|---|
+|Vowel Signs	  |     |ാ |ി   |ീ   |ു  |ൂ  |െ  |േ  |ൊ|ോ|
+|IPA               |a    |aː |i  |iː  |u  |uː |e  |eː |o  |oː |
+
 
 ### Diphthongs
 
-|ഐ   |ഔ|
-|---  |---|
-|ai̯   |au̯  |
+|Standalone |ഐ   |ഔ   |
+|---        |---   |---  |
+|Vowel Signs|ൈ   |ൗ ൌ|
+|IPA        |ai̯   |au̯    |
 
 ### Vocalics
 
-|ഋ  |ൠ |ഌ  |ൡ |
-|---|---|---|---|
-|rɨ  |rɨ |lɨ  |lɨː |
+|Standalone |ഋ  |ൠ |ഌ  |ൡ |
+|---        |---|---|---|--- |
+|Vowel Signs|ൃ   |ൄ  |ൢ   |ൣ   |
+|IPA      |rɨ  |rɨ |lɨ  |lɨː |
 
 
 Finite State Transducers for Phonetic Analysis
@@ -88,6 +90,8 @@ Finite State Transducers for Phonetic Analysis
 ## Define Alphabets and Tags
 
 ## Identify Malayalam Words
+
+## Unicode Normalization ?
 
 ## Identify and split to Malayalam Syllables
 
