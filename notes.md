@@ -17,8 +17,46 @@ Malayalam belongs to the family of [Brahmic](https://en.wikipedia.org/wiki/Brahm
 Consonantal Sounds in Malayalam and their IPA
 =============================================
 
+| Position→→ Manner↓|Bilabial|Labiodental|Dental|Alveolar|Postalveolar | Retroflex|Palatal|Velar|Glottal|
+|---                 |---     |---        |---   |---     |---          |---       |---    |---  |---    |
+|Unaspirated Plosives|p      b|           |t̪    d̪|t      d|             |ʈ        ɖ|c      ɟ|k   ɡ|       |
+|Aspirated Plosives  |pʰ     bʰ|          |t̪ʰ   d̪ʰ|        |             |ʈʰ      ɖʰ|cʰ    ɟʰ|kʰ  ɡʰ|       |
+|Nasals              |m       |          |n̪      |n       |             |ɳ         |ɲ      |ŋ    |       |
+|Trill               |        |          |       |r       |             |          |       |     |       |
+|Tap                 |        |          |       |ɾ       |             |          |       |     |       |
+|Fricative           |        |f         |       |s       |             |ʂ         |ɕ      |     |h      |
+|Approximant         |        |         ʋ|       |        |             |ɻ         |j      |     |       |
+|Lateral Approximant |        |          |       |l       |             |ɭ         |       |     |       |
+
+
 Vowel Sounds in Malayalam and their IPA
-========================================
+=======================================
+
+## Short Vowels
+
+|         |front|central|back|
+|---      |---  |---    |--- |
+|close    |i    |       |u   |
+|close-mid|e    |       |o   |
+|mid      |     |       |    |
+|open     |a    |       |    |
+
+## Long Vowels
+
+|         |front|central|back|
+|---      |---   |---    |--- |
+|close    |iː    |       |uː  |
+|close-mid|eː    |       |oː  |
+|mid      |      |       |    |
+|open     |aː    |       |    |
+
+## Diphthongs
+
+/ai/ /au/
+
+## Vocalics
+
+/rɨ/ /rɨː/ /lɨ/ /lɨː/
 
 IPA mapping of all Malayalam characters
 =====================================
@@ -38,9 +76,10 @@ Finite State Transducers for Phonetic Analysis
 
 - No inherent vowel added in this stage
 
-## Contextual substitution 1: Adding Inherent Vowel
+## Contextual substitution 1: Adding Inherent Vowel, Schwa
 
 - See മ: നമോ, നമഃ, നമ്മൾ, സമം
+- അവന് 
 
 ## Contextual substitution 2: Conjuncts of alveolar plosives
 
