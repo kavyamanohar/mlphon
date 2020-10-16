@@ -38,7 +38,7 @@ Vowel Sounds in Malayalam and their IPA
 |---      |---  |---    |--- |
 |close    |i    |       |u   |
 |close-mid|e    |       |o   |
-|mid      |     |       |    |
+|mid      |     |  ə    |    |
 |open     |a    |       |    |
 
 ## Long Vowels
@@ -52,7 +52,7 @@ Vowel Sounds in Malayalam and their IPA
 
 ## Diphthongs
 
-/ai/ /au/
+/ai/	/au/
 
 ## Vocalics
 
@@ -60,6 +60,27 @@ Vowel Sounds in Malayalam and their IPA
 
 IPA mapping of all Malayalam characters
 =====================================
+
+## Standalone Vowels
+
+### Long and Short Vowels
+
+|അ   |ആ|ഇ  |ഈ|ഉ  |ഊ |എ |ഏ |ഒ  |ഓ |
+|---  |---|---|---|---|---|---|---|---|---|
+|a    |aː |i  |iː  |u  |uː |e  |eː |o  |oː |
+
+### Diphthongs
+
+|ഐ   |ഔ|
+|---  |---|
+|ai̯   |au̯  |
+
+### Vocalics
+
+|ഋ  |ൠ |ഌ  |ൡ |
+|---|---|---|---|
+|rɨ  |rɨ |lɨ  |lɨː |
+
 
 Finite State Transducers for Phonetic Analysis
 ==================================
