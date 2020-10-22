@@ -1,7 +1,7 @@
 % DEFINING ALL POSSIBLE INPUT AND OUTPUT ALPHABET SETS
 
 #vowels# = അ ആ ഇ ഈ ഉ ഊ ഋ ൠ ഌ ൡ എ ഏ ഐ ഒ ഓ ഔ
-#vowelsigns# =  ാ ി ീ ൢ ൢ ു ൂ ൃ ൄ ൢ ൣ െ േ ൈ ൊ ോ  ൗ ൌ
+#vowelsigns# =  ാ ി ീ ൢ ൢ ു ൂ ൃ ൄ ൢ ൣ െ േ ൈ ൊ ോ ൗ ൌ
 #anuswara# = ം
 #visarga# = ഃ
 #virama# = ്
@@ -49,7 +49,6 @@
 
 #consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #labiodentalconsonanttag# #glottalconsonanttag# #otherconsonanttag# #plosivetag# #nasaltag# #fricativetag# #flappedtag# #lateraltag# #approximanttag# #glidetag# #trilltag#
 
-% #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
 #chiltag# = <chil>
 #zerowidthtag# = <zwj> <zwnj>
 #inherentvoweltag# = <inherentvowel>
@@ -57,8 +56,9 @@
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
 #lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #inherentvoweltag# #zerowidthtag#
 
-#space# = {\ }
+% #space# = {\ }
 % #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
+% #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
 
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯}
 #IPAvelar# = {k} {kʰ} {ɡ} {ɡʱ} {ŋ}
