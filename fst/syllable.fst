@@ -5,8 +5,7 @@ $cv$ = [#consonants#] [#vowelsigns#]?[#anuswara##visarga##chillus#]? %ക കി
 
 % It is not a syllable but a part of many conjunts and word end syllables.
 $c_virama$ = [#consonants#][#virama#]
-$samvruthokaram1$ = [#consonants#][ു][#virama#] % അതിനു്
-$samvruthokaram2$ = $c_virama$+ [#consonants#][ു][#virama#] % അവയ്ക്കു്
+$samvruthokaram$ = $c_virama$* [#consonants#][ു][#virama#] % അവയ്ക്കു്
 $conjunct$ = $c_virama$+ $cv$  % ക്ഷ ഗ്ദ്ധ ന്നു ദ്ധി  ഭ്രം
 $zwnjboundary$ = $c_virama$+ [#zerowidth#]
 
@@ -17,13 +16,12 @@ $word_with_virama_at_end$ = [<BoW>] [#letters#]+ [#virama#] <>:<em> [<EoW>]
 
 % Select those conjuntcs with virama at word ends and  samvruthokaram,  removes <em> tag
 $c_virama_wordend$ = $c_virama$+ <em>:<>
-$samvruthokaram1_wordend$ = $samvruthokaram1$ <em>:<>
-$samvruthokaram2_wordend$ = $samvruthokaram2$ <em>:<>
+$samvruthokaram_wordend$ = $samvruthokaram$ <em>:<>
 
 % Passes കല അൻവർ കരിഷ്മ as it is
 % Passes സന്തോഷ്<em> ആപ്പ്<em> എനിയ്ക്കു്<em> അതിനു്<em> after removing <em>
 % Does not pass സന്തോഷ് ആപ്പ്
-$syllable1$ = ($vowel$ | $cv$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$ | $samvruthokaram1_wordend$ | $samvruthokaram2_wordend$ )
+$syllable1$ = ($vowel$ | $cv$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$  | $samvruthokaram_wordend$ )
 
 % Set of syllables(between word tags) are passed afer adding syllable tag
 $word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)* [<EoW>]
