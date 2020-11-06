@@ -26,6 +26,7 @@
 #viramatag# = <virama>
 #visargatag# = <visarga>
 #anuswaratag# = <anuswara>
+#schwatag# = <schwa>
 
 #velarconsonanttag# = <velar>
 #palatalconsonanttag# = <palatal>
@@ -54,12 +55,12 @@
 #inherentvoweltag# = <inherentvowel>
 #boundarytags# = <BoW> <EoW> <BoS> <EoS> <B>
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
-#lettertags# = #voweltag# #vowelsigntag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #inherentvoweltag# #zerowidthtag#
+#lettertags# = #voweltag# #vowelsigntag# #schwatag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #inherentvoweltag# #zerowidthtag#
 
 % #space# = {\ }
 % #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 % #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
-
+#schwa# = {Ə}
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯}
 #IPAvelar# = {k} {kʰ} {ɡ} {ɡʱ} {ŋ}
 #IPApalatal# = {t͡ʃ} {t͡ʃʰ} {ɟ} {ɟʱ} {ɲ}
@@ -70,7 +71,7 @@
 #IPAother# = {j} {ɾ} {l} {ʋ} {ʃ} {ʂ} {s} {ɦ} {ɭ} {ɻ} {r}
 #IPAconsonants# = #IPAvelar# #IPApalatal# #IPAretroflex# #IPAdental# #IPAalveolar# #IPAlabial# #IPAother#
 
-#IPAs# = #IPAvowels# #IPAconsonants#
+#IPAs# = #IPAvowels# #IPAconsonants# #schwa#
 
 %  #digitsarabic# = 0 1 2 3 4 5 6 7 8 9
 % #digitsmalayalam# = ൦ ൧	൨ ൩ ൪	൫ ൬	൭	൮ ൯
