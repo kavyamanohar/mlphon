@@ -42,13 +42,13 @@ It gives the result as a sequence of ipa and associated phonetic tags.
 
 It gives the ipa sequence as output.
 
-    ['kaːṯṯ']
+    ['kaːṯṯə']
 
 ### Malayalam p2g : Phoneme to Grapheme conversion
 
     from mlphon import PhoneticAnalyser
     mlphon = PhoneticAnalyser()
-    mlphon.phoneme_to_grapheme('kaːṯṯ')
+    mlphon.phoneme_to_grapheme('kaːṯṯə')
 
 It gives the corresponding grapheme sequences as output. See that it gives two possible sequences, one of which is obsolete.
 
@@ -87,8 +87,8 @@ Inputfile contents:
 
 Outputfile contents:
 
-	അകത്തുള്ളത് akat̪t̪uɭɭat̪
-	അകപ്പെട്ടത്        akappeʈʈat̪
+	അകത്തുള്ളത് akat̪t̪uɭɭat̪ə
+	അകപ്പെട്ടത്        akappeʈʈat̪ə
 	അകലെ    akale
 
 
