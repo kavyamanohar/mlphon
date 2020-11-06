@@ -8,9 +8,9 @@ $conjunct$ = $c_virama$* $cv$  % ക്ഷ ഗ്ദ്ധ ന്നു ദ്�
 $zwnjboundary$ = $c_virama$+ [#zerowidth#] % ക്‌റ്റ്
 
 % Word-end Virama indicated by adding an end marker tag <em>
-$virama_endmark$ = [<BoW>] [#letters#]+ [#virama#] <>:<em> [<EoW>] % eg സന്തോഷ് -> സന്തോഷ്<em>, ആപ്പ് -> ആപ്പ്<em>
+$virama_endmark$ = <BoW> [#letters#]+ [#virama#] <>:<em> <EoW> % eg സന്തോഷ് -> സന്തോഷ്<em>, ആപ്പ് -> ആപ്പ്<em>
 $c_virama_wordend$ = $c_virama$+ <em>:<> % removes <em> tag from conjuntcs with virama word ends
-$samvruthokaram_wordend$ = $samvruthokaram$ <em>:<> % removes <em> tag from conjuntcs with  samvruthokaram at word ends
+$samvruthokaram_wordend$ = $samvruthokaram$ <em>:<> % removes <em> tag from conjuncts with  samvruthokaram at word ends
 
 % % Word beginning with vowels indicated by <bm> tag
 % $vowel_beginmark$ = [<BoW>] <>:<bm> [#vowels#][#letters#]+ [<EoW>]% eg അമ്മ -> <bm>അമ്മ
@@ -22,7 +22,7 @@ $samvruthokaram_wordend$ = $samvruthokaram$ <em>:<> % removes <em> tag from conj
 $syllable1$ = ($vowel$ | $conjunct$ | $zwnjboundary$ | $c_virama_wordend$ | $samvruthokaram_wordend$)
 
 % Set of syllables(between word tags) are passed afer adding syllable tag
-$word$ = [<BoW>] (<>:<BoS> $syllable1$ <>:<EoS>)* [<EoW>]
+$word$ = <BoW> (<>:<BoS> $syllable1$ <>:<EoS>)* <EoW>
 
 % കല pass through $word$
 % ആപ്പ്, അതിനു്, അവയ്ക്കു് does not pass through $word$
