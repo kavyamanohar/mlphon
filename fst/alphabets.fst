@@ -60,7 +60,7 @@
 % #space# = {\ }
 % #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
 % #misc-tags# = <space> <exclamation> <comma> <period> <questionmark> <colon> <semocolon> <chil> <digits> <inherentvowel>
-#schwa# = {Ə}
+#schwa# = {ə}
 #IPAvowels# = {a} {aː} {i} {iː} {u} {uː} {rɨ} {rɨː} {lɨ} {lɨː} {e} {eː} {ai̯} {o} {oː} {au̯}
 #IPAvelar# = {k} {kʰ} {ɡ} {ɡʱ} {ŋ}
 #IPApalatal# = {t͡ʃ} {t͡ʃʰ} {ɟ} {ɟʱ} {ɲ}
