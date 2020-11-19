@@ -46,6 +46,7 @@
 #approximanttag# = <approximant>
 #glidetag# = <glide>
 #trilltag# = <trill>
+#rephtag# = <reph>
 
 
 #consonanttags# = #velarconsonanttag# #palatalconsonanttag# #retroflexconsonanttag# #dentalconsonanttag# #alveolarcosonanttag# #labiaalconsonanttag# #labiodentalconsonanttag# #glottalconsonanttag# #otherconsonanttag# #plosivetag# #nasaltag# #fricativetag# #flappedtag# #lateraltag# #approximanttag# #glidetag# #trilltag#
@@ -55,7 +56,7 @@
 #inherentvoweltag# = <inherentvowel>
 #boundarytags# = <BoW> <EoW> <BoS> <EoS> <B>
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
-#lettertags# = #voweltag# #vowelsigntag# #schwatag# #consonanttags# #viramatag# #visargatag# #anuswaratag# #chiltag# #inherentvoweltag# #zerowidthtag#
+#lettertags# = #voweltag# #vowelsigntag# #schwatag# #consonanttags# #rephtag# #viramatag# #visargatag# #anuswaratag# #chiltag# #inherentvoweltag# #zerowidthtag#
 
 % #space# = {\ }
 % #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
