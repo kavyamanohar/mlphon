@@ -4,7 +4,7 @@ $vowel$ = [#vowels#][#anuswara##visarga##chillus#]? % അ അം ഇം അഃ �
 $cv$ = [#consonants#] [#vowelsigns#]?[#anuswara##visarga##chillus#]? %ക കി ദുഃ ജം വൈ സ്കർ
 $c_virama$ = [#consonants#][#virama#] %ക്, ച്: Can be a syllable at word ends. Or part of a syllable
 $samvruthokaram$ = $c_virama$* [#consonants#][ു][#virama#] % യ്ക്കു്, അതിനു്: : Can be a syllable at word ends
-$conjunct$ = $c_virama$* $cv$  % ക്ഷ ഗ്ദ്ധ ന്നു ദ്ധി  ഭ്രം ക കി ദുഃ ജം വൈ സ്കർ : Stand-alone syllable at any word positions
+$conjunct$ = [#dotreph#]? $c_virama$* $cv$  % ക്ഷ ഗ്ദ്ധ ന്നു ദ്ധി  ഭ്രം ക കി ദുഃ ജം വൈ സ്കർ : Stand-alone syllable at any word positions
 $zwnjboundary$ = $c_virama$+ [#zerowidth#] % ക്‌റ്റ്
 
 % Word-end Virama indicated by adding an end marker tag <em>

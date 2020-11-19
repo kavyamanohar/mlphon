@@ -5,6 +5,7 @@
 #anuswara# = ം
 #visarga# = ഃ
 #virama# = ്
+#dotreph# = ൎ
 #signs# = #vowelsigns# #anuswara# #visarga# #virama#
 
 #velars# = ക ഖ ഗ ഘ ങ
@@ -14,7 +15,7 @@
 #dentals# = ത ഥ ദ ധ ന
 #labials# = പ ഫ ബ ഭ മ
 #others# = യ ര ല വ ശ ഷ സ ഹ ള ഴ റ
-#consonants# = #velars# #palatals# #retroflexes# #dentals# #alveolars# #labials# #others#
+#consonants# = #velars# #palatals# #retroflexes# #dentals# #alveolars# #labials# #others# #dotreph#
 
 #chillus# = ൺ ൻ ർ ൽ ൾ ൿ ൔ ൕ ൖ
 % invisible characters zwj and zwnj
@@ -27,6 +28,7 @@
 #visargatag# = <visarga>
 #anuswaratag# = <anuswara>
 #schwatag# = <schwa>
+#dotrephtag# = <dotreph>
 
 #velarconsonanttag# = <velar>
 #palatalconsonanttag# = <palatal>
@@ -56,7 +58,7 @@
 #inherentvoweltag# = <inherentvowel>
 #boundarytags# = <BoW> <EoW> <BoS> <EoS> <B>
 % #phonecharacteristic# = <unaspirated><voiceless><aspirated><voiced><nasal>
-#lettertags# = #voweltag# #vowelsigntag# #schwatag# #consonanttags# #rephtag# #viramatag# #visargatag# #anuswaratag# #chiltag# #inherentvoweltag# #zerowidthtag#
+#lettertags# = #voweltag# #vowelsigntag# #schwatag# #consonanttags# #rephtag# #viramatag# #visargatag# #anuswaratag# #chiltag# #inherentvoweltag# #zerowidthtag# #dotrephtag#
 
 % #space# = {\ }
 % #punct# ={\ } {\!}{\,}{\.}{\?}{\:}{\;}
