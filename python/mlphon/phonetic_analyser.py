@@ -24,7 +24,7 @@ class PhoneticAnalyser:
     ----------
     fsa_syl : fsa
         finite state automata for syllablizing
-    fsa_ptags : fsa
+    fsa_analysis : fsa
         finite state automata for phonetic tag analysis
     fsa_g2p : fsa
         finite state automata for grapheme-phoneme correspondence system
@@ -33,7 +33,7 @@ class PhoneticAnalyser:
     self.syllablizer :
         optimized syllable transducer
     phonetictransducer :
-        transducer derived from fsa_ptags
+        transducer derived from fsa_analysis
     phoneticanalyser :
         optimized phonetic analyser as a transducer
     g2ptransducer :
@@ -59,12 +59,12 @@ class PhoneticAnalyser:
 
     def __init__(self):
         self.fsa_syl = None
-        self.fsa_ptags = None
+        self.fsa_analysis = None
         self.fsa_g2p = None
         # Set resource path for syllable splitting
         resource_path_syllables = "data/syllablizer.a"
         # Set resource path for phonetic analysis
-        resource_path_phonetictag = "data/g2p.a"
+        resource_path_phonetictag = "data/analysis.a"
         # Set resource path for g2p conversion
         resource_path_g2p = "data/ml2ipa.a"
         if resource_exists(__name__, resource_path_syllables):
@@ -72,8 +72,8 @@ class PhoneticAnalyser:
         if not self.fsa_syl:
             raise ValueError("Could not read the fsa.")
         if resource_exists(__name__, resource_path_phonetictag):
-            self.fsa_ptags = resource_filename(__name__, resource_path_phonetictag)
-        if not self.fsa_ptags:
+            self.fsa_analysis = resource_filename(__name__, resource_path_phonetictag)
+        if not self.fsa_analysis:
             raise ValueError("Could not read the fsa.")
         if resource_exists(__name__, resource_path_g2p):
             self.fsa_g2p = resource_filename(__name__, resource_path_g2p)
@@ -89,7 +89,7 @@ class PhoneticAnalyser:
 
     def getPhoneticAnalyser(self):
         if not self.phonetictransducer:
-            self.phonetictransducer = getTransducer(self.fsa_ptags)
+            self.phonetictransducer = getTransducer(self.fsa_analysis)
         phoneticanalyser = libhfst.HfstTransducer(self.phonetictransducer)
         phoneticanalyser.remove_epsilons()
         phoneticanalyser.lookup_optimize()
@@ -228,7 +228,7 @@ class PhoneticAnalyser:
 
         Returns
 
-        ['kaːṯṯ']
+        ['kaːṯṯə']
         """
         if not self.g2pconverter:
             self.g2pconverter = self.getG2PConverter()
@@ -247,7 +247,7 @@ class PhoneticAnalyser:
         Parameters
         ----------
         ipa_sequence : str
-            An IPA sequence, example: 'kaːṯṯ'
+            An IPA sequence, example: 'kaːṯṯə'
 
         Raises
         ------
@@ -260,7 +260,7 @@ class PhoneticAnalyser:
             a list of strings. Each string is a possible Malayalam word, corresponding to given IPA sequence
         Example
         -------
-        mlphon.phoneme_to_grapheme('kaːṯṯ')
+        mlphon.phoneme_to_grapheme('kaːṯṯə')
 
         Returns
 
