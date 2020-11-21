@@ -10,14 +10,12 @@ $alveolar2$ = {n̪<nasal><dental>}:{n<nasal><alveolar>} ^-> (<EoS><BoS> __ [#IPA
 % സമ്പന്നം,  സന്നദ്ധം, സാന്നിദ്ധ്യം, സന്നിധാനം,
 $gemination$ = {n̪<nasal><dental><virama>n̪<nasal><dental>} : {n<nasal><alveolar><virama>n<nasal><alveolar>}
 
-$context1$ = <BoS>s<fricative><alveolar>a<inherentvowel><EoS><BoS> |\  % സന്നി, സന്നിധാനം
-            <BoS>s<fricative><alveolar>aː<v_sign><EoS><BoS> |\ % സാന്നിദ്ധ്യം
-            <BoS>u<vowel><EoS><BoS> |\ % ഉന്നതി, ഉന്നം
-            <BoS>bʱ<plosive><voiced><aspirated><labial>i<v_sign><EoS><BoS> % ഭിന്നം, വിഭിന്ന
-$alveolar3$ = $gemination$ ^-> ( $context1$__ [#IPAvowels#])
+$alveolar3$ = $gemination$ ^-> ( <BoS>s<fricative><alveolar>a<inherentvowel><EoS><BoS>__ [#IPAvowels#]) % സന്നി, സന്നിധാനം, പ്രസന്ന
+$alveolar4$ = $gemination$ ^-> ( <BoS>s<fricative><alveolar>aː<v_sign><EoS><BoS>__ [#IPAvowels#])  % സാന്നിദ്ധ്യം
+$alveolar5$ = $gemination$ ^-> ( <BoS>u<vowel><EoS><BoS>__ [#IPAvowels#]) % ഉന്നതി, ഉന്നം
+$alveolar6$ = $gemination$ ^-> ( <BoS>bʱ<plosive><voiced><aspirated><labial>i<v_sign><EoS><BoS>__ [#IPAvowels#]) % ഭിന്നം, വിഭിന്ന
+$alveolar7$ = $gemination$ ^-> ( m<nasal><labial>i<v_sign><EoS><BoS> __ [#IPAvowels##schwa#] ) % മിന്ന്, മിന്നൽ
+$alveolar8$ = $gemination$ ^-> ( m<nasal><labial><virama>p<plosive><voiceless><unaspirated><labial>a<inherentvowel><EoS><BoS> __ [#IPAvowels#] ) % സമ്പന്നൻ
 
-$context2$ = m<nasal><labial>i<v_sign><EoS><BoS> % മിന്ന്, മിന്നൽ
-$alveolar4$ = $gemination$ ^-> ( __ [#IPAvowels##schwa#] ) 
-
-$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar4$
+$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar4$ ||  $alveolar5$ || $alveolar6$ || $alveolar7$  || $alveolar8$
 $alveolarnasal$
