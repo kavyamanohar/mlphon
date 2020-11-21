@@ -273,6 +273,8 @@ class PhoneticAnalyser:
             raise ValueError("Could not perform p2g on " + ipa_sequence)
         else:
             graphemes = []
+            irrelevant_list = ['ഩ', 'ഺ', 'ൎ', 'ൿ', 'ൔ', 'ൕ', 'ൖ', 'ു്' , 'ംമ', 'മ്ബ']
             for result in p2g_results:
-                graphemes.append(result[0])
+                if not(any(irrelevant in result[0] for irrelevant in irrelevant_list)):
+                    graphemes.append(result[0])
             return graphemes
