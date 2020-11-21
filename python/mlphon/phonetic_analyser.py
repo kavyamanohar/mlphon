@@ -264,7 +264,7 @@ class PhoneticAnalyser:
 
         Returns
 
-        ['കാറ്റ്', 'കാഺ്ഺ്']
+        ['കാറ്റ്']
         """
         if not self.p2gconverter:
             self.p2gconverter = self.getP2GConverter()

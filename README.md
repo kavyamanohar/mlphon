@@ -52,7 +52,7 @@ It gives the ipa sequence as output.
 
 It gives the corresponding grapheme sequences as output. See that it gives two possible sequences, one of which is obsolete.
 
-    ['കാറ്റ്', 'കാഺ്ഺ്']
+    ['കാറ്റ്']
 
 
 ### Command Line Interface for the above operations: `mlphon`
@@ -183,7 +183,20 @@ The reph symbol in Malayalam corresponding to ് + ര (്ര) follows other c
 
 But there is an exception to the above rule for the conjuncts ഗ്ര and ദ്ര.
 
-*TODO:ന in malayalam script is a special character which may behave as dental or alveolar consonat depending on the context. As of now it is mapped to dental `n̪<c_dental>`. Contextual rule has to be added to replace it with `n<c_alveolar>` whenever needed. The reph exception rule for ബ്ര is complicated and is currently set to `r<trill>`*
+`$schwa$`
+
+Adds the half-u or Samvruthokara, whenever there is a virama at word ends.
+
+eg: അവന് /aʋanə/  is different from അവൻ /aʋan/
+
+`$alveolarnasal$`
+
+Performs the disambiguation of ന - as alveolar or dental nasal.
+Contextual rules are written, for complementary pair contexts.
+Works well: പന, നായ, നനവ്, ആന, അന്നു, ഇന്നലെ, സന്നിധാനം, ഊനം, ഊന്നൽ, വിഭിന്നം, 
+
+There are exceptions to general phonological contexts which can be addressed only by morphological parser and POS tags.
+Fails: മന്നൻ, അനുനയം, 
 
 #### FST for contextual nasalisation( അനുനാസികാതിപ്രസരം)
 
@@ -191,14 +204,14 @@ _TODO: ഭംഗി -> ഭങ്ങി , ചിഹ്നം -> ചിന്ന�
 
 #### Overall FST chain
 
-`$g2p$` represents the overall FST which combines each of the above FSTs in a chain.
+`$analysis$` represents the overall FST which combines each of the above FSTs in a chain.
 
 ### Malayalam to IPA with no phonetic tags
 
-`$ml2ipa$` is the fst that converts the Malayalam script to IPA in the analysis mode. It uses the `$g2p$` FST combined with a tag filter `$tagfilter$` to achieve this. But tags like `<anauswara>, <visarga>, <chillu> <zwnj>` are explicitly retained in the IPA analysis. 
+`$ml2ipa$` is the fst that converts the Malayalam script to IPA in the analysis mode. It uses the `$g2p$` FST combined with a tag filter `$tagfilter$` to achieve this. But tags like `<visarga> <zwnj>` are explicitly retained in the IPA sequence. 
 
 ## Installation
-You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `g2p.a`, `ml2ipa.a`, `syllablizer.a`.
+You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `analysis.a`, `ml2ipa.a`, `syllablizer.a`.
 
 In a debian/ubuntu based GNU/Linux, HFST can be installed as follows
 

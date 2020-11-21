@@ -67,7 +67,7 @@ Malayalam p2g : Phoneme to Grapheme conversion
 
 It gives the corresponding grapheme sequences as output. See that it gives two possible sequences, one of which is obsolete.
 
-    ['പാലു്', 'പാല്']
+    [പാല്']
 
 
 Command Line Interface for the above operations: `mlphon`
