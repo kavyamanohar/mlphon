@@ -1,8 +1,12 @@
 #include "alphabets.fst"
 ALPHABET = [#allsymbols#]
 
-$alveolar1$ = {n̪<nasal><dental>}:{n<nasal><alveolar>} ^-> (<BoS> __ <virama>[jʋm]) %ന്യായം, ന്യൂനം, അന്വേഷണം, മേന്മ
-$alveolar2$ = {n̪<nasal><dental>}:{n<nasal><alveolar>} ^-> (<EoS><BoS> __ [#IPAvowels##schwa#]) % പനി, ആന, മുന, മനോഹരം
+$nasaltoalveolar$ = {n̪<nasal><dental>} : {n<nasal><alveolar>}
+
+$alveolar1$ = $nasaltoalveolar$ ^-> (<BoS> __ <virama>[jʋm]) %ന്യായം, ന്യൂനം, അന്വേഷണം, മേന്മ
+$alveolar2$ = $nasaltoalveolar$ ^-> (<EoS><BoS> __ [#IPAvowels##schwa#]) % പനി, ആന, മുന, മനോഹരം
+$alveolar0$ = $nasaltoalveolar$ ^-> (s<fricative><alveolar><virama>__) % സ്നാനം
+
 
 % Gemination ന്ന becomes alveolar is the contexts
 % അന്നം, ഉൽപ്പന്നം, ഉന്നതം, ഉന്നം, എന്നെ, കന്നഡ, കന്നാസ്, കന്നി
@@ -16,6 +20,9 @@ $alveolar5$ = $gemination$ ^-> ( <BoS>u<vowel><EoS><BoS>__ [#IPAvowels#]) % ഉ�
 $alveolar6$ = $gemination$ ^-> ( <BoS>bʱ<plosive><voiced><aspirated><labial>i<v_sign><EoS><BoS>__ [#IPAvowels#]) % ഭിന്നം, വിഭിന്ന
 $alveolar7$ = $gemination$ ^-> ( m<nasal><labial>i<v_sign><EoS><BoS> __ [#IPAvowels##schwa#] ) % മിന്ന്, മിന്നൽ. Fails for പോകാമിന്നലെ 
 $alveolar8$ = $gemination$ ^-> ( m<nasal><labial><virama>p<plosive><voiceless><unaspirated><labial>a<inherentvowel><EoS><BoS> __ [#IPAvowels#] ) % സമ്പന്നൻ
+$alveolar9$ = $gemination$ ^-> ( <BoW><BoS>k<plosive><voiceless><unaspirated><velar>a<inherentvowel><EoS><BoS>__ i) %കന്നി കന്നിക്കൊയ്ത്ത്
+%note that അകന്നിരിക്കുക, കന്ന്, ചുകന്നത്  etc. has geminated dental nasal
 
-$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar4$ ||  $alveolar5$ || $alveolar6$ || $alveolar7$  || $alveolar8$
+
+$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar4$ ||  $alveolar5$ || $alveolar6$ || $alveolar7$  || $alveolar8$ || $alveolar9$ || $alveolar0$
 $alveolarnasal$
