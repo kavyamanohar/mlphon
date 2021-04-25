@@ -21,7 +21,9 @@ $alveolar_gem5$ = $gemination$ ^-> ( m<nasal><labial>i<v_sign><EoS><BoS> __ [#IP
 $alveolar_gem6$ = $gemination$ ^-> ( m<nasal><labial><virama>p<plosive><voiceless><unaspirated><labial>a<inherentvowel><EoS><BoS> __ [#IPAvowels#] ) % സമ്പന്നൻ
 $alveolar_gem7$ = $gemination$ ^-> ( <BoW><BoS>k<plosive><voiceless><unaspirated><velar>a<inherentvowel><EoS><BoS>__ i) %കന്നി കന്നിക്കൊയ്ത്ത്
 %note that അകന്നിരിക്കുക, കന്ന്, ചുകന്നത്  etc. has geminated dental nasal
+$alveolar_gem8$ = $gemination$ ^-> (<BoW><BoS>k<plosive><voiceless><unaspirated><velar>i<v_sign><EoS><BoS>__) %കിന്നാരം, not എനിക്കിന്ന്
+$alveolar_gem9$ = $gemination$ ^-> (<BoS>kʰ<plosive><voiceless><aspirated><velar>i<v_sign><EoS><BoS>__) % ഖിന്നം
 
-
-$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar_gem1$ || $alveolar_gem2$ ||  $alveolar_gem3$ || $alveolar_gem4$ || $alveolar_gem5$  || $alveolar_gem6$ || $alveolar_gem7$ 
+$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar_gem1$ || $alveolar_gem2$ ||  $alveolar_gem3$ || $alveolar_gem4$ || $alveolar_gem5$  || $alveolar_gem6$ || $alveolar_gem7$  || $alveolar_gem8$ || $alveolar_gem9$
+    
 $alveolarnasal$
