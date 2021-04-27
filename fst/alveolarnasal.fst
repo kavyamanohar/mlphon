@@ -24,6 +24,11 @@ $alveolar_gem7$ = $gemination$ ^-> ( <BoW><BoS>k<plosive><voiceless><unaspirated
 $alveolar_gem8$ = $gemination$ ^-> (<BoW><BoS>k<plosive><voiceless><unaspirated><velar>i<v_sign><EoS><BoS>__) %കിന്നാരം, not എനിക്കിന്ന്
 $alveolar_gem9$ = $gemination$ ^-> (<BoS>kʰ<plosive><voiceless><aspirated><velar>i<v_sign><EoS><BoS>__) % ഖിന്നം
 
-$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar_gem1$ || $alveolar_gem2$ ||  $alveolar_gem3$ || $alveolar_gem4$ || $alveolar_gem5$  || $alveolar_gem6$ || $alveolar_gem7$  || $alveolar_gem8$ || $alveolar_gem9$
+$gemination_dual$ =  {n̪<nasal><dental><virama>n̪<nasal><dental>} : {n<nasal><alveolar><virama>n<nasal><alveolar>} | n̪<nasal><dental><virama>n̪<nasal><dental>
+
+$alveolar_dual1$ = $gemination_dual$ ^-> (<BoS>e<vowel><EoS><BoS>__aː<v_sign>[#boundarytags#]*l) % എന്നാൽ, എന്നാലാകും
+$alveolar_dual2$ = $gemination_dual$ ^-> (<BoS>n̪<nasal><dental>i<v_sign><EoS><BoS>__aː<v_sign>[#boundarytags#]*l) % നിന്നാൽ, നിന്നാലാകുമോ
+
+$alveolarnasal$ = $alveolar1$ || $alveolar2$ || $alveolar3$ || $alveolar_gem1$ || $alveolar_gem2$ ||  $alveolar_gem3$ || $alveolar_gem4$ || $alveolar_gem5$  || $alveolar_gem6$ || $alveolar_gem7$  || $alveolar_gem8$ || $alveolar_gem9$ || $alveolar_dual1$ || $alveolar_dual2$
     
 $alveolarnasal$
