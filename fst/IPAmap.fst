@@ -62,11 +62,12 @@ $dental$ = (ത:{t̪<plosive><voiceless><unaspirated>}|\
 $alveolar$ = (ഺ:{ṯ<plosive><voiceless><unaspirated>}|\
              ഩ:{n<nasal>}) <>:<alveolar>
 $labial$ = (പ:{p<plosive><voiceless><unaspirated>}|\
-           ഫ:{pʰ<plosive><voiceless><aspirated>}|\
+        %    ഫ:{pʰ<plosive><voiceless><aspirated>}|\
            ബ:{b<plosive><voiced><unaspirated>}|\
            ഭ:{bʱ<plosive><voiced><aspirated>}|\
            മ:{m<nasal>}) <>:<labial>
-$otherconsonants$ = (യ:{j<glide><palatal>}|\
+$otherconsonants$ = (ഫ:{f<fricative><labiodental>}|\
+                    യ:{j<glide><palatal>}|\
                     ര:{ɾ<flapped><alveolar>}|\
                     ല:{l<lateral><alveolar>}|\
                     വ:{ʋ<approximant><labiodental>}|\

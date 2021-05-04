@@ -71,7 +71,7 @@
 #IPAdental# = {t̪} {t̪ʰ} {d̪} {d̪ʱ} {n̪}
 #IPAalveolar# = {ṯ} {n}
 #IPAlabial# = {p} {pʰ} {b} {bʱ} {m}
-#IPAother# = {j} {ɾ} {l} {ʋ} {ʃ} {ʂ} {s} {ɦ} {ɭ} {ɻ} {r}
+#IPAother# = {j} {ɾ} {l} {ʋ} {ʃ} {ʂ} {s} {ɦ} {ɭ} {ɻ} {r} {f}
 #IPAconsonants# = #IPAvelar# #IPApalatal# #IPAretroflex# #IPAdental# #IPAalveolar# #IPAlabial# #IPAother#
 
 #IPAs# = #IPAvowels# #IPAconsonants# #schwa#
