@@ -78,7 +78,8 @@ def main():
                 print(error_instance)
                 options.outfile.write(line + "\t" + "?" + "\n")
             else:
-                options.outfile.write(line + "\t" + str(phonemedetails) + "\n")
+                for result in phonemedetails:
+                    options.outfile.write(line + "\t" + str(result) + "\n")
         if options.tophoneme:
             try:
                 phonemes = phonetic_analyser.grapheme_to_phoneme(line)

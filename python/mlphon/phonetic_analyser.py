@@ -200,9 +200,10 @@ class PhoneticAnalyser:
         if not analysis_results:
             raise ValueError("Could not analyse " + word)
         else:
+            analysis_phonemedetails = []
             for result in analysis_results:
-                phonemedetails = parse_phonemetags(result[0])
-            return phonemedetails
+                analysis_phonemedetails.append(parse_phonemetags(result[0]))
+            return analysis_phonemedetails
 
     def grapheme_to_phoneme(self, word):
         """Convert Malayalam grapheme to phonemes in IPA
