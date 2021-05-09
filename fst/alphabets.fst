@@ -20,6 +20,8 @@
 #chillus# = ൺ ൻ ർ ൽ ൾ ൿ ൔ ൕ ൖ
 % invisible characters zwj and zwnj
 #zerowidth# = ‌‍
+#zwnj# = ‌‍
+#zwj# = ‍
 #letters# = #vowels# #signs# #consonants# #chillus# #zerowidth#
 
 #voweltag#  = <vowel>
