@@ -197,6 +197,7 @@ class PhoneticAnalyser:
         if not self.phoneticanalyser:
             self.phoneticanalyser = self.getPhoneticAnalyser()
         analysis_results = self.phoneticanalyser.lookup(word)
+        analysis_results = list(set(analysis_results)) #To choose unique results
         if not analysis_results:
             raise ValueError("Could not analyse " + word)
         else:
