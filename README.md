@@ -32,7 +32,14 @@ It will give the result
 
 It gives the result as a sequence of ipa and associated phonetic tags.
 
-    [{'phonemes': [{'ipa': 'k', 'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']}, {'ipa': 'eː', 'tags': ['v_sign']}]}, {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']}, {'ipa': 'a', 'tags': ['inherentvowel']}]}, {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']}, {'ipa': 'a', 'tags': ['inherentvowel']}, {'ipa': 'm', 'tags': ['anuswara']}]}]
+    [[{'phonemes': [{'ipa': 'k',
+        'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']},
+    {'ipa': 'eː', 'tags': ['v_sign']}]},
+    {'phonemes': [{'ipa': 'ɾ', 'tags': ['flapped', 'alveolar']},
+    {'ipa': 'a', 'tags': ['inherentvowel']}]},
+    {'phonemes': [{'ipa': 'ɭ', 'tags': ['lateral', 'retroflex']},
+    {'ipa': 'a', 'tags': ['inherentvowel']},
+    {'ipa': 'm', 'tags': ['anuswara']}]}]]
 
 ### Malayalam g2p : Grapheme to Phoneme conversion
 
@@ -98,7 +105,7 @@ A typical use case of phonetic analysis is to create a phonetic lexicon to be us
 
     from mlphon import PhoneticAnalyser, split_as_phonemes
     mlphon = PhoneticAnalyser()
-    split_as_phonemes(mlphon.analyse('ഇന്ത്യയുടെ'))
+    split_as_phonemes(mlphon.analyse('ഇന്ത്യയുടെ')[0])
 
 It results in the output:
 
@@ -108,7 +115,7 @@ The phonetic representation with each syllable separated by a space can be obtai
 
     from mlphon import PhoneticAnalyser, split_as_syllables
     mlphon = PhoneticAnalyser()
-    split_as_syllables(mlphon.analyse('ഇന്ത്യയുടെ'))
+    split_as_syllables(mlphon.analyse('ഇന്ത്യയുടെ')[0])
 
 It results in the output:
 
