@@ -123,6 +123,7 @@ A typical use case of phonetic analysis is to create a phonetic lexicon to be us
 It results in the output:
 
     'e n̪ n̪ aː l'
+    
     'e n n aː l'
 
 The phonetic representation with each syllable separated by a space can be obtained as below:
@@ -132,7 +133,7 @@ The phonetic representation with each syllable separated by a space can be obtai
     from mlphon import PhoneticAnalyser, split_as_syllables
     mlphon = PhoneticAnalyser()
     for analysis in mlphon.analyse('ഇന്ത്യയുടെ'):
-      split_as_syllables(mlphon.analyse('ഇന്ത്യയുടെ'))
+      split_as_syllables(analysis)
 
 It results in the output:
 
