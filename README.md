@@ -57,7 +57,7 @@ It gives the ipa sequence as output.
     mlphon = PhoneticAnalyser()
     mlphon.phoneme_to_grapheme('kaːṯṯə')
 
-It gives the corresponding grapheme sequences as output. See that it gives two possible sequences, one of which is obsolete.
+It gives the corresponding grapheme sequences as output.
 
     ['കാറ്റ്']
 
@@ -128,7 +128,7 @@ Understanding the phonetic characteristics of a word is helpful in many computat
 
 Finite State Transducers provide a method for performing mathematical operations on ordered collections of context-sensitive rewrite rules such as those commonly used to implement fundamental natural language processing tasks. Multiple rules may be composed into a single pass, mega rule, significantly increasing the efficiency of rule-based systems.   An FST consists of a finite number of states which are linked by transitions labeled with an input/output pair. The FST starts out in a designated start state and jumps to different states depending on the input, while producing output according to its transition table.
 
-In this project we try to develop a phonetic analyser for malayalam script. A specific application of transliterating malayalam script to international phonetic alphabet (IPA) is demonstrated. Specifically, the system is developed using Stuttgart Finite State Toolkit(SFST) formalism and uses Helsinki Finite-State Technology(HFST) as Toolkit.
+In this project we try to develop a phonetic analyser for malayalam script. A specific application of transliterating malayalam script to international phonetic alphabet (IPA) is demonstrated. Specifically, the system is developed using Stuttgart Finite State Toolkit(SFST) formalism.
 
 ### Grapheme Phoneme Correspondence(GPC) System
 
@@ -218,11 +218,11 @@ _TODO: ഭംഗി -> ഭങ്ങി , ചിഹ്നം -> ചിന്ന�
 `$ml2ipa$` is the fst that converts the Malayalam script to IPA in the analysis mode. It uses the `$g2p$` FST combined with a tag filter `$tagfilter$` to achieve this. But tags like `<visarga> <zwnj>` are explicitly retained in the IPA sequence. 
 
 ## Installation
-You need Helsinki Finite-State Transducer Technology (HFST) (http://www.ling.helsinki.fi/kieliteknologia/tutkimus/hfst/) to compile this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `analysis.a`, `ml2ipa.a`, `syllablizer.a`.
+You need Stuttgart Finite-State Transducer Technology (SFST) (https://www.cis.uni-muenchen.de/~schmid/tools/SFST/) to compile this analyzer. The Makefile provided compiles all the sources and produces the binary FSA `analysis.a`, `ml2ipa.a`, `syllablizer.a`.
 
-In a debian/ubuntu based GNU/Linux, HFST can be installed as follows
+In a debian/ubuntu based GNU/Linux, SFST can be installed as follows
 
-```$ sudo apt install hfst```
+```$ sudo apt install sfst```
 
 Clone or download this git repository to your machine.
 
