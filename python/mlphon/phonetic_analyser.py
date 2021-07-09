@@ -1,20 +1,9 @@
-import argparse
 from sys import stderr, stdin, stdout
-import os
-import libhfst
+import sfst
 from pkg_resources import resource_filename, resource_exists
-from .utilities import parse_syllabletags, parse_phonemetags
-
-
-def getTransducer(fsa):
-    """Returns transducer from finite state automata"""
-    istr = libhfst.HfstInputStream(fsa)
-    transducers = []
-    while not (istr.is_eof()):
-        transducers.append(istr.read())
-    istr.close()
-    return transducers[0]
-
+from .utilities import parse_phonemetags
+from .syllable_analyser import SyllableAnalyser
+from .g2p import GraphemeToPhoneme
 
 class PhoneticAnalyser:
     """
@@ -26,10 +15,6 @@ class PhoneticAnalyser:
         finite state automata for syllablizing
     fsa_analysis : fsa
         finite state automata for phonetic tag analysis
-    fsa_g2p : fsa
-        finite state automata for grapheme-phoneme correspondence system
-    syllabletransducer :
-        transducer derived from fsa_syl
     self.syllablizer :
         optimized syllable transducer
     phonetictransducer :
@@ -46,10 +31,6 @@ class PhoneticAnalyser:
 
     Methods
     -------
-    getSyllableAnalyser()
-    getPhoneticAnalyser()
-    getG2PConverter()
-    getP2GConverter()
     split_to_syllables()
     analyse()
     grapheme_to_phoneme()
@@ -57,103 +38,17 @@ class PhoneticAnalyser:
 
     """
 
+    RESOURCE_PATH = "data/analysis.a"
+
     def __init__(self):
-        self.fsa_syl = None
-        self.fsa_analysis = None
-        self.fsa_g2p = None
-        # Set resource path for syllable splitting
-        resource_path_syllables = "data/syllablizer.a"
-        # Set resource path for phonetic analysis
-        resource_path_phonetictag = "data/analysis.a"
-        # Set resource path for g2p conversion
-        resource_path_g2p = "data/ml2ipa.a"
-        if resource_exists(__name__, resource_path_syllables):
-            self.fsa_syl = resource_filename(__name__, resource_path_syllables)
-        if not self.fsa_syl:
+        """Construct Syllable Analyser"""
+        self.fsa: str = None
+        if resource_exists(__name__, PhoneticAnalyser.RESOURCE_PATH):
+            self.fsa: str = resource_filename(__name__, PhoneticAnalyser.RESOURCE_PATH)
+        if not self.fsa:
             raise ValueError("Could not read the fsa.")
-        if resource_exists(__name__, resource_path_phonetictag):
-            self.fsa_analysis = resource_filename(__name__, resource_path_phonetictag)
-        if not self.fsa_analysis:
-            raise ValueError("Could not read the fsa.")
-        if resource_exists(__name__, resource_path_g2p):
-            self.fsa_g2p = resource_filename(__name__, resource_path_g2p)
-        if not self.fsa_g2p:
-            raise ValueError("Could not read the fsa.")
-        self.syllabletransducer = None
-        self.syllablizer = None
-        self.phonetictransducer = None
-        self.phoneticanalyser = None
-        self.g2ptransducer = None
-        self.g2pconverter = None
-        self.p2gconverter = None
+        sfst.init(self.fsa)
 
-    def getPhoneticAnalyser(self):
-        if not self.phonetictransducer:
-            self.phonetictransducer = getTransducer(self.fsa_analysis)
-        phoneticanalyser = libhfst.HfstTransducer(self.phonetictransducer)
-        phoneticanalyser.remove_epsilons()
-        phoneticanalyser.lookup_optimize()
-        return phoneticanalyser
-
-    def getSyllableAnalyser(self):
-        if not self.syllabletransducer:
-            self.syllabletransducer = getTransducer(self.fsa_syl)
-        syllablizer = libhfst.HfstTransducer(self.syllabletransducer)
-        syllablizer.remove_epsilons()
-        syllablizer.lookup_optimize()
-        return syllablizer
-
-    def getG2PConverter(self):
-        if not self.g2ptransducer:
-            self.g2ptransducer = getTransducer(self.fsa_g2p)
-        g2pconverter = libhfst.HfstTransducer(self.g2ptransducer)
-        g2pconverter.remove_epsilons()
-        g2pconverter.lookup_optimize()
-        return g2pconverter
-
-    def getP2GConverter(self):
-        if not self.g2ptransducer:
-            self.g2ptransducer = getTransducer(self.fsa_g2p)
-        p2gconverter = libhfst.HfstTransducer(self.g2ptransducer)
-        # p2gconverter is obtained by inverting the g2ptransducer
-        p2gconverter.invert()
-        p2gconverter.remove_epsilons()
-        p2gconverter.lookup_optimize()
-        return p2gconverter
-
-    def split_to_syllables(self, word):
-        """Split Malayalam word to syllables
-
-        Parameters
-        ----------
-        word : str
-            A word in Malayalam, example : 'കേരളം'
-
-        Raises
-        ------
-        ValueError
-            If the word passed in not a valid Malayalam word
-
-        Returns
-        -------
-        list
-            a list of strings
-
-        Example
-        -------
-        mlphon.syllablize('കേരളം') Returns
-
-        ['കേ', 'ര', 'ളം']
-        """
-        if not self.syllabletransducer:
-            self.syllablizer = self.getSyllableAnalyser()
-        syllablizer_results = self.syllablizer.lookup(word)
-        if not syllablizer_results:
-            raise ValueError("Could not split " + word + " into syllables")
-        else:
-            for result in syllablizer_results:
-                syllables = parse_syllabletags(result[0])
-            return syllables
 
     def analyse(self, word):
         """Split Malayalam word to syllables
@@ -194,89 +89,26 @@ class PhoneticAnalyser:
                      {'ipa': 'm',
                       'tags': ['anuswara']}]}]
         """
-        if not self.phoneticanalyser:
-            self.phoneticanalyser = self.getPhoneticAnalyser()
-        analysis_results = self.phoneticanalyser.lookup(word)
+        analysis_results = sfst.generate(word)
         analysis_results = list(set(analysis_results)) #To choose unique results
         if not analysis_results:
             raise ValueError("Could not analyse " + word)
         else:
             analysis_phonemedetails = []
             for result in analysis_results:
-                analysis_phonemedetails.append(parse_phonemetags(result[0]))
+                analysis_phonemedetails.append(parse_phonemetags(result))
             return analysis_phonemedetails
 
     def grapheme_to_phoneme(self, word):
-        """Convert Malayalam grapheme to phonemes in IPA
-
-        Parameters
-        ----------
-        word : str
-            A word in Malayalam, example: 'കാറ്റ്'
-
-        Raises
-        ------
-        ValueError
-            If the word passed in not a valid Malayalam word and can not be transcribed
-
-        Returns
-        -------
-        list
-            a list of strings. Each string represents a valid pronunciation of input string in IPA format
-
-        Example
-        -------
-        mlphon.grapheme_to_phoneme('കാറ്റ്')
-
-        Returns
-
-        ['kaːṯṯə']
-        """
-        if not self.g2pconverter:
-            self.g2pconverter = self.getG2PConverter()
-        g2p_results = self.g2pconverter.lookup(word)
-        if not g2p_results:
-            raise ValueError("Could not perform g2p on " + word)
-        else:
-            phonemes = []
-            for result in g2p_results:
-                phonemes.append(result[0])
-            return phonemes
+        g2p = GraphemeToPhoneme()
+        return g2p.generate(word)
 
     def phoneme_to_grapheme(self, ipa_sequence):
-        """Convert IPA to Malayalam grapheme if possible
+        g2p = GraphemeToPhoneme()
+        return g2p.analyse(ipa_sequence)
 
-        Parameters
-        ----------
-        ipa_sequence : str
-            An IPA sequence, example: 'kaːṯṯə'
 
-        Raises
-        ------
-        ValueError
-            If the word passed in not an IPA sequence with valid Malayalam pronunciation
+    def split_to_syllables(self, word):
+        syllableAnalyser = SyllableAnalyser()
+        return syllableAnalyser.analyse(word)
 
-        Returns
-        -------
-        list
-            a list of strings. Each string is a possible Malayalam word, corresponding to given IPA sequence
-        Example
-        -------
-        mlphon.phoneme_to_grapheme('kaːṯṯə')
-
-        Returns
-
-        ['കാറ്റ്']
-        """
-        if not self.p2gconverter:
-            self.p2gconverter = self.getP2GConverter()
-        p2g_results = self.p2gconverter.lookup(ipa_sequence)
-        if not p2g_results:
-            raise ValueError("Could not perform p2g on " + ipa_sequence)
-        else:
-            graphemes = []
-            irrelevant_list = ['ഩ', 'ഺ', 'ൎ', 'ൿ', 'ൔ', 'ൕ', 'ൖ', 'ു്' , 'ംമ', 'മ്ബ', 'ൽല', 'ൾള', 'ൻന','ൺണ', '‍', 'ൻ്റ', 'ോ', 'ൊ', 'െെ']
-            for result in p2g_results:
-                if not(any(irrelevant in result[0] for irrelevant in irrelevant_list)):
-                    graphemes.append(result[0])
-            return graphemes
