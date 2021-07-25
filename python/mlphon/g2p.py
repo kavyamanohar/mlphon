@@ -79,7 +79,7 @@ class GraphemeToPhoneme:
             raise ValueError("Could not perform p2g on " + ipa_sequence)
         else:
             graphemes = []
-            irrelevant_list = ['ഩ', 'ഺ', 'ൎ', 'ൿ', 'ൔ', 'ൕ', 'ൖ', 'ു്' , 'ംമ', 'മ്ബ', 'ൽല', 'ൾള', 'ൻന','ൺണ', '‍', 'ൻ്റ', 'ോ', 'ൊ', 'െെ']
+            irrelevant_list = ['ഩ', 'ഺ', 'ൎ', 'ൿ', 'ൔ', 'ൕ', 'ൖ', 'ു്' , 'ംമ', 'മ്ബ', 'ൽല', 'ൾള', 'ൻന','ൺണ', '‍', 'ൻ്റ', 'ോ', 'ൊ', 'െെ', 'ഃന', 'ഃമ', 'ഃയ', 'ഃറ', 'ഃല', 'ഃബ', 'ഃവ', 'ഹ്ഖ', 'ഹ്പ', 'ഹ്സ', 'ഹ്ശ']
             for result in p2g_results:
                 if not(any(irrelevant in result for irrelevant in irrelevant_list)):
                     graphemes.append(result)

@@ -38,7 +38,7 @@ $vowelsign$ = (	ാ:{aː}|\
 		            ൗ:{au̯}|\
 		            ൌ:{au̯}) <>:<v_sign>
 $anuswara$ = ം:{m <anuswara>}
-$visarga$ = ഃ:{<visarga>}
+$visarga$ = ഃ:{ɦ<visarga>}
 $velar$ = (ക:{k<plosive><voiceless><unaspirated>}|\
           ഖ:{kʰ<plosive><voiceless><aspirated>}|\
           ഗ:{ɡ<plosive><voiced><unaspirated>}|\
