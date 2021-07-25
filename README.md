@@ -64,8 +64,8 @@ It gives the corresponding grapheme sequences as output.
 
 ### Command Line Interface for the above operations: `mlphon`
 
-    usage: 
-    mlphon [-h] [-s] [-a] [-p] [-g] [-i INFILE] [-o OUTFILE] [-v]
+    usage: mlphon [-h] [-s] [-a] [-p] [-pe string] [-se string] [-g] [-i INFILE]
+                [-o OUTFILE] [-v]
 
     optional arguments:
     -h, --help            show this help message and exit
@@ -73,6 +73,10 @@ It gives the corresponding grapheme sequences as output.
     -a, --analyse         Phonetically analyse the input Malayalam string
     -p, --tophoneme       Transcribe the input Malayalam grapheme to phoneme
                             sequence
+    -pe string, --phoneme_end string
+                            String to be inserted at end of phoneme
+    -se string, --syllable_end string
+                            String to be inserted at end of syllable
     -g, --tographeme      Transcribe the input phoneme sequence to Malayalam
                             grapheme
     -i INFILE, --input INFILE
@@ -81,9 +85,10 @@ It gives the corresponding grapheme sequences as output.
                             target of generated strings
     -v, --verbose         print verbosely while processing
 
+
 For example to perform g2p operation on a set of words stored in input.txt with one Malayalam word per line,
 
-    mlphon -p -i path/to/inputfile.txt -o path/to/outputfile.txt
+    mlphon -p -pe " " -se "."-i path/to/inputfile.txt -o path/to/outputfile.txt
 
 Inputfile contents:
 
@@ -94,9 +99,9 @@ Inputfile contents:
 
 Outputfile contents:
 
-	അകത്തുള്ളത് akat̪t̪uɭɭat̪ə
-	അകപ്പെട്ടത്        akappeʈʈat̪ə
-	അകലെ    akale
+    അകത്തുള്ളത് a .k a .t̪ t̪ u .ɭ ɭ a .t̪ ə .
+    അകപ്പെട്ടത്        a .k a .p p e .ʈ ʈ a .t̪ ə .
+    അകലെ    a .k a .l e .
 
 
 ### Application: Using `mlphon` to create a phonetic lexicon
@@ -120,6 +125,19 @@ The phonetic representation with each syllable separated by a space can be obtai
 It results in the output:
 
     'i n̪t̪ja ju ʈe'
+
+To get phonemes and syllables with user defined end-marker strings as below:
+
+    from mlphon import PhoneticAnalyser, phonemize
+    mlphon = PhoneticAnalyser()
+    analysis = mlphon.analyse('ഇന്ത്യയുടെ')
+    for result in analysis: # To loop through multiple analysis results, if any
+        phonemize(result, " ", ".")
+
+It results in the output with a 'space' after every phoneme and a 'period' after every syllable:
+
+    i .n̪ t̪ j a .j u .ʈ e .'
+
 
 ## For Developers
 
