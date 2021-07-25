@@ -156,6 +156,40 @@ def split_as_syllables(phonemedetails):
             phonemes += str(phonemedetails[sylindex]["phonemes"][phonemeindex]["ipa"])
     return phonemes
 
+def phonemize(phonemedetails,phoneme_end=" ",syllable_end="."):
+    """Parse phoneme details in the form of list of dict and returns a string of IPA with phoneme and syllable end marked with 
+
+    Parameters
+    ----------
+    phonemedetails : list of dict
+
+        [{'phonemes': [{'ipa': 'k',
+                        'tags': ['plosive', 'voiceless', 'unaspirated', 'velar']},
+                       {'ipa': 'eː',
+                        'tags': ['v_sign']}]},
+        {'phonemes': [{'ipa': 'ɾ',
+                       'tags': ['flapped', 'alveolar']},
+                       {'ipa': 'a',
+                        'tags': ['inherentvowel']}]},
+        {'phonemes': [{'ipa': 'ɭ',
+                       'tags': ['lateral', 'retroflex']},
+                      {'ipa': 'a',
+                       'tags': ['inherentvowel']},
+                     {'ipa': 'm',
+                      'tags': ['anuswara']}]}]
+    Returns
+    -------
+    str
+        syllable sequence in IPA separated by spaces
+
+        'k eː .ɾ a .ɭ a m .'
+    """
+    phonemes = ""
+    for sylindex in range(len(phonemedetails)):
+        for phonemeindex in range(len(phonemedetails[sylindex]["phonemes"])):
+            phonemes += str(phonemedetails[sylindex]["phonemes"][phonemeindex]["ipa"])+phoneme_end
+        phonemes+=syllable_end
+    return phonemes
 
 def main():
     exit(0)

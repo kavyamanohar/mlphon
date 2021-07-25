@@ -4,6 +4,7 @@ from .utilities import (
     parse_phonemetags,
     split_as_phonemes,
     split_as_syllables,
+    phonemize,
 )
 
 __all__ = ["Phonetic_analyser"]

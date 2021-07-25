@@ -2,7 +2,7 @@ import argparse
 from sys import stderr, stdin, stdout
 import os
 from pkg_resources import resource_filename, resource_exists
-from .utilities import parse_syllabletags, parse_phonemetags
+from .utilities import parse_syllabletags, parse_phonemetags, phonemize
 from .phonetic_analyser import PhoneticAnalyser
 
 def main():
@@ -25,6 +25,22 @@ def main():
         "--tophoneme",
         action="store_true",
         help="Transcribe the input Malayalam grapheme to phoneme sequence",
+    )
+    a.add_argument(
+        "-pe",
+        "--phoneme_end",
+        metavar="string",
+        type=str,
+        dest="phoneme_endmark",
+        help="String to be inserted at end of phoneme",
+    )
+    a.add_argument(
+        "-se",
+        "--syllable_end",
+        metavar="string",
+        type=str,
+        dest="syllable_endmark",
+        help="String to be inserted at end of syllable",
     )
     a.add_argument(
         "-g",
@@ -82,13 +98,17 @@ def main():
                     options.outfile.write(line + "\t" + str(result) + "\n")
         if options.tophoneme:
             try:
-                phonemes = phonetic_analyser.grapheme_to_phoneme(line)
+                phonemes = phonetic_analyser.analyse(line)
             except ValueError as error_instance:
-                print(error_instance)
+                # print(error_instance)
                 options.outfile.write(line + "\t" + "?" + "\n")
             else:
+                if not options.phoneme_endmark:
+                    options.phoneme_endmark=""
+                if not options.syllable_endmark:
+                    options.syllable_endmark=""
                 for result in phonemes:
-                    options.outfile.write(line + "\t" + result + "\n")
+                    options.outfile.write(line + "\t" + phonemize(result,options.phoneme_endmark,options.syllable_endmark)+ "\n")
         if options.tographeme:
             try:
                 graphemes = phonetic_analyser.phoneme_to_grapheme(line)
