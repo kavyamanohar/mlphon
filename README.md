@@ -136,7 +136,7 @@ To get phonemes and syllables with user defined end-marker strings as below:
 
 It results in the output with a 'space' after every phoneme and a 'period' after every syllable:
 
-    i .n̪ t̪ j a .j u .ʈ e .'
+    'i .n̪ t̪ j a .j u .ʈ e .'
 
 
 ## For Developers
