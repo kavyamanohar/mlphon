@@ -5,7 +5,7 @@ $nasaltoalveolar$ = {n̪<nasal><dental>} : {n<nasal><alveolar>}
 
 $alveolar1$ = $nasaltoalveolar$ ^-> (<BoS> __ <virama>[jʋm]) %ന്യായം, ന്യൂനം, അന്വേഷണം, മേന്മ
 $alveolar2$ = $nasaltoalveolar$ ^-> (<EoS><BoS> __ [#IPAvowels##schwa#]) % പനി, ആന, മുന, മനോഹരം
-$alveolar3$ = $nasaltoalveolar$ ^-> ([kɡʱpmʃs][#consonanttags#]*<virama>__) % പ്രശ്നം, ക്നാനായ, സ്നേഹം, വിഘ്നം, സ്വപ്നം
+$alveolar3$ = $nasaltoalveolar$ ^-> ([kɡʱpmʃs][#consonanttags#]*<virama>__) % പ്രശ്നം, ക്നാനായ, സ്നേഹം, വിഘ്നം, സ്വപ്നം, നിമ്നം
 
 % Gemination ന്ന becomes alveolar in the contexts
 % അന്നം, ഉൽപ്പന്നം, ഉന്നതം, ഉന്നം, എന്നെ, കന്നഡ, കന്നാസ്, കന്നി
