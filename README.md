@@ -255,3 +255,20 @@ Clone or download this git repository to your machine.
 1. The Festvox Indic Frontend for Grapheme-to-Phoneme Conversion  https://www.parlikar.com/files/aup_wildre_2016.pdf
 1. Malayalam Phonetic Archive by THUNCHATH EZHUTHACHAN MALAYALAM UNIVERSITY http://www.cmltemu.in/phonetic/#/
 1. IPA and sounds http://www.internationalphoneticalphabet.org/ipa-sounds/ipa-chart-with-sounds/
+
+
+# Citing this work
+
+If you are using Mlphon in your project, please cite this paper
+
+```
+@ARTICLE{9877808,  
+author={Manohar, Kavya and Jayan, A. R. and Rajan, Rajeev},  
+journal={IEEE Access},   
+title={Mlphon: A Multifunctional Grapheme-Phoneme Conversion Tool Using Finite State Transducers},   
+year={2022},  
+volume={10},  
+number={},  
+pages={97555-97575},  
+doi={10.1109/ACCESS.2022.3204403}}
+```
